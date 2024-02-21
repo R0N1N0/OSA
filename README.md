@@ -1,2 +1,2 @@
 # Uxiono
-Uxiono empresa de hacking 
+Empresa enfocada al hacking
