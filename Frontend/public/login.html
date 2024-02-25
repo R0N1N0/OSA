@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OSA</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      src="https://kit.fontawesome.com/0da2217e8f.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="shortcut icon"
+      type="image/jpg"
+      href="../img/OSA_normalLogo.png"
+      sizes="32x32"
+    />
+  </head>
+  <body>
+    <section class="h-screen flex justify-center items-center">
+      <!-- portada fondo -->
+      <div class="absolute h-full w-full bg-black">
+        <div
+          class="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"
+        ></div>
+        <div
+          class="absolute left-0 right-0 top-[-10%] h-[1000px] w-[1000px] rounded-full bg-[radial-gradient(circle_400px_at_50%_300px,#fbfbfb36,#000)]"
+        ></div>
+      </div>
+      <!--------->
+
+      <article
+        class="h-auto loginArticle flex justify-center items-center flex-col p-16 rounded relative w-auto"
+      >
+        <img class="size-40" src="../img/OSA_normalLogo.png" alt="" />
+        <h1 class="pb-8 text-3xl">Iniciar sesión</h1>
+        <form class="h-auto w-auto">
+          <label for="username">Nombre de usuario:</label><br />
+          <div class="mt-2 flex items-center rounded flex-row">
+            <span class="pl-4 pr-4"><i class="fa-solid text-lg fa-user"></i></span>
+            <input type="text" id="username" placeholder="..." />
+          </div><br>
+          <label for="password">Contraseña:</label><br />
+          <div class="mt-2 rounded flex items-center flex-row">
+            <span class="pl-4 pr-4"><i class="fa-solid text-lg fa-unlock-keyhole"></i></span>
+            <input
+              type="password"
+              id="password"
+              placeholder="..."
+            />
+          </div><br>
+          <input class="w-36 rounded" type="submit" value="Iniciar sesión">  
+        </form>
+      </article>
+    </section>
+  </body>
+</html>
