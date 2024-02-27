@@ -1,12 +1,8 @@
 
-
-// routes user 
-
-import express from 'express';
+const express = require('express');
 const router = express.Router();
-import userController from '../controllers/userController';
+const userController = require("../controllers/userController.js");
 
-router.get('/userLogin', userController.getUserAuth);
-router.post('/userInsert', userController.insertUser);
+router.post('/login', userController.getUserAuth);
 
 module.exports = router;
