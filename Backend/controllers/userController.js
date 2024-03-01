@@ -1,11 +1,11 @@
 const db = require("../db/db");
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 
 // USER AUTH
 exports.getUserAuth = async (req, res) => {
   const {username, password} = req.body;
-  console.log(req.body);
   try {
     // crear la connexion 
     const connection = await db.getConnection();
@@ -18,11 +18,22 @@ exports.getUserAuth = async (req, res) => {
 
     // ahora hacer todo el tema de la validacion 
     if (results.length === 0) {
-      res.json( {results} );
+      
     } else {
-      res.json( {results} );
+
+      // Crear el token si el usuario existe
+
+      const payload = {
+        id: results[0].id_usuario,
+        rol: results[0].rol
+      }
+
+      // devolver token al cliente
+      const token = jwt.sign(payload, process.env.TOKEN_SECRET, { expiresIn: '1h' });
+      res.json({ token });
+
     }
   } catch(error) {
-    res.send("error en el catch" + error);
+    res.send("error en userAuth" + error);
   }
 };
