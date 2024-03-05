@@ -8,6 +8,7 @@
     --color-black: black;
     --color-secondary: #1CE7ED;
     --color-third: #FF3F5C;
+    --color-success: #29E7CD;
 }
 
 *{
@@ -106,6 +107,7 @@ input, select{
 input[type=submit]{
     background-color: var(--color-secondary);
     height: 42px;
+    cursor: pointer;
 }
 label{
     color: var(--color-text);
@@ -139,4 +141,32 @@ label{
 }
 .p-dif{
     color: var(--color-third);
+}
+
+/* gestion de alertas */
+
+.error{
+    background-color: var(--color-third);
+    color: var(--color-text);
+    transition: all 1s;
+}
+.success{
+    background-color: var(--color-success);
+    color: var(--color-text);
+    transition: all 1s;
+}
+.remove{
+    animation: remove 1s ease;
+}
+
+
+/* Animaciones */
+
+@keyframes remove {
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
 }
