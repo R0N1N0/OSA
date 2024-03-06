@@ -61,7 +61,7 @@ DROP TABLE IF EXISTS `mv`;
 CREATE TABLE IF NOT EXISTS `mv` (
   `id_mv` int NOT NULL AUTO_INCREMENT,
   `nombre` text COLLATE ucs2_spanish_ci,
-  `descripcio` text COLLATE ucs2_spanish_ci,
+  `descripcion` text COLLATE ucs2_spanish_ci,
   `puntos` int DEFAULT NULL,
   `dif` text COLLATE ucs2_spanish_ci,
   `imagen` blob,
