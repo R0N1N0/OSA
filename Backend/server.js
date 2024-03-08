@@ -16,13 +16,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-// user routes
-const userRoutes = require('./routes/user/userRoute.js');
-app.use('/', userRoutes);
-
 app.get('/', (req, res) => {
     res.json( {message: "Hola que tal"} );
 });
+
+// Rutas de usuario
+const userRoutes = require('./routes/user/userRoute.js');
+app.use('/', userRoutes);
+
+// Rutas de maquinas
+
+const mvRoutes = require('./routes/mv/mv.js');
+app.use('/', mvRoutes);
 
 // run server
 app.listen(PORT, () => {

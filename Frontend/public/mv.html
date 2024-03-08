@@ -17,15 +17,10 @@
       sizes="32x32"
     />
   </head>
-  <body>
-    <div class="absolute top-0 h-full w-full bg-slate-950">
-      <div
-        class="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"
-      ></div>
-    </div>
+  <body class="bg-slate-950 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)">
     <header>
       <nav
-        class="w-full flex h-24 fixed top-0 z-40 justify-around items-center"
+        class="w-full flex h-24 fixed top-0 z-40 justify-around items-center bg-slate-950 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)"
       >
         <div class="flex flex-row items-center">
           <img class="size-24" src="../img/OSA_normalLogo.png" alt="Logo OSA" />
@@ -58,8 +53,7 @@
         section virtual machines
     -->
     <section class="w-full relative top-36 h-auto">
-
-
+      <!-- Buscador y filtros -->
       <article
         class="filters w-full h-20 flex flex-row items-center justify-around"
       >
@@ -67,45 +61,29 @@
           <i class="fa-solid fa-cube"></i> Maquinas virtuales
         </h1>
         <form class="flex items-center flex-row">
-        <div class="flex items-center rounded flex-row">
-        <span class="pl-4 pr-4"><i class="fa-solid text-lg fa-magnifying-glass"></i></span>
-          <input
-            class="rounded"
-            type="search"
-            placeholder="Buscar maquina"
-          />
-        </div>
-          <!--
-          <select class="rounded h-9" name="Dificultad" id="">
-            <option value="Dificultad" disabled selected>Dificultad</option>
-          </select>
-          <select class="rounded h-9" name="Puntos" id="">
-            <option value="Puntos" disabled selected>Puntos</option>
-          </select>
-        -->
+          <div class="flex items-center rounded flex-row">
+            <span class="pl-4 pr-4"
+              ><i class="fa-solid text-lg fa-magnifying-glass"></i
+            ></span>
+            <input class="rounded search" type="search" placeholder="Buscar maquina" />
+          </div>
         </form>
       </article>
 
-      <article class="mvbox flex flex-wrap justify-center items-center mt-8">
-        <div class="box relative ml-6 rounded w-80 h-96">
-          <img class="relative w-full" src="https://images.desenio.com/zoom/wb0043-8batman-gothamcityskyline50x70-33443-38474.jpg" alt="">
-          <div class="flex mvinfo flex-row flex-wrap items-center justify-between">
-            <p class="w-full ml-4 p-dif"> Easy </p>
-          <h2 class="titlemv text-2xl ml-4 mb-4"> GOTHAM </h2>
-          <button class="text-base btn-info mr-4 mb-4">Más info <i class="fa-solid fa-chevron-right"></i></button>
-          </div>
-        </div>
-
-
-        <div class="box relative ml-6 rounded w-80 h-96">
-          <img class="relative w-full" src="https://images.desenio.com/zoom/wb0043-8batman-gothamcityskyline50x70-33443-38474.jpg" alt="">
-          <div class="flex mvinfo flex-row flex-wrap items-center justify-between">
-            <p class="w-full ml-4 p-dif"> Easy </p>
-          <h2 class="titlemv text-2xl ml-4 mb-4"> GOTHAM </h2>
-          <button class="text-base btn-info mr-4 mb-4">Más info <i class="fa-solid fa-chevron-right"></i></button>
-          </div>
-        </div>
-      </article>
+      <!-- Articulo donde se muestran las maquinas -->
+      <article
+        class="mvbox h-full flex flex-wrap justify-center items-center"
+      ></article>
+    </section>
+    <!-- Modal para mostrar info sobre la maquina -->
+    <section
+      class="modalShowMv w-full h-screen flex justify-center fixed top-0 left-0 items-center"
+    >
+    <span class="close absolute top-28 cursor-pointer right-6"> <i class="fa-solid text-2xl fa-circle-xmark"></i> </span>
+      <article class="flex justify-center"></article>
     </section>
   </body>
+  <script type="module" src="../js/mv/mv.js"></script>
+  <script type="module" src="../js/mv/filtersMV.js"></script>
 </html>
+

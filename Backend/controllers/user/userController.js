@@ -36,6 +36,6 @@ exports.getUserAuth = async (req, res) => {
       res.json({ token });
     }
   } catch(error) {
-    res.send("error en userAuth" + error);
+    res.send(`Error en el servidor ${error}`);
   }
 };

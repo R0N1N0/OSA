@@ -19,18 +19,35 @@
     font-family: "Anta", sans-serif;
     line-height: 1.5;
 }
-h1, li, a, h5{
+h1, nav a, h5{
     color: var(--color-text);
 }
 li{
     font-size: 18px;
 }
-
+body{
+    overflow-x: hidden;
+}
 /* buttones */
 
 .btn-info{
     padding: 5px 15px;
     border: 1px solid var(--color-secondary);
+    position: relative;
+}
+.btn::before{
+    content: " ";
+    width: 0;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: var(--color-secondary);
+    opacity: 0.2;
+}
+.btn:hover::before{
+    width: 100%;
+    transition: width 0.4s;
 }
 
 
@@ -159,6 +176,29 @@ label{
     animation: remove 1s ease;
 }
 
+/* Modals */
+.modalShowMv .close{
+    color: var(--color-third);
+}
+.modalShowMv h1{
+    color: var(--color-secondary);
+}
+.modalShowMv li, .modalShowMv button, .modalShowMv p{
+    color: var(--color-text);
+}
+.modalShowMv{
+    transform: translateX(-100%);
+    animation: remove 0.3 ease;
+    background: linear-gradient(90deg, rgba(109,117,122,1) 0%, rgba(0,0,0,0.9641106442577031) 40%);
+}
+.showModal{
+    transform: translateX(0%);
+    animation: show 0.3s ease;
+}
+.mvBoxClose{
+    transform: translate(100%);
+    animation: remove 0.3 ease;
+}
 
 /* Animaciones */
 
@@ -168,5 +208,14 @@ label{
     }
     100%{
         opacity: 0;
+    }
+}
+
+@keyframes show {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
     }
 }
