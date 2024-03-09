@@ -1,0 +1,41 @@
+name: Docker
+
+# Aquest workflow només s'executarà si es modifica l'arxiu nginx.Dockerfile
+on:
+  push:
+    paths:
+      - 'nginx.Dockerfile'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@f95db51fddba0c2d1ec667646a06c2ce06100226 # v3.0.0
+
+      # Inicia sessió a GitHub Container Registry
+      - name: Log into GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # Genera un hash de 6 digits per posar-lo al tag de la imatge
+      - name: Get short commit hash
+        run: echo "::set-output name=short_commit_hash::$(git rev-parse --short HEAD)"
+
+      # Monta la docker image i seguidament els posa els tags i els puja al registry
+      - name: Build and push Docker image
+        uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09 # v5.0.0
+        with:
+          context: .
+          dockerfile: nginx.Dockerfile
+          push: true
+          tags: |
+            ${{ env.REGISTRY }}/${{ github.repository }}/nginx:${{ steps.short_commit_hash.outputs.short_commit_hash }}
+            ${{ env.REGISTRY }}/${{ github.repository }}/nginx:latest
