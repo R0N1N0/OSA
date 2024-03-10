@@ -1,4 +1,4 @@
-import { showAlert } from "../alert/alert.js";
+import { showAlert } from "../helpers/alert.js";
 
 // variables
 const loginArticle = document.querySelector(".loginArticle");
