@@ -23,9 +23,11 @@ app.get('/', (req, res) => {
 // Rutas de usuario
 const userRoutes = require('./routes/user/userRoute.js');
 app.use('/', userRoutes);
+// ruta para crear un nuevo usuario
+const createUser = require('./routes/user/createUserRoute.js');
+app.use('/', createUser);
 
 // Rutas de maquinas
-
 const mvRoutes = require('./routes/mv/mv.js');
 app.use('/', mvRoutes);
 
