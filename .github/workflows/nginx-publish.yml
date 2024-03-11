@@ -1,13 +1,13 @@
 name: nginx-publish
 
-# Aquest workflow només s'executarà si es modifica l'arxiu nginx.Dockerfile
 on:
   push:
     paths:
       - 'nginx.Dockerfile'
+
 env:
-  # Use docker.io for Docker Hub if empty
   REGISTRY: ghcr.io
+  IMAGE_NAME: nginx
 
 jobs:
   build:
@@ -18,15 +18,15 @@ jobs:
       id-token: write
 
     steps:
-      - name: Checkout repository
+      - name: Checkout del repositorio
         uses: actions/checkout@v3
 
-      - name: Set up Docker Buildx
+      - name: Configurar Docker Buildx
         uses: docker/setup-buildx-action@f95db51fddba0c2d1ec667646a06c2ce06100226 # v3.0.0
 
       - name: Build nginx custom image
         run: |
-          docker buildx build --file nginx.Dockerfile --tag ${{ env.REGISTRY }}/R0N1N0/${{ env.IMAGE_NAME }}:latest .
+          docker buildx build --file nginx.Dockerfile --tag ${{ env.REGISTRY }}/R0N1N0/${{ env.IMAGE_NAME }}:${{ github.sha }} .
         id: build
         
   publish:
@@ -43,11 +43,9 @@ jobs:
         uses: docker/login-action@343f7c4344506bcbf9b4de18042ae17996df046d # v3.0.0
         with:
           registry: ${{ env.REGISTRY }}
-          username: R0N1N0
-          password: ${{ secrets.GITHUB_TOKEN }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Publish to ${{ env.REGISTRY }}
         run: |
-          docker push ${{ env.REGISTRY }}/R0N1N0/${{ env.IMAGE_NAME }}:latest
-
-
+          docker push ${{ env.REGISTRY }}/R0N1N0/${{ env.IMAGE_NAME }}:${{ github.sha }}
