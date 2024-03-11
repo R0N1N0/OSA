@@ -6,6 +6,7 @@ on:
       - 'nginx.Dockerfile'
 
 env:
+  # Use docker.io for Docker Hub if empty
   REGISTRY: ghcr.io
   ACTOR: r0n1n0
   IMAGE_NAME: nginx
