@@ -29,7 +29,7 @@ jobs:
 
       - name: Build nginx custom image
         run: |
-          docker buildx build --file nginx.Dockerfile --tag ${{ env.TAG }} --tag latest .
+          docker buildx build --file nginx.Dockerfile --tag ghcr.io/usuario/nombre_de_la_imagen:${{ env.TAG }} --tag ghcr.io/usuario/nombre_de_la_imagen:latest .
         id: build
         
   publish:
@@ -53,3 +53,4 @@ jobs:
         run: |
           docker push ${{ env.REGISTRY }}/${{ env.ACTOR }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}
           docker push ${{ env.REGISTRY }}/${{ env.ACTOR }}/${{ env.IMAGE_NAME }}:latest
+          
