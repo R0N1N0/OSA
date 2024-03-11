@@ -47,5 +47,5 @@ jobs:
           dockerfile: nginx.Dockerfile
           push: true
           tags: |
-            ${{ env.REGISTRY }}/${{ github.repository }}/nginx:${{ steps.short_commit_hash.outputs.short_commit_hash }}
-            ${{ env.REGISTRY }}/${{ github.repository }}/nginx:latest
+            ${{ env.REGISTRY }}/OSA/nginx:${{ steps.short_commit_hash.outputs.short_commit_hash }}
+            ${{ env.REGISTRY }}/OSA/nginx:latest
