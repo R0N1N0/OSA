@@ -7,6 +7,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
+  ACTOR: r0n1n0
   IMAGE_NAME: nginx
 
 jobs:
@@ -26,7 +27,7 @@ jobs:
 
       - name: Build nginx custom image
         run: |
-          docker buildx build --file nginx.Dockerfile --tag ${{ env.REGISTRY }}/R0N1N0/${{ env.IMAGE_NAME }}:${{ github.sha }} .
+          docker buildx build --file nginx.Dockerfile --tag ${{ env.REGISTRY }}/${{ env.ACTOR }}/${{ env.IMAGE_NAME }}:${{ github.sha }} .
         id: build
         
   publish:
@@ -48,4 +49,4 @@ jobs:
 
       - name: Publish to ${{ env.REGISTRY }}
         run: |
-          docker push ${{ env.REGISTRY }}/R0N1N0/${{ env.IMAGE_NAME }}:${{ github.sha }}
+          docker push ${{ env.REGISTRY }}/${{ env.ACTOR }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
