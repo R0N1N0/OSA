@@ -6,6 +6,13 @@ Este repositorio consiste en un trabajo de final de grado enfocado a simular la 
 
 Hemos decidido repartir el trabajo principalmente en los siguientes 3 sub apartados.
 
+## Workflow status:
+
+Custom Docker Images
+Mysql: [![mysql-publish](https://github.com/R0N1N0/OSA/actions/workflows/mysql-publish.yml/badge.svg)](https://github.com/R0N1N0/OSA/actions/workflows/mysql-publish.yml)
+Nginx: [![nginx-publish](https://github.com/R0N1N0/OSA/actions/workflows/nginx-publish.yml/badge.svg)](https://github.com/R0N1N0/OSA/actions/workflows/nginx-publish.yml)
+Nodejs: [![nodejs-publish](https://github.com/R0N1N0/OSA/actions/workflows/nodejs-publish.yml/badge.svg)](https://github.com/R0N1N0/OSA/actions/workflows/nodejs-publish.yml)
+
 ### Página web
 
 Lo esencial del proyecto es la página web, la página web está formada de un front end hecho con Html 5 i CSS 3. El backend está pensado con el uso de JavaScript y NodeJS.
