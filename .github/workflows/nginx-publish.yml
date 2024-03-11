@@ -8,8 +8,6 @@ on:
 env:
   # Use docker.io for Docker Hub if empty
   REGISTRY: ghcr.io
-  # github.repository as <account>/<repo>
-  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
   build:
@@ -32,7 +30,7 @@ jobs:
         uses: docker/login-action@343f7c4344506bcbf9b4de18042ae17996df046d # v3.0.0
         with:
           registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
+          username: R0N1N0
           password: ${{ secrets.GITHUB_TOKEN }}
 
       # Genera un hash de 6 digits per posar-lo al tag de la imatge
@@ -47,5 +45,5 @@ jobs:
           dockerfile: nginx.Dockerfile
           push: true
           tags: |
-            ${{ env.REGISTRY }}/OSA/nginx:${{ steps.short_commit_hash.outputs.short_commit_hash }}
-            ${{ env.REGISTRY }}/OSA/nginx:latest
+            ${{ env.REGISTRY }}/R0N1N0/nginx:${{ steps.short_commit_hash.outputs.short_commit_hash }}
+            ${{ env.REGISTRY }}/R0N1N0/nginx:latest
