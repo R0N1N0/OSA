@@ -29,7 +29,7 @@ jobs:
 
       - name: Build nginx custom image
         run: |
-          docker buildx build --file nginx.Dockerfile --tag ${{ env.REGISTRY }}/${{ env.ACTOR }}/${{ env.IMAGE_NAME }}:${{ env.TAG }} .
+          docker buildx build --file nginx.Dockerfile --tag ${{ env.TAG }} --tag latest .
         id: build
         
   publish:
@@ -52,3 +52,4 @@ jobs:
       - name: Publish to ${{ env.REGISTRY }}
         run: |
           docker push ${{ env.REGISTRY }}/${{ env.ACTOR }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}
+          docker push ${{ env.REGISTRY }}/${{ env.ACTOR }}/${{ env.IMAGE_NAME }}:latest
