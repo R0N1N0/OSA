@@ -1,39 +1,69 @@
 version: '3.8'
 
 services:
-  frontend:
+  nginx:
     build:
       context: .
       dockerfile: nginx.Dockerfile
     ports:
-      - "80:80"
+      - '8081:80'
+    hostname: nginx
+    environment:
+      - DB_HOST=db
+      - DB_USER=bassou
+      - DB_PASSWORD=1234
+      - DB_DATABASE=db_proyect
+      - TOKEN_SECRET=9b68a78a1164c77b42f2bb026f047d49
     volumes:
-      - ./Frontend:/var/www/html
+      - nginx_logs:/var/log/nginx
     depends_on:
-      - backend
-      - db
+      - nodejs
+      - mysql
+    networks:
+      - osa_network
 
-  backend:
+  nodejs:
     build:
       context: .
       dockerfile: nodejs.Dockerfile
     ports:
-      - "3000:3000"
+      - '3000:3000'
+    hostname: nodejs
+    environment:
+      - DB_HOST=db
+      - DB_USER=bassou
+      - DB_PASSWORD=1234
+      - DB_DATABASE=db_proyect
+      - TOKEN_SECRET=9b68a78a1164c77b42f2bb026f047d49
     depends_on:
       - mysql
+    networks:
+      - osa_network
 
-  db:
-    image: mysql:latest
-    environment:
-      MYSQL_USER: bassou
-      MYSQL_PASSWORD: 1234
-      MYSQL_ALLOW_EMPTY_PASSWORD: no
-    volumes:
-    - ./Backend/db/db_project.sql:/docker-entrypoint-initdb.d/dump.sql
-     - db_data:/var/lib/mysql
+  mysql:
+    build:
+      context: .
+      dockerfile: mysql.Dockerfile
     ports:
-      - "3306:3306"
+      - '3306:3306'
+    hostname: nodejs
+    environment:
+      - MYSQL_USER=bassou
+      - MYSQL_PASSWORD=1234
+      - MYSQL_RANDOM_ROOT_PASSWORD=true
+      - MYSQL_DATABASE=db_proyect
+    volumes:
+     - db_data:/var/lib/mysql
+    networks:
+      - osa_network
 
 volumes:
+  nginx_logs:
+    external: true
   db_data:
     external: true
+
+networks:
+  osa_network:
+    internal: true
+    driver: bridge
