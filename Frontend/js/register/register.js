@@ -37,7 +37,7 @@ async function createUser(formData){
         .then( response => response.json())
         .then(data => {
             showAlert(data.message, "success", form);
-            console.log(data);
+            console.log(data); 
         })
         .catch(error => {
             console.log("error en fetch" + error);

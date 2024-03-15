@@ -2,6 +2,7 @@ import { showAlert } from "../helpers/alert.js";
 import { showModal } from "../helpers/showModal.js";
 import { clearHTML } from "../helpers/clearHTML.js";
 import { filter } from "./filtersMV.js";
+import { fetchGET } from "../helpers/requests.js";
 
 // variables // ---------------
 const mvBox = document.querySelector(".mvbox");
@@ -121,17 +122,14 @@ function getEspecificMV(id){
 // recuperar todas las maquinas disponibles
 async function getMv(){
     try{
-        fetch("http://192.168.176.3:3000/getMv")
-        .then(response => response.json())
-        .then(data => {
-            if(data.message){
-                showAlert(data.message, "success", mvBox);
+        mvDisp = await fetchGET("getMv");
+        console.log(mvDisp);
+            if(mvDisp.length > 0){
+                showMV(mvDisp);
             }
             else{
-                showMV(data);
-                mvDisp = data;
+                showAlert("Ha habido un error", "error", mvBox);
             }
-        })
     }
     catch(error)  {
 
