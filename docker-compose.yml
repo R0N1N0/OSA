@@ -27,7 +27,7 @@ services:
     ports:
       - '3000:3000'
     environment:
-      - DB_HOST=db
+      - DB_HOST=mysql:3306
       - DB_USER=bassou
       - DB_PASSWORD=1234
       - DB_DATABASE=db_proyect
