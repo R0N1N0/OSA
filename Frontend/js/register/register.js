@@ -13,37 +13,38 @@ form.addEventListener("submit", verifyInputs);
 // funciones
 async function verifyInputs(e){
     e.preventDefault();
-    // comprobar si los campos estan vacios
+    // comprobar si los campos están vacíos
     if(username.value.trim() === "" || password.value.trim() === "" || Fprofile.value === ""){
         showAlert("Todos los campos son obligatorios", "error", form);
         return;
     }
-
-    // creamos un objeto con los datos recuperados
-    const userData = {
-        username: username.value,
-        password: password.value,
-        Fprofile: Fprofile.value
-    }
-
-    // Llamamos a la function que crea el usuario
-    createUser(userData);
+    const formData = new FormData();
+    formData.append('username', username.value);
+    formData.append('password', password.value);
+    formData.append('image', Fprofile.files[0]);
+    createUser(formData);
 }
 
 
 // funcion para crear el usuario
 
-async function createUser(userData){
+async function createUser(formData){
     try{
-        const response = await fetch("http://localhost:3000/createUser", {
+        fetch("http://localhost:3000/createUser", {
             method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(userData)
-        });
+            body: formData
+        })
+        .then( response => response.json())
+        .then(data => {
+            showAlert(data.message, "success", form);
+            console.log(data);
+        })
+        .catch(error => {
+            console.log("error en fetch" + error);
+        })
     }
     catch(error){
-        console.log("Error al crear el usuario");
+        console.error("Error al crear el usuario:", error.message);
+        showAlert("Error al crear el usuario", "error", form);
     }
 }

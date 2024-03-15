@@ -1,34 +1,25 @@
 const db = require("../../db/db");
-const jwt = require("jsonwebtoken");
 require("dotenv").config();
-const multer = require("multer");
 const path = require("path");
+const uploadImages = require('../../helpers/cloudinary.js');
 
-// configuracion del multer
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, path.join(__dirname, '../../../Frontend/uploads/img'));
-    },
-    filename: function (req, file, cb) {
-      cb(null, Date.now() + path.extname(file.originalname));
-    }
-  });
-  
-const upload = multer({ storage: storage });
-
-// creamos la funcion que crea un nuevo usuario
-
-exports.createUser = upload.single('FProfile'), async (req, res) => {
+exports.createUser = async (req, res) => {
   try {
-    // crear la connexion
-    const connection = await db.getConnection();
+    const image = req.files.image;
+    const { username, password } = req.body;
+    const pathImg = await uploadImages(image.path);
+   
+    const userData = [username, password, pathImg];
 
-    // creamos la query para insertar un nuevo usuario
-    const query = "insert into usuario(username, password, imagen) values (?)";
-    // lanzamos la query y le pasamos los datos
-    console.log(userData);    
+    const connexion = await db.getConnection();
+    // La query
+    const query = "insert into usuario(username, password, imagen) values(?, ?, ?)";
+    const result = await connexion.query(query, userData)
+    if(result){
+      res.json( { message: `Usuario insertado correctamente` } );
+    }
+      connexion.release();
+  } catch(error) {
+    console.log(error);
   }
-  catch(error){
-
-  }
-}
+};

@@ -1,6 +1,10 @@
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 3000;
+const formData = require('express-form-data');
+// esto es para poder manejar formdata
+app.use(formData.parse());
 
 // Middleware para habilitar CORS
 app.use((req, res, next) => {
@@ -10,8 +14,11 @@ app.use((req, res, next) => {
     next();
 });
 
-// Middleware global
+// Configurar body-parser con un límite más alto
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
+// Middleware global
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
