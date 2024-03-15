@@ -7,18 +7,19 @@ WORKDIR /app
 # Import files
 COPY package.json package.json
 COPY package-lock.json package-lock.json
+COPY ./.env /app/
 
 # Download express 
-RUN npm install express
+#RUN npm install express
 
 # Download dependecies
 RUN npm install
 
 # Import server files
-COPY Backend /app/Backend
+COPY Backend /app
 
 # Start server
-CMD ["node", "/app/Backend/server.js"]
+CMD ["node", "/app/server.js"]
 
 # Open port 3000
 EXPOSE 3000

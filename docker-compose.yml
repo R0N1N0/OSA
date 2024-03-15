@@ -1,19 +1,24 @@
 version: '3.8'
 
 services:
-  nginx:
-    image: nginx:1.25.4-alpine
+  mysql:
+    build:
+      context: .
+      dockerfile: mysql.Dockerfile
     ports:
-      - '80:80'
+      - '3306:3306'
+    environment:
+      - MYSQL_USER=bassou
+      - MYSQL_PASSWORD=1234
+      - MYSQL_RANDOM_ROOT_PASSWORD=true
+      - MYSQL_DATABASE=db_proyect
     volumes:
-      - ./Frontend:/usr/share/nginx/html
-      - ./conf:/etc/nginx/conf.d
-      - nginx_logs:/var/log/nginx
-    depends_on:
-      - nodejs
-      - mysql
-    #networks:
-    #  - osa_network
+     - db_data:/var/lib/mysql
+    networks:
+      osa-network:
+        aliases:
+          - mysql
+        ipv4_address: 192.168.176.2
 
   nodejs:
     build:
@@ -29,24 +34,28 @@ services:
       - TOKEN_SECRET=9b68a78a1164c77b42f2bb026f047d49
     depends_on:
       - mysql
-    #networks:
-    #  - osa_network
+    networks:
+      osa-network:
+        aliases:
+          - nodejs
+        ipv4_address: 192.168.176.3
 
-  mysql:
-    build:
-      context: .
-      dockerfile: mysql.Dockerfile
+  nginx:
+    image: nginx:1.25.4-alpine
     ports:
-      - '3306:3306'
-    environment:
-      - MYSQL_USER=bassou
-      - MYSQL_PASSWORD=1234
-      - MYSQL_RANDOM_ROOT_PASSWORD=true
-      - MYSQL_DATABASE=db_proyect
+      - '80:80'
     volumes:
-     - db_data:/var/lib/mysql
-    #networks:
-    #  - osa_network
+      - ./Frontend:/usr/share/nginx/html
+      - ./conf:/etc/nginx/conf.d
+      - nginx_logs:/var/log/nginx
+    depends_on:
+      - nodejs
+      - mysql
+    networks:
+      osa-network:
+        aliases:
+          - nginx
+        ipv4_address: 192.168.176.4
 
 volumes:
   nginx_logs:
@@ -55,6 +64,10 @@ volumes:
     external: true
 
 networks:
-  osa_network:
-    internal: true
+  osa-network:
     driver: bridge
+    name: osa-network
+    ipam:
+      config:
+        - subnet: "192.168.176.0/20"
+          gateway: "192.168.176.1"

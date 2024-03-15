@@ -121,7 +121,7 @@ function getEspecificMV(id){
 // recuperar todas las maquinas disponibles
 async function getMv(){
     try{
-        fetch("http://localhost:3000/getMV")
+        fetch("http://192.168.176.3:3000/getMv")
         .then(response => response.json())
         .then(data => {
             if(data.message){
