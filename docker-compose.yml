@@ -14,7 +14,7 @@ services:
       - MYSQL_RANDOM_ROOT_PASSWORD=true
       - MYSQL_DATABASE=db_proyect
     volumes:
-     - ./Database/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d/
+     - ./Database/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
      - db_data:/var/lib/mysql
     networks:
       osa-network:
@@ -30,6 +30,8 @@ services:
       - '3000:3000'
     depends_on:
       - mysql
+    volumes:
+      - ./Backend:/Backend
     networks:
       osa-network:
         aliases:

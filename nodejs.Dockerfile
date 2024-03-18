@@ -7,7 +7,6 @@ WORKDIR /Backend
 # Import files
 COPY package.json package.json
 COPY package-lock.json package-lock.json
-#COPY .env /Backend/
 
 # Download dependecies
 RUN npm install
