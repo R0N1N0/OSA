@@ -1,4 +1,5 @@
 import { showAlert } from "../helpers/alert.js";
+import { fetchPOST } from "../helpers/requests.js";
 
 // variables
 const loginArticle = document.querySelector(".loginArticle");
@@ -30,20 +31,12 @@ async function verifyInputs(e){
 
 async function login(userData){
     try {
-        const response = await fetch("http://nodejs:3000/login", {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(userData)
-        });
-        const data = await response.json();
+        const data = await fetchPOST("login", userData);
         if(data.token){
-            saveToken(data.token);   
+            saveToken(data.token);
         }
-        else if(data.message){
-            showAlert(data.message, "error", form);
-            return;
+        else{
+            showAlert("Usuario o contraseña incorrectos", "error", form);
         }
     } catch (error) {
         console.error('Error al hacer la consulta', error);
@@ -54,5 +47,5 @@ async function login(userData){
 // guardar token y hacer la redireccion
 function saveToken(token){
     localStorage.setItem("token", token);
-    window.location.href = "http://127.0.0.1:5500/Frontend/public/index.html";
+    window.location.href = "http://127.0.0.1:5500/Frontend/index.html";
 }

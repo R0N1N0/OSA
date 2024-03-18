@@ -94,7 +94,7 @@ header h1{
 header h1 > span{
     color: var(--color-third);
 }
-li a > i{
+li i{
     color: var(--color-third);
     margin-right: 0.4rem;
 }
@@ -151,7 +151,6 @@ label{
 }
 
 /**** Virtual machines ****/
-
 .mvbox .box{
     background-color: var(--color-text);
     color: var(--color-text);
@@ -174,8 +173,27 @@ label{
     color: var(--color-third);
 }
 
-/* gestion de alertas */
+/*** user info ***/
+.menuLateral{
+    background: linear-gradient(180deg, rgb(3 5 16 / 92%) 60%, rgb(3 7 30 / 95%) 70%);
+    height: 100vh;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 95px;
+}
+.menuLateral .info, .menuLateral ul{
+    margin-top: 50px;
+}
+.menuLateral h1{
+    text-align: center;
+}
 
+.menuLateral li{
+    color: var(--color-text);
+}
+/* gestion de alertas */
 .error{
     background-color: var(--color-third);
     color: var(--color-text);
@@ -213,9 +231,11 @@ label{
     transform: translate(100%);
     animation: remove 0.3 ease;
 }
+.backgroundMenu{
+    background: linear-gradient(90deg, rgba(109,117,122,1) 0%, rgba(0,0,0,0.9641106442577031) 40%) !important;
+}
 
 /* Animaciones */
-
 @keyframes remove {
     0%{
         opacity: 1;

@@ -1,4 +1,5 @@
 import { showAlert } from "../helpers/alert.js";
+import { fetchPOSTData } from "../helpers/requests.js";
 
 // variables
 const loginArticle = document.querySelector(".loginArticle");
@@ -30,18 +31,12 @@ async function verifyInputs(e){
 
 async function createUser(formData){
     try{
-        fetch("http://localhost:3000/createUser", {
-            method: "POST",
-            body: formData
-        })
-        .then( response => response.json())
-        .then(data => {
-            showAlert(data.message, "success", form);
-            console.log(data); 
-        })
-        .catch(error => {
-            console.log("error en fetch" + error);
-        })
+        const data = await fetchPOSTData("createUser", formData);
+        console.log(data);
+        if(data.message){
+            showAlert("Usuario creado correctamente", "success", form);
+            form.reset();
+        }
     }
     catch(error){
         console.error("Error al crear el usuario:", error.message);

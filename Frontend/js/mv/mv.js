@@ -123,12 +123,11 @@ function getEspecificMV(id){
 async function getMv(){
     try{
         mvDisp = await fetchGET("getMv");
-        console.log(mvDisp);
             if(mvDisp.length > 0){
                 showMV(mvDisp);
             }
             else{
-                showAlert("Ha habido un error", "error", mvBox);
+                showAlert("No hay maquinas disponibles", "error", mvBox);
             }
     }
     catch(error)  {

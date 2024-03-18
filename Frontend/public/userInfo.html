@@ -49,41 +49,21 @@
       </nav>
     </header>
 
-    <!--
-        section virtual machines
-    -->
-    <section class="w-full relative top-36 h-auto">
-      <!-- Buscador y filtros -->
-      <article
-        class="filters w-full h-20 flex flex-row items-center justify-around"
-      >
-        <h1 class="text-2xl">
-          <i class="fa-solid fa-cube"></i> Maquinas virtuales
-        </h1>
-        <form class="flex items-center flex-row">
-          <div class="flex items-center rounded flex-row">
-            <span class="pl-4 pr-4"
-              ><i class="fa-solid text-lg fa-magnifying-glass"></i
-            ></span>
-            <input class="rounded search" type="search" placeholder="Buscar maquina" />
+    <!-- menu lateral  -->
+    <section>
+        <nav class="w-64 menuLateral">
+          <div class="info">
+            <img class="rounded-full w-full size-40" src="https://hips.hearstapps.com/hmg-prod/images/tommy-shelby-cillian-murphy-peaky-blinders-1569234705.jpg?crop=0.736xw:0.493xh;0.257xw,0.0159xh&resize=980:*" alt="">
+            <h1 class="mt-4 w-36 text-lg">Thomas Shelby</h1>
           </div>
-        </form>
-      </article>
-
-      <!-- Articulo donde se muestran las maquinas -->
-      <article
-        class="mvbox h-full flex flex-wrap justify-center items-center"
-      ></article>
-    </section>
-    <!-- Modal para mostrar info sobre la maquina -->
-    <section
-      class="modalShowMv w-full h-screen flex justify-center fixed top-0 left-0 items-center"
-    >
-    <span class="close absolute top-28 cursor-pointer right-6"> <i class="fa-solid text-2xl fa-circle-xmark"></i> </span>
-      <article class="flex justify-center"></article>
+            <ul>
+                <li><i class="fa-regular fa-user"></i> Perfil</li>
+                <li class="mt-4"><i class="fa-solid fa-cube"></i> Maquinas</li>
+                <li class="mt-4"><i class="fa-solid fa-users"></i> Grupos</li>
+                <li class="mt-4"><i class="fa-solid fa-bolt"></i> Ranking</li>
+            </ul>
+        </nav>
     </section>
   </body>
-  <script type="module" src="../js/mv/mv.js"></script>
-  <script type="module" src="../js/mv/filtersMV.js"></script>
 </html>
 

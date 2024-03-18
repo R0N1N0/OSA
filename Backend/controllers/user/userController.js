@@ -1,5 +1,6 @@
 const db = require("../../db/db");
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 require('dotenv').config();
 
 
@@ -11,7 +12,7 @@ exports.getUserAuth = async (req, res) => {
     const connection = await db.getConnection();
 
     // hacer la consulta
-    let results = await connection.query("select id_usuario, rol from usuario where username = ? and password = ?", [username, password]);
+    let results = await connection.query("select id_usuario, rol, password from usuario where username = ?", [username]);
     
     //liberar la connexion
     connection.release();
@@ -19,18 +20,18 @@ exports.getUserAuth = async (req, res) => {
     // coger solo el array de resultados
     results = results[0];
 
+    // comprobar la contraseña del usuario
+    const checkPassword = await bcrypt.compare(password, results[0].password);
+
     // ahora hacer todo el tema de la validacion 
-    if (results.length === 0) {
+    if (results.length === 0 || !checkPassword) {
       res.json( {message: "Nombre de usuario o contraseña incorrectos"} );
     } else {
       // Crear el token si el usuario existe
-
       const payload = {
         id: results[0].id_usuario,
         rol: results[0].rol
       }
-      console.log(payload);
-
       // devolver token al cliente
       const token = jwt.sign(payload, process.env.TOKEN_SECRET, { expiresIn: '1h' });
       res.json({ token });
