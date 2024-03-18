@@ -15,8 +15,8 @@ RUN npm install
 # Import server files
 COPY Backend /Backend
 
-# Start server
-CMD ["node", "--env-file=.env", "/Backend/server.js"]
-
 # Open port 3000
 EXPOSE 3000
+
+# Start server
+CMD ["node", "--env-file=.env", "/Backend/server.js"]

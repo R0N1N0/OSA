@@ -3,16 +3,18 @@ version: '3.8'
 services:
   mysql:
     build:
-      context: .
+      context: ./Database
       dockerfile: mysql.Dockerfile
     ports:
       - '3306:3306'
+      - '33060:33060'
     environment:
       - MYSQL_USER=bassou
       - MYSQL_PASSWORD=1234
       - MYSQL_RANDOM_ROOT_PASSWORD=true
       - MYSQL_DATABASE=db_proyect
     volumes:
+     - ./Database/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d/
      - db_data:/var/lib/mysql
     networks:
       osa-network:
@@ -26,12 +28,6 @@ services:
       dockerfile: nodejs.Dockerfile
     ports:
       - '3000:3000'
-    environment:
-      - DB_HOST=mysql:3306
-      - DB_USER=bassou
-      - DB_PASSWORD=1234
-      - DB_DATABASE=db_proyect
-      - TOKEN_SECRET=9b68a78a1164c77b42f2bb026f047d49
     depends_on:
       - mysql
     networks:
