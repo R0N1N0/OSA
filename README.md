@@ -34,6 +34,6 @@ Y finalmente, un apartado donde podrás canjear los puntos, por cursillos o por 
 
 ### Estructura
 
-a
+Hemos decidido estructurar el repositorio basado en docker, es decir, en microservicios. Para poder crear los
 
 ### CTFs y cursillos
