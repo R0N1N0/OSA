@@ -9,10 +9,10 @@ services:
       - '3306:3306'
       - '33060:33060'
     environment:
-      - MYSQL_USER=bassou
-      - MYSQL_PASSWORD=1234
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
       - MYSQL_RANDOM_ROOT_PASSWORD=true
-      - MYSQL_DATABASE=db_proyect
+      - MYSQL_DATABASE=${DB_DATABASE}
     volumes:
      - ./Database/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
      - db_data:/var/lib/mysql
@@ -28,10 +28,16 @@ services:
       dockerfile: nodejs.Dockerfile
     ports:
       - '3000:3000'
+    environment:
+      - DB_HOST=mysql
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_DATABASE=${DB_DATABASE}
+      - TOKEN_SECRET=${TOKEN_SECRET}
     depends_on:
       - mysql
     volumes:
-      - ./Backend:/Backend
+      - ./Backend:/app/Backend
     networks:
       osa-network:
         aliases:
@@ -57,9 +63,11 @@ services:
 
 volumes:
   nginx_logs:
-    external: true
+    name: "nginx_logs"
+    external: false
   db_data:
-    external: true
+    name: "db_data"
+    external: false
 
 networks:
   osa-network:
