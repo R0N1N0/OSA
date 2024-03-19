@@ -1,9 +1,9 @@
-# Fem servir la imatge amb la distribució bookworm per ser més lleugera.
+# Use mysql bookworm to get low weight images
 FROM mysql:8.0.36-bookworm
 
-# La imatge oficial de mysql executa tots els arxius .sql .sh que hi ha dins de la carpeta /docker-entrypoint-initdb.d
-# Per tant, afegim l'arxiu sql dins del directori.
+# Mysql container has a directory /docker-entrypoint-initdb.d which executes all files with .sh .sql files
 COPY docker-entrypoint-initdb.d/db_proyect.sql /docker-entrypoint-initdb.d/db_proyect.sql
 
+# Create persistent volume for the database 
 VOLUME ["/var/lib/mysql"]
 
