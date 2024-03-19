@@ -13,6 +13,16 @@ Mysql: [![mysql-publish](https://github.com/R0N1N0/OSA/actions/workflows/mysql-p
 Nginx: [![nginx-publish](https://github.com/R0N1N0/OSA/actions/workflows/nginx-publish.yml/badge.svg)](https://github.com/R0N1N0/OSA/actions/workflows/nginx-publish.yml).
 Nodejs: [![nodejs-publish](https://github.com/R0N1N0/OSA/actions/workflows/nodejs-publish.yml/badge.svg)](https://github.com/R0N1N0/OSA/actions/workflows/nodejs-publish.yml).
 
+## ¿Como usarlo?
+
+- Para trabajar en local, tienes que poner un archiv .env en el directorio [conf](https://github.com/R0N1N0/OSA/tree/main/conf) con las variables de entorno que usa nodeJS y mysql en el docker-compose.yml.
+
+- Seguidamente para crear los contenedores pon el siguiente comando:
+
+```bash
+docker-compose --env-file "./conf/.env" up -d
+```
+
 ### Página web
 
 Lo esencial del proyecto es la página web, la página web está formada de un front end hecho con Html 5 i CSS 3. El backend está pensado con el uso de JavaScript y NodeJS.
