@@ -3,7 +3,7 @@ name: mysql-publish
 on:
   push:
     paths:
-      - './Database'
+      - 'Database'
 
 env:
   # Use docker.io for Docker Hub if empty
