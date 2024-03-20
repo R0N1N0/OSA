@@ -6,3 +6,5 @@ COPY docker-entrypoint-initdb.d/db_proyect.sql /docker-entrypoint-initdb.d/db_pr
 
 # Create persistent volume for the database data
 VOLUME ["/var/lib/mysql"]
+
+EXPOSE 3306 33060 
