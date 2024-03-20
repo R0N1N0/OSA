@@ -9,3 +9,6 @@ COPY Frontend /usr/share/nginx/html
 
 # Volume to store logs
 VOLUME ["/var/log/nginx"]
+
+# Expose ports
+EXPOSE 80 443
