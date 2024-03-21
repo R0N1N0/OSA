@@ -1,0 +1,151 @@
+name: main-publish
+
+on:
+  push:
+    branches: ["main"]
+
+env:
+  # Use docker.io for Docker Hub if empty
+  REGISTRY: ghcr.io
+  ACTOR: R0N1N0
+  ACTOR_LOWER: r0n1n0
+  TAG: ${{ github.workflow_sha }}
+
+jobs:
+  mysql:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      # Install the cosign tool except on PR
+      # https://github.com/sigstore/cosign-installer
+      - name: Install cosign
+        if: github.event_name != 'pull_request'
+        uses: sigstore/cosign-installer@6e04d228eb30da1757ee4e1dd75a0ec73a653e06 #v3.1.1
+        with:
+          cosign-release: 'v2.1.1'
+  
+      # Set up BuildKit Docker container builder to be able to build
+      # multi-platform images and export cache
+      # https://github.com/docker/setup-buildx-action
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@f95db51fddba0c2d1ec667646a06c2ce06100226 # v3.0.0
+  
+      # Login against a Docker registry except on PR
+      # https://github.com/docker/login-action
+      - name: Log into registry ${{ env.REGISTRY }}
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@343f7c4344506bcbf9b4de18042ae17996df046d # v3.0.0
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ env.ACTOR }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+  
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: Database
+          file: Database/mysql.Dockerfile
+          push: true
+          tags: ${{ env.REGISTRY }}/${{ env.ACTOR_LOWER }}/mysql:latest, ${{ env.REGISTRY }}/${{ env.ACTOR_LOWER }}/mysql:${{ github.workflow_sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+    
+
+  nginx:
+    runs-on: ubuntu-latest
+    needs: mysql
+    permissions:
+        contents: read
+        packages: write
+        id-token: write
+
+    steps:
+        - name: Checkout repository
+          uses: actions/checkout@v3
+
+        # Install the cosign tool except on PR
+        # https://github.com/sigstore/cosign-installer
+        - name: Install cosign
+          if: github.event_name != 'pull_request'
+          uses: sigstore/cosign-installer@6e04d228eb30da1757ee4e1dd75a0ec73a653e06 #v3.1.1
+          with:
+            cosign-release: 'v2.1.1'
+
+        # Set up BuildKit Docker container builder to be able to build
+        # multi-platform images and export cache
+        # https://github.com/docker/setup-buildx-action
+        - name: Set up Docker Buildx
+          uses: docker/setup-buildx-action@f95db51fddba0c2d1ec667646a06c2ce06100226 # v3.0.0
+
+        # Login against a Docker registry except on PR
+        # https://github.com/docker/login-action
+        - name: Log into registry ${{ env.REGISTRY }}
+          if: github.event_name != 'pull_request'
+          uses: docker/login-action@343f7c4344506bcbf9b4de18042ae17996df046d # v3.0.0
+          with:
+            registry: ${{ env.REGISTRY }}
+            username: ${{ env.ACTOR }}
+            password: ${{ secrets.GITHUB_TOKEN }}
+
+        - name: Build and push Docker image
+          uses: docker/build-push-action@v2
+          with:
+            context: .
+            file: nginx.Dockerfile
+            push: true
+            tags: ${{ env.REGISTRY }}/${{ env.ACTOR_LOWER }}/nginx:latest, ${{ env.REGISTRY }}/${{ env.ACTOR_LOWER }}/nginx:${{ github.workflow_sha }}
+            cache-from: type=gha
+            cache-to: type=gha,mode=max
+            
+  nodejs:
+    runs-on: ubuntu-latest
+    needs: nginx
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+          
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Install the cosign tool except on PR
+      # https://github.com/sigstore/cosign-installer
+      - name: Install cosign
+        if: github.event_name != 'pull_request'
+        uses: sigstore/cosign-installer@6e04d228eb30da1757ee4e1dd75a0ec73a653e06 #v3.1.1
+        with:
+          cosign-release: 'v2.1.1'
+
+      # Set up BuildKit Docker container builder to be able to build
+      # multi-platform images and export cache
+      # https://github.com/docker/setup-buildx-action
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@f95db51fddba0c2d1ec667646a06c2ce06100226 # v3.0.0
+  
+      # Login against a Docker registry except on PR
+      # https://github.com/docker/login-action
+      - name: Log into registry ${{ env.REGISTRY }}
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@343f7c4344506bcbf9b4de18042ae17996df046d # v3.0.0
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ env.ACTOR }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+  
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: nodejs.Dockerfile
+          push: true
+          tags: ${{ env.REGISTRY }}/${{ env.ACTOR_LOWER }}/nodejs:latest, ${{ env.REGISTRY }}/${{ env.ACTOR_LOWER }}/nodejs:${{ github.workflow_sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
