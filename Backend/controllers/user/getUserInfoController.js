@@ -17,5 +17,6 @@ exports.getUserInfo = async (req, res) => {
     `;
 
     const connexion = await db.getConnection();
-    
+
+    const result = connexion.query(sql);
 }
