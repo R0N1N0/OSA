@@ -6,7 +6,6 @@ FROM mysql:8.0.36-bookworm
 
 COPY docker-entrypoint-initdb.d /docker-entrypoint-initdb.d
 
-
 # Create persistent volume for the database data
 
 VOLUME ["/var/lib/mysql"]
