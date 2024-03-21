@@ -9,7 +9,7 @@ env:
   REGISTRY: ghcr.io
   ACTOR: R0N1N0
   IMAGE_NAME: r0n1n0/mysql
-  TAG: ${{ github.sha }}
+  TAG: ${{ github.workflow_sha }}
 
 jobs:
   mysql:
@@ -47,42 +47,16 @@ jobs:
           username: ${{ env.ACTOR }}
           password: ${{ secrets.GITHUB_TOKEN }}
   
-      # Extract metadata (tags, labels) for Docker
-      # https://github.com/docker/metadata-action
-      - name: Extract Docker metadata
-        id: meta
-        uses: docker/metadata-action@96383f45573cb7f253c731d3b3ab81c87ef81934 # v5.0.0
-        with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-  
-      # Build and push Docker image with Buildx (don't push on PR)
-      # https://github.com/docker/build-push-action
       - name: Build and push Docker image
-        id: build-and-push
-        uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09 # v5.0.0
+        uses: docker/build-push-action@v2
         with:
           context: Database
           file: Database/mysql.Dockerfile
-          push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          push: true
+          tags: ${{ env.REGISTRY }}/${{ env.ACTOR }}/mysql:latest, ${{ env.REGISTRY }}/${{ env.ACTOR }}/mysql:$(git rev-parse --short=6 HEAD)
           cache-from: type=gha
           cache-to: type=gha,mode=max
-      
-      # Sign the resulting Docker image digest except on PRs.
-      # This will only write to the public Rekor transparency log when the Docker
-      # repository is public to avoid leaking data.  If you would like to publish
-      # transparency data even for private images, pass --force to cosign below.
-      # https://github.com/sigstore/cosign
-      - name: Sign the published Docker image
-        if: ${{ github.event_name != 'pull_request' }}
-        env:
-          # https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#using-an-intermediate-environment-variable
-          TAGS: ${{ steps.meta.outputs.tags }}
-          DIGEST: ${{ steps.build-and-push.outputs.digest }}
-        # This step uses the identity token to provision an ephemeral certificate
-        # against the sigstore community Fulcio instance.
-        run: echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
+    
 
   nginx:
     runs-on: ubuntu-latest
@@ -128,34 +102,15 @@ jobs:
           with:
             images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
-        # Build and push Docker image with Buildx (don't push on PR)
-        # https://github.com/docker/build-push-action
         - name: Build and push Docker image
-          id: build-and-push
-          uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09 # v5.0.0
+          uses: docker/build-push-action@v2
           with:
             context: .
             file: nginx.Dockerfile
-            push: ${{ github.event_name != 'pull_request' }}
-            tags: ${{ steps.meta.outputs.tags }}
-            labels: ${{ steps.meta.outputs.labels }}
+            push: true
+            tags: ${{ env.REGISTRY }}/${{ env.ACTOR }}/nginx:latest, ${{ env.REGISTRY }}/${{ env.ACTOR }}/nginx:$(git rev-parse --short=6 HEAD)
             cache-from: type=gha
             cache-to: type=gha,mode=max
-
-        # Sign the resulting Docker image digest except on PRs.
-        # This will only write to the public Rekor transparency log when the Docker
-        # repository is public to avoid leaking data.  If you would like to publish
-        # transparency data even for private images, pass --force to cosign below.
-        # https://github.com/sigstore/cosign
-        - name: Sign the published Docker image
-          if: ${{ github.event_name != 'pull_request' }}
-          env:
-            # https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#using-an-intermediate-environment-variable
-            TAGS: ${{ steps.meta.outputs.tags }}
-            DIGEST: ${{ steps.build-and-push.outputs.digest }}
-          # This step uses the identity token to provision an ephemeral certificate
-          # against the sigstore community Fulcio instance.
-          run: echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
             
   nodejs:
     runs-on: ubuntu-latest
@@ -176,7 +131,7 @@ jobs:
         uses: sigstore/cosign-installer@6e04d228eb30da1757ee4e1dd75a0ec73a653e06 #v3.1.1
         with:
           cosign-release: 'v2.1.1'
-          
+
       # Set up BuildKit Docker container builder to be able to build
       # multi-platform images and export cache
       # https://github.com/docker/setup-buildx-action
@@ -200,32 +155,13 @@ jobs:
         uses: docker/metadata-action@96383f45573cb7f253c731d3b3ab81c87ef81934 # v5.0.0
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-  
-      # Build and push Docker image with Buildx (don't push on PR)
-      # https://github.com/docker/build-push-action
+
       - name: Build and push Docker image
-        id: build-and-push
-        uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09 # v5.0.0
+        uses: docker/build-push-action@v2
         with:
           context: .
           file: nodejs.Dockerfile
-          push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          push: true
+          tags: ${{ env.REGISTRY }}/${{ env.ACTOR }}/nodejs:latest, ${{ env.REGISTRY }}/${{ env.ACTOR }}/nodejs:$(git rev-parse --short=6 HEAD)
           cache-from: type=gha
           cache-to: type=gha,mode=max
-
-      # Sign the resulting Docker image digest except on PRs.
-      # This will only write to the public Rekor transparency log when the Docker
-      # repository is public to avoid leaking data.  If you would like to publish
-      # transparency data even for private images, pass --force to cosign below.
-      # https://github.com/sigstore/cosign
-      - name: Sign the published Docker image
-        if: ${{ github.event_name != 'pull_request' }}
-        env:
-          # https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#using-an-intermediate-environment-variable
-          TAGS: ${{ steps.meta.outputs.tags }}
-          DIGEST: ${{ steps.build-and-push.outputs.digest }}
-        # This step uses the identity token to provision an ephemeral certificate
-        # against the sigstore community Fulcio instance.
-        run: echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
