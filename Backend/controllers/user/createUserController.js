@@ -21,6 +21,9 @@ exports.createUser = async (req, res) => {
     if(result){
       res.json( { message: `Usuario insertado correctamente` } );
     }
+    else{
+      res.json( {error: `Error al crear el usuario`} );
+    }
       connexion.release();
   } catch(error) {
     console.log(error);
