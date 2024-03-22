@@ -8,7 +8,7 @@ COPY conf/nginx.conf /etc/nginx/conf.d/default.conf
 
 # Import web files
 
-COPY Frontend /usr/share/nginx/html
+COPY src /usr/share/nginx/html
 
 # Volume to store logs
 
