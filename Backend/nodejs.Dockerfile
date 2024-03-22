@@ -13,7 +13,7 @@ COPY package-lock.json /Backend/
 
 # Download dependecies
 
-RUN npm install cors && npm install
+RUN npm install
 
 # Create /Backend/app to import server files
 
