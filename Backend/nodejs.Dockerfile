@@ -2,14 +2,20 @@
 
 FROM node:21-alpine3.18
 
+# Set node user and group ID
+
+RUN deluser node && \
+    addgroup -g 1050 node && \
+    adduser -D -u 1050 -G node node
+
 # Create directory to store package.json and package-lock.json
 
-WORKDIR /Backend
+WORKDIR /home/node/Backend
 
 # Import package and package-lock
 
-COPY package.json /Backend/
-COPY package-lock.json /Backend/
+COPY package.json /home/node/Backend
+COPY package-lock.json /home/node/Backend
 
 # Download dependecies
 
@@ -17,11 +23,15 @@ RUN npm install
 
 # Create /Backend/app to import server files
 
-WORKDIR /Backend/app
+WORKDIR /home/node/Backend/app 
 
 # Import server files
 
-COPY app /Backend/app/
+COPY app /home/node/Backend/app/
+
+# Change user owner and group owner of the app
+
+RUN chown -R node:node /home/node/Backend
 
 # Set variables
 
@@ -35,6 +45,10 @@ ENV TOKEN_SECRET="patata"
 
 EXPOSE 3000
 
+# Using user node
+
+USER node
+
 # Start server
 
-CMD ["node", "/Backend/app/server.js"]
+CMD ["node", "/home/node/Backend/app/server.js"]
