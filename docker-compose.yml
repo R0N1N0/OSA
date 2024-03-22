@@ -2,17 +2,17 @@ version: '3.8'
 
 services:
   mysql:
-    build:
-      context: .
-      dockerfile: mysql.Dockerfile
-    ports:
-      - '3306:3306'
+    image: mysql:8.0.36-bookworm
+    #ports:
+    #  - '3306:3306'
+    #  - '33060:33060'
     environment:
-      - MYSQL_USER=bassou
-      - MYSQL_PASSWORD=1234
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
       - MYSQL_RANDOM_ROOT_PASSWORD=true
-      - MYSQL_DATABASE=db_proyect
+      - MYSQL_DATABASE=${DB_DATABASE}
     volumes:
+     - ./Database/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
      - db_data:/var/lib/mysql
     networks:
       osa-network:
@@ -22,18 +22,20 @@ services:
 
   nodejs:
     build:
-      context: .
+      context: Backend
       dockerfile: nodejs.Dockerfile
     ports:
       - '3000:3000'
     environment:
-      - DB_HOST=mysql:3306
-      - DB_USER=bassou
-      - DB_PASSWORD=1234
-      - DB_DATABASE=db_proyect
-      - TOKEN_SECRET=9b68a78a1164c77b42f2bb026f047d49
+      - DB_HOST=mysql
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_DATABASE=${DB_DATABASE}
+      - TOKEN_SECRET=${TOKEN_SECRET}
     depends_on:
       - mysql
+    volumes:
+      - ./Backend/app:/Backend/app
     networks:
       osa-network:
         aliases:
@@ -45,8 +47,9 @@ services:
     ports:
       - '80:80'
     volumes:
-      - ./Frontend:/usr/share/nginx/html
-      - ./conf:/etc/nginx/conf.d
+      - ./Frontend/src:/usr/share/nginx/html
+      #- ./Frontend/nginx.conf:/etc/nginx/nginx.conf
+      - ./Frontend/default.conf:/etc/nginx/conf.d/default.conf
       - nginx_logs:/var/log/nginx
     depends_on:
       - nodejs
@@ -59,9 +62,11 @@ services:
 
 volumes:
   nginx_logs:
-    external: true
+    name: "nginx_logs"
+    external: false
   db_data:
-    external: true
+    name: "db_data"
+    external: false
 
 networks:
   osa-network:

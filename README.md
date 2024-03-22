@@ -9,9 +9,19 @@ Hemos decidido repartir el trabajo principalmente en los siguientes 3 sub aparta
 ## Workflow status:
 
 Custom Docker Images
-Mysql: [![mysql-publish](https://github.com/R0N1N0/OSA/actions/workflows/mysql-publish.yml/badge.svg)](https://github.com/R0N1N0/OSA/actions/workflows/mysql-publish.yml).
-Nginx: [![nginx-publish](https://github.com/R0N1N0/OSA/actions/workflows/nginx-publish.yml/badge.svg)](https://github.com/R0N1N0/OSA/actions/workflows/nginx-publish.yml).
-Nodejs: [![nodejs-publish](https://github.com/R0N1N0/OSA/actions/workflows/nodejs-publish.yml/badge.svg)](https://github.com/R0N1N0/OSA/actions/workflows/nodejs-publish.yml).
+Mysql: [![mysql-image](https://github.com/R0N1N0/OSA/actions/workflows/main-publish.yml/badge.svg)](https://github.com/R0N1N0/OSA/actions/workflows/main-publish.yml).
+Nginx: [![nginx-image](https://github.com/R0N1N0/OSA/actions/workflows/main-publish.yml/badge.svg)](https://github.com/R0N1N0/OSA/actions/workflows/main-publish.yml).
+Nodejs: [![nodejs-image](https://github.com/R0N1N0/OSA/actions/workflows/main-publish.yml/badge.svg)](https://github.com/R0N1N0/OSA/actions/workflows/main-publish.yml).
+
+## ¿Como usarlo?
+
+- Para trabajar en local, tienes que poner un archiv .env en el directorio [conf](https://github.com/R0N1N0/OSA/tree/main/conf) con las variables de entorno que usa nodeJS y mysql en el docker-compose.yml.
+
+- Seguidamente para crear los contenedores pon el siguiente comando:
+
+```bash
+docker-compose --env-file "./conf/.env" up -d
+```
 
 ### Página web
 
@@ -24,6 +34,6 @@ Y finalmente, un apartado donde podrás canjear los puntos, por cursillos o por 
 
 ### Estructura
 
-a
+Hemos decidido estructurar el repositorio basado en docker, es decir, en microservicios. Para poder crear los
 
 ### CTFs y cursillos

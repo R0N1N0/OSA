@@ -3,6 +3,9 @@ const app = express();
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 3000;
 const formData = require('express-form-data');
+const cors = require('cors');
+// manejar cors
+app.use(cors());
 // esto es para poder manejar formdata
 app.use(formData.parse());
 
@@ -27,7 +30,8 @@ app.get('/', (req, res) => {
     res.json( {message: "Hola que tal"} );
 });
 
-// Rutas de usuario
+// ---------------- Rutas publicas ---------------
+// Rutas de usuario --------------------
 const userRoutes = require('./routes/user/userRoute.js');
 app.use('/', userRoutes);
 // ruta para crear un nuevo usuario
@@ -35,8 +39,19 @@ const createUser = require('./routes/user/createUserRoute.js');
 app.use('/', createUser);
 
 // Rutas de maquinas
+
+// ruta para recuperar todas las maquinas
 const mvRoutes = require('./routes/mv/mv.js');
 app.use('/', mvRoutes);
+
+
+// --------------- Rutas protegidas ----------------- 
+
+//ruta para recuperar informacion del usuario
+const getUserInfo = require('./routes/user/getUserInfoRoute.js');
+app.use('/', getUserInfo);
+
+
 
 // run server
 app.listen(PORT, () => {

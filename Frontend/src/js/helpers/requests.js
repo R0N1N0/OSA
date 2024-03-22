@@ -1,3 +1,4 @@
+import { showAlert } from "./alert.js";
 const baseUrl = "http://localhost:3000/";
 
 export async function fetchPOST(route, data) {
@@ -28,7 +29,7 @@ export async function fetchGET(route) {
     }
 }
 
-//
+//creando una funcion para hacer requests con formdata
 export async function fetchPOSTData(route, data) {
     try {
         const response = await fetch(baseUrl + route, {
@@ -37,6 +38,25 @@ export async function fetchPOSTData(route, data) {
         });
         const responseData = await response.json();
         return responseData;
+    } catch (error) {
+        return { error: error.message };
+    }
+}
+
+// Funcion para recuperar informacion del usuario
+export async function fetchGetUserInfo(route, token){
+    try {
+        const response = await fetch(baseUrl + route, {
+            method: "POST",
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            }
+        });
+        if(response.ok){
+            const responseData = await response.json();
+            return responseData;
+        }
+        window.location.href = "http://127.0.0.1:5500/Frontend/src/index.html";
     } catch (error) {
         return { error: error.message };
     }

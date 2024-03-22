@@ -28,6 +28,12 @@ li{
 body{
     overflow-x: hidden;
 }
+.active{
+    color: var(--color-third) !important;
+}
+.active i{
+    color: var(--color-secondary);
+}
 /* buttones */
 
 .btn-info{
@@ -176,20 +182,7 @@ label{
 /*** user info ***/
 .menuLateral{
     background: linear-gradient(180deg, rgb(3 5 16 / 92%) 60%, rgb(3 7 30 / 95%) 70%);
-    height: 100vh;
-    position: fixed;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 95px;
 }
-.menuLateral .info, .menuLateral ul{
-    margin-top: 50px;
-}
-.menuLateral h1{
-    text-align: center;
-}
-
 .menuLateral li{
     color: var(--color-text);
 }
