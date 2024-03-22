@@ -4,7 +4,7 @@ FROM nginx:1.25.4-alpine AS nginx-custom
 
 # Swap default conf to custom default.conf
 
-COPY conf/nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Import web files
 
