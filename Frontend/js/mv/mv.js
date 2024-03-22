@@ -102,7 +102,7 @@ function getEspecificMV(id){
         <li class="mt-2"> <strong class="font-bold"> Dificultad: </strong> ${dif} </li>
         <li class="mt-2"> <strong class="font-bold"> Puntos: </strong> ${puntos} </li>
         <li class="mt-2"> <strong class="font-bold"> Descargas: </strong> ${descargas} </li>
-        <button class="text-base btn-info btn mt-2 rounded"><i class="fa-solid fa-cloud-arrow-down"></i> Descargar </button>
+        <button class="text-base btn-info btn mt-4 rounded"><i class="fa-solid fa-cloud-arrow-down"></i> Descargar </button>
         `;
 
         // añadir elementos al html
