@@ -22,7 +22,7 @@ services:
 
   nodejs:
     build:
-      context: ./Backend/
+      context: Backend
       dockerfile: nodejs.Dockerfile
     ports:
       - '3000:3000'
