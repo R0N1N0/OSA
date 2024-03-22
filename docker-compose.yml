@@ -36,6 +36,8 @@ services:
       - mysql
     volumes:
       - ./Backend/app:/Backend/app
+      - ./Backend/package.json:/Backend/package.json
+      - ./Backend/package-lock.json:/Backend/package-lock.json
     networks:
       osa-network:
         aliases:
