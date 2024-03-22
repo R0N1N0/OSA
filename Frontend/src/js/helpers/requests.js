@@ -56,7 +56,7 @@ export async function fetchGetUserInfo(route, token){
             const responseData = await response.json();
             return responseData;
         }
-        window.location.href = "http://127.0.0.1:5500/Frontend/index.html";
+        window.location.href = "http://127.0.0.1:5500/Frontend/src/index.html";
     } catch (error) {
         return { error: error.message };
     }

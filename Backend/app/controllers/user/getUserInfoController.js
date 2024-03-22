@@ -1,4 +1,5 @@
 // importaciones 
+const db = require('../../db/db.js');
 
 /**
  * Función para recuperar los datos del usuario
@@ -6,17 +7,97 @@
  * @return {Array} Array de objetos con la info del usuario
  */
 exports.getUserInfo = async (req, res) => {
-    // recuperamos el id y el rol de la request 
-    const {id, rol} = req.usuario;
+    try{
+        // recuperamos el id y el rol de la request 
+        const {id, rol} = req.usuario;
 
-    // la query para recuperar los datos del usuario
-    const sql = `select usuario.*, grupo.nombre from usuario 
-    join usuario_grupo ON usuario.id_usuario = usuario_grupo.id_usuario 
-    join grupo ON grupo.id_grupo = usuario_grupo.id_grupo
-    where usuario.id_usuario = ?
-    `;
+        // la query para recuperar los datos del usuario
+        const sql = 
+        `select * from usuario where id_usuario = ?`;
+        const connexion = await db.getConnection();    
+        let result = await connexion.query(sql, id);
 
-    const connexion = await db.getConnection();
+        if(result){
+            result = result[0];
+            res.status(200).json(result);
+        }
+        else{
+            res.status(501).json({ error: "Ha ido mal la consulta" });
+        }
+    }
+    catch(err){
+        console.log(err);
+    }
+}
 
-    const result = connexion.query(sql);
+exports.getUserMV = async (req, res) => {
+    try{
+        // recuperamos el id y el rol de la request 
+        const {id, rol} = req.usuario;
+
+        // la query para recuperar los datos del usuario
+        const sql = 
+        `select * from usuario_mv where id_usuario = ?`;
+        const connexion = await db.getConnection();    
+        let result = await connexion.query(sql, id);
+
+        if(result){
+            result = result[0];
+            res.status(200).json(result);
+        }
+        else{
+            res.status(501).json({ error: "Ha ido mal la consulta" });
+        }
+    }
+    catch(err){
+        console.log(err);
+    }
+}
+
+
+exports.getUserGroup = async (req, res) => {
+    try{
+        // recuperamos el id y el rol de la request 
+        const {id, rol} = req.usuario;
+
+        // la query para recuperar los datos del usuario
+        const sql = 
+        `select * from usuario_grupo where id_usuario = ?`;
+        const connexion = await db.getConnection();    
+        let result = await connexion.query(sql, id);
+
+        if(result){
+            result = result[0];
+            res.status(200).json(result);
+        }
+        else{
+            res.status(501).json({ error: "Ha ido mal la consulta" });
+        }
+    }
+    catch(err){
+        console.log(err);
+    }
+}
+
+exports.getUserRanking = async (req, res) => {
+    try{
+        // recuperamos el id y el rol de la request 
+        const {id, rol} = req.usuario;
+
+        // la query para recuperar los datos del usuario
+        const sql = `select * from usuario order by usuario.puntos`;
+        const connexion = await db.getConnection();    
+        let result = await connexion.query(sql, id);
+
+        if(result){
+            result = result[0];
+            res.status(200).json(result);
+        }
+        else{
+            res.status(501).json({ error: "Ha ido mal la consulta" });
+        }
+    }
+    catch(err){
+        console.log(err);
+    }
 }

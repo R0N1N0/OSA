@@ -34,7 +34,7 @@
             <a href="../index.html"><i class="fa-solid fa-house"></i> Home</a>
           </li>
           <li class="ml-6">
-            <a href="#"><i class="fa-solid fa-cube"></i> Maquinas virtuales</a>
+            <a href="../public/mv.html"><i class="fa-solid fa-cube"></i> Maquinas virtuales</a>
           </li>
           <li class="ml-6">
             <a href=""><i class="fa-solid fa-building-columns"></i> Academia</a>
@@ -50,21 +50,32 @@
     </header>
 
     <!-- menu lateral  -->
-    <section>
+    <section class="userInfo w-auto relative top-24 h-auto">
         <nav class="w-64 menuLateral h-screen top-24 fixed flex flex-col items-center">
           <div class="info mt-8">
-            <img class="rounded-full w-full size-40" src="https://hips.hearstapps.com/hmg-prod/images/tommy-shelby-cillian-murphy-peaky-blinders-1569234705.jpg?crop=0.736xw:0.493xh;0.257xw,0.0159xh&resize=980:*" alt="">
-            <h1 class="mt-4 w-36 text-lg text-center">Thomas Shelby</h1>
           </div>
             <ul class="flex flex-col mt-12">
-                <li><i class="fa-regular fa-user"></i> Perfil</li>
-                <li class="mt-4"><i class="fa-solid fa-cube"></i> Maquinas</li> 
-                <li class="mt-4"><i class="fa-solid fa-users"></i> Grupos</li>
-                <li class="mt-4"><i class="fa-solid fa-bolt"></i> Ranking</li>
+                <li class="tab-controller active" name="perfil"><i class="fa-regular fa-user"></i> Perfil</li>
+                <li class="mt-4 tab-controller" name="maquinas"><i class="fa-solid fa-cube"></i> Maquinas</li> 
+                <li class="mt-4 tab-controller" name="grupos"><i class="fa-solid fa-users"></i> Grupos</li>
+                <li class="mt-4 tab-controller" name="ranking"><i class="fa-solid fa-bolt"></i> Ranking</li>
             </ul>
         </nav>
+        <article class="ml-64 perfil tab"><img src="https://www.mundodeportivo.com/alfabeta/hero/2020/04/277WEJWCQJBHPMGRM355KBGRYM.jpg?width=1200" alt="">
+        
+        </article>
+        <article class="ml-64 maquinas tab hidden">
+
+        </article>
+        <article class="ml-64 grupos tab hidden">
+
+        </article>
+        <article class="ml-64 ranking tab hidden">
+
+        </article>
     </section>
   </body>
+  <script type="module" src="../js/userInfo/sidebarLogic.js"></script>
   <script type="module" src="../js/userInfo/userInfo.js"></script>
 </html>
 

@@ -28,6 +28,12 @@ li{
 body{
     overflow-x: hidden;
 }
+.active{
+    color: var(--color-third) !important;
+}
+.active i{
+    color: var(--color-secondary);
+}
 /* buttones */
 
 .btn-info{
