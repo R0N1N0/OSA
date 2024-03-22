@@ -3,9 +3,9 @@ version: '3.8'
 services:
   mysql:
     image: mysql:8.0.36-bookworm
-    ports:
-      - '3306:3306'
-      - '33060:33060'
+    #ports:
+    #  - '3306:3306'
+    #  - '33060:33060'
     environment:
       - MYSQL_USER=${DB_USER}
       - MYSQL_PASSWORD=${DB_PASSWORD}
@@ -48,7 +48,8 @@ services:
       - '80:80'
     volumes:
       - ./Frontend/src:/usr/share/nginx/html
-      - ./Frontend/nginx.conf:/etc/nginx/conf.d/default.conf
+      #- ./Frontend/nginx.conf:/etc/nginx/nginx.conf
+      - ./Frontend/default.conf:/etc/nginx/conf.d/default.conf
       - nginx_logs:/var/log/nginx
     depends_on:
       - nodejs

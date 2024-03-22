@@ -10,4 +10,10 @@ COPY docker-entrypoint-initdb.d /docker-entrypoint-initdb.d
 
 VOLUME ["/var/lib/mysql"]
 
+# Expose ports 
+
 EXPOSE 3306 33060 
+
+# Use mysql user
+
+USER mysql
