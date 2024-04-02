@@ -20,7 +20,7 @@
   <body class="bg-slate-950 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)">
     <header>
       <nav
-        class="w-full flex h-24 fixed top-0 z-40 justify-around items-center bg-slate-950 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)"
+        class="w-full flex h-24 fixed top-0 z-40 justify-around items-center"
       >
         <div class="flex flex-row items-center">
           <img class="size-24" src="../img/OSA_normalLogo.png" alt="Logo OSA" />
@@ -50,23 +50,33 @@
     </header>
 
     <!-- menu lateral  -->
-    <section class="userInfo w-auto relative top-24 h-auto">
+    <section class="userInfo w-auto relative flex items-center top-24 h-auto">
         <nav class="w-64 menuLateral h-screen top-24 fixed flex flex-col items-center">
-          <div class="info mt-8">
-          </div>
+          <div class="info flex flex-col mt-12 items-center"></div>
             <ul class="flex flex-col mt-12">
-                <li class="tab-controller active" name="perfil"><i class="fa-regular fa-user"></i> Perfil</li>
-                <li class="mt-4 tab-controller" name="maquinas"><i class="fa-solid fa-cube"></i> Maquinas</li> 
-                <li class="mt-4 tab-controller" name="grupos"><i class="fa-solid fa-users"></i> Grupos</li>
-                <li class="mt-4 tab-controller" name="ranking"><i class="fa-solid fa-bolt"></i> Ranking</li>
+                <li class="mt-2 tab-controller active" name="premios"><i class="fa-solid fa-crown"></i> Premios</li>
+                <li class="mt-2 tab-controller" name="maquinas"><i class="fa-solid fa-cube"></i> Máquinas</li> 
+                <li class="mt-2 tab-controller" name="grupos"><i class="fa-solid fa-users"></i> Grupos</li>
+                <li class="mt-2 tab-controller" name="ranking"><i class="fa-solid fa-bolt"></i> Ranking</li>
             </ul>
         </nav>
-        <article class="ml-64 perfil tab"><img src="https://www.mundodeportivo.com/alfabeta/hero/2020/04/277WEJWCQJBHPMGRM355KBGRYM.jpg?width=1200" alt="">
-        
+        <article class="ml-64 premios tab pl-12 pt-12 w-full flex flex-row flex-wrap justify-center gap-10">
+          <div class="header flex justify-around w-full"> 
+            <h3 class="text-2xl color-text"><i class="fa-solid fa-crown"></i> Premios disponibles</h3>
+            <button class="text-lg w-44 h-9 rounded btn-success"><i class="fa-solid fa-plus"></i> Canjear premios</button>
+          </div>
         </article>
-        <article class="ml-64 maquinas tab hidden">
 
+        <article class="ml-64 maquinas tab hidden pl-12 pt-12 w-full flex flex-row flex-wrap justify-center gap-10">
+          <div class="header flex justify-around w-full">
+          <h3 class="text-2xl color-text"><i class="fa-solid fa-cube"></i> Máquinas hackeadas</h3>
+          <button class="text-lg w-72 h-9 rounded btn-success"><i class="fa-solid fa-plus"></i> Ver máquinas disponibles</button>
+          </div>
+
+          <table>
+          </table>
         </article>
+
         <article class="ml-64 grupos tab hidden">
 
         </article>
@@ -76,6 +86,6 @@
     </section>
   </body>
   <script type="module" src="../js/userInfo/sidebarLogic.js"></script>
-  <script type="module" src="../js/userInfo/userInfo.js"></script>
+  <script type="module" src="../js/userInfo/userInfoMain.js"></script>
 </html>
 
