@@ -2,13 +2,11 @@
 // aqui esta el codigo de la logica del sidebar 
 
 //variables
-const articles = document.querySelectorAll("section article");
+const articles = document.querySelectorAll(".userInfo > article");
 const tab_controllers = document.querySelectorAll("section nav li");
 
 //eventos
-tab_controllers.forEach(tab => {
-    tab.addEventListener("click", show);
-});
+tab_controllers.forEach(tab => tab.addEventListener("click", show));
 
 // funciones
 function show(e){

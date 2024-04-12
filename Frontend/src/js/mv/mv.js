@@ -1,8 +1,6 @@
-import { showAlert } from "../helpers/alert.js";
-import { showModal } from "../helpers/showModal.js";
-import { clearHTML } from "../helpers/clearHTML.js";
 import { filter } from "./filtersMV.js";
 import { fetchGET } from "../helpers/requests.js";
+import helpers from "../helpers/utils.js";
 
 // variables // ---------------
 const mvBox = document.querySelector(".mvbox");
@@ -17,7 +15,7 @@ document.addEventListener("DOMContentLoaded", getMv);
 searchInput.addEventListener("input", e => filter(e, mvDisp));
 //cerrar modal
 modalShowMV.querySelector(".close").addEventListener("click", function(){
-    showModal(modalShowMV, mvBox);
+    helpers.showModal(modalShowMV, mvBox);
 });
 
 ////////////
@@ -26,7 +24,7 @@ modalShowMV.querySelector(".close").addEventListener("click", function(){
 
 // mostrar las maquinas
 export function showMV(results){
-    clearHTML(mvBox);
+    helpers.clearHTML(mvBox);
     results.forEach(result => {
         // contenedor
         const container = document.createElement("div");
@@ -69,7 +67,7 @@ export function showMV(results){
 // funcion para mostrar info sobre una maquina especifica
 function getEspecificMV(id){
     // funcion para limpiar el html
-    clearHTML(modalShowMVArticle);
+    helpers.clearHTML(modalShowMVArticle);
     // filtramos para recuperar los datos de esa maquina en especifico
     let mvEspecific = mvDisp.filter(mv => mv.id_mv === id);
 
@@ -112,17 +110,17 @@ function getEspecificMV(id){
         modalShowMVArticle.appendChild(img);
         modalShowMVArticle.appendChild(divInfo);
     });
-    showModal(modalShowMV, mvBox);
+    helpers.showModal(modalShowMV, mvBox);
 }
 
 /////////////////
 
-// llamadas a la api // --------------------
+// llamadas a la api //
 
 // recuperar todas las maquinas disponibles
 async function getMv(){
     try{
-        mvDisp = await fetchGET("getMv");
+        mvDisp = await fetchGET("mv/getMv");
             if(mvDisp.length > 0){
                 showMV(mvDisp);
             }

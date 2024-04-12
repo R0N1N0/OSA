@@ -10,6 +10,7 @@
     --color-third: #FF3F5C;
     --color-success: #09BC8A;
     --hover-li-sidebar: #3a3b3d;
+    --information-card-background: #40E0D0;
 }
 
 *{
@@ -95,7 +96,7 @@ input[type="submit"]:hover, .btn-success:hover{
 h1{
     color: var(--color-text);
 }
-h1 i, h3 i, h2 i{
+h1 i, h3 i, h2 i, span i{
     color: var(--color-third);
     margin-right: 0.4rem;
 }
@@ -157,7 +158,7 @@ label{
 
 /***** Login article ****/
 
-.loginArticle:hover {
+.box-shadow00405:hover {
     box-shadow: 0px 0px 40px 5px rgba(190,190,190,0.3);
 }
 
@@ -204,7 +205,7 @@ label{
 .divAward{
     perspective: 1000px;
 }
-.maquinas table{
+.maquinas table, .ranking table{
     width: 80%;
 }
 .maquinas table tr img{
@@ -215,14 +216,20 @@ label{
     color: var(--color-text);
     font-weight: 500;
 }
-.maquinas table tr{
+.maquinas table tr, .ranking table tr{
     box-shadow: 0px 5px 4px 0px rgba(101,129,240,0.2);
+}
+.divGroup{
+    border: 1px solid hsla(0,0%,100%,.1);
+}
+.divGroup .divConfGroup{
+    background-color: hsla(0,0%,100%,.1);
 }
 
 /* gestion de alertas */
 .error{
     background-color: var(--color-third);
-    color: var(--color-text);
+    color: var(--color-black);
     transition: all 1s;
 }
 .success{
@@ -232,6 +239,10 @@ label{
 }
 .remove{
     animation: remove 1s ease;
+}
+.information{
+    background-color: var(--information-card-background);
+
 }
 
 /* Modals */
@@ -247,7 +258,6 @@ label{
 .modalShowMv{
     transform: translateX(-100%);
     animation: remove 0.3 ease;
-    background: linear-gradient(90deg, rgba(109,117,122,1) 0%, rgba(0,0,0,0.9641106442577031) 40%);
 }
 .showModal{
     transform: translateX(0%);
@@ -256,9 +266,6 @@ label{
 .mvBoxClose{
     transform: translate(100%);
     animation: remove 0.3 ease;
-}
-.backgroundMenu{
-    background: linear-gradient(90deg, rgba(109,117,122,1) 0%, rgba(0,0,0,0.9641106442577031) 40%) !important;
 }
 
 /** clases js **/

@@ -17,7 +17,9 @@
       sizes="32x32"
     />
   </head>
-  <body class="bg-slate-950 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)">
+  <body
+    class="bg-slate-950 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)"
+  >
     <header>
       <nav
         class="w-full flex h-24 fixed top-0 z-40 justify-around items-center"
@@ -34,7 +36,9 @@
             <a href="../index.html"><i class="fa-solid fa-house"></i> Home</a>
           </li>
           <li class="ml-6">
-            <a href="../public/mv.html"><i class="fa-solid fa-cube"></i> Maquinas virtuales</a>
+            <a href="../public/mv.html"
+              ><i class="fa-solid fa-cube"></i> Maquinas virtuales</a
+            >
           </li>
           <li class="ml-6">
             <a href=""><i class="fa-solid fa-building-columns"></i> Academia</a>
@@ -51,41 +55,110 @@
 
     <!-- menu lateral  -->
     <section class="userInfo w-auto relative flex items-center top-24 h-auto">
-        <nav class="w-64 menuLateral h-screen top-24 fixed flex flex-col items-center">
-          <div class="info flex flex-col mt-12 items-center"></div>
-            <ul class="flex flex-col mt-12">
-                <li class="mt-2 tab-controller active" name="premios"><i class="fa-solid fa-crown"></i> Premios</li>
-                <li class="mt-2 tab-controller" name="maquinas"><i class="fa-solid fa-cube"></i> Máquinas</li> 
-                <li class="mt-2 tab-controller" name="grupos"><i class="fa-solid fa-users"></i> Grupos</li>
-                <li class="mt-2 tab-controller" name="ranking"><i class="fa-solid fa-bolt"></i> Ranking</li>
-            </ul>
-        </nav>
-        <article class="ml-64 premios tab pl-12 pt-12 w-full flex flex-row flex-wrap justify-center gap-10">
-          <div class="header flex justify-around w-full"> 
-            <h3 class="text-2xl color-text"><i class="fa-solid fa-crown"></i> Premios disponibles</h3>
-            <button class="text-lg w-44 h-9 rounded btn-success"><i class="fa-solid fa-plus"></i> Canjear premios</button>
-          </div>
-        </article>
+      <nav
+        class="w-64 menuLateral h-screen top-24 fixed flex flex-col items-center"
+      >
+        <div class="info flex flex-col mt-12 items-center"></div>
+        <ul class="flex flex-col mt-12">
+          <li class="mt-2 tab-controller active" name="premios">
+            <i class="fa-solid fa-crown"></i> Premios
+          </li>
+          <li class="mt-2 tab-controller" name="maquinas">
+            <i class="fa-solid fa-cube"></i> Máquinas
+          </li>
+          <li class="mt-2 tab-controller" name="grupos">
+            <i class="fa-solid fa-users"></i> Grupos
+          </li>
+          <li class="mt-2 tab-controller" name="ranking">
+            <i class="fa-solid fa-bolt"></i> Ranking
+          </li>
+        </ul>
+      </nav>
+      <article
+        class="ml-64 premios tab pl-12 pt-12 w-full flex flex-row flex-wrap justify-center gap-10"
+      >
+        <header class="header flex justify-between w-4/5">
+          <h3 class="text-2xl color-text">
+            <i class="fa-solid fa-crown"></i> Premios disponibles
+          </h3>
+          <button class="text-lg w-48 h-9 rounded btn-success">
+            <i class="fa-solid fa-plus"></i> Canjear puntos
+          </button>
+        </header>
+        <div class="w-4/5 alert flex justify-center flex-wrap"></div>
+        <article
+          class="premiosContainer w-full h-full flex flex-row flex-wrap justify-center gap-10"
+        ></article>
+      </article>
 
-        <article class="ml-64 maquinas tab hidden pl-12 pt-12 w-full flex flex-row flex-wrap justify-center gap-10">
-          <div class="header flex justify-around w-full">
-          <h3 class="text-2xl color-text"><i class="fa-solid fa-cube"></i> Máquinas hackeadas</h3>
-          <button class="text-lg w-72 h-9 rounded btn-success"><i class="fa-solid fa-plus"></i> Ver máquinas disponibles</button>
-          </div>
+      <article
+        class="ml-64 maquinas tab hidden pl-12 pt-12 w-full flex flex-row flex-wrap justify-center gap-10"
+      >
+        <header class="header flex justify-between w-4/5">
+          <h3 class="text-2xl color-text">
+            <i class="fa-solid fa-cube"></i> Máquinas hackeadas
+          </h3>
+          <button class="text-lg w-72 h-9 rounded btn-success">
+            <i class="fa-solid fa-plus"></i>
+            <a href="/Frontend/src/public/mv.html">Ver máquinas disponibles</a>
+          </button>
+        </header>
 
-          <table>
-          </table>
-        </article>
+        <table></table>
+      </article>
 
-        <article class="ml-64 grupos tab hidden">
+      <article
+        class="ml-64 grupos tab hidden pl-12 pt-12 w-full flex flex-row flex-wrap justify-center gap-10"
+      >
+        <header class="header flex justify-between w-4/5">
+          <h3 class="text-2xl color-text">
+            <i class="fa-solid fa-user-group"></i> Grupos
+          </h3>
+          <button class="text-lg w-48 h-9 rounded btn-success">
+            <i class="fa-solid fa-plus"></i> Nuevo grupo
+          </button>
+        </header>
+        <div class="w-4/5 alert flex justify-center flex-wrap"></div>
+      </article>
 
-        </article>
-        <article class="ml-64 ranking tab hidden">
+      <article
+        class="ml-64 ranking tab hidden pl-12 pt-12 w-full flex flex-row flex-wrap justify-center gap-10"
+      >
+        <header class="header w-4/5">
+          <h3 class="text-2xl color-text">
+            <i class="fa-solid fa-bolt"></i> Ranking
+          </h3>
+          <button></button>
+        </header>
 
-        </article>
+        <table></table>
+      </article>
     </section>
+
+    <!-- Modal para crear nuevo grupo -->
+    <section
+      class="modalShowMv modalCreateGroup w-full h-screen flex justify-center fixed top-0 left-0 items-center"
+    >
+    <span class="close absolute top-28 cursor-pointer right-6"> <i class="fa-solid text-2xl fa-circle-xmark"></i></span>
+      <article class="flex justify-center items-center flex-col py-10 px-12 rounded relative w-auto box-shadow00405">
+        <img class="size-32" src="../img/OSA_normalLogo.png" alt="" />
+        <h1 class="pb-8 text-3xl">Crear grupo</h1>
+        <form id="modalCreateGroup" class="h-auto w-auto">
+          <label for="username">Nombre de grupo:</label><br />
+          <div class="mt-2 flex items-center rounded flex-row">
+            <span class="pl-4 pr-4">
+              <i class="fa-solid text-lg fa-user"></i>
+            </span>
+            <input type="text" name="username" id="username" placeholder="..." />
+          </div>
+          <br>
+          <input class="w-36 h-9 rounded" type="submit" value="Crear grupo" />
+        </form>
+      </article>
+    </section>
+
+
   </body>
   <script type="module" src="../js/userInfo/sidebarLogic.js"></script>
   <script type="module" src="../js/userInfo/userInfoMain.js"></script>
 </html>
-

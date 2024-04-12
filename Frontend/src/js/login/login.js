@@ -1,5 +1,5 @@
-import { showAlert } from "../helpers/alert.js";
 import { fetchPOST } from "../helpers/requests.js";
+import helpers from "../helpers/utils.js";
 
 // variables
 const loginArticle = document.querySelector(".loginArticle");
@@ -16,7 +16,7 @@ async function verifyInputs(e){
     e.preventDefault();
     // comprobar si los campos estan vacios
     if(username.value.trim() === "" || password.value.trim() === ""){
-        showAlert("Todos los campos son obligatorios", "error", form);
+        helpers.showAlert("Todos los campos son obligatorios", "error", form);
         return;
     }
 
@@ -31,12 +31,12 @@ async function verifyInputs(e){
 
 async function login(userData){
     try {
-        const data = await fetchPOST("login", userData);
+        const data = await fetchPOST("user/login", userData);
         if(data.token){
             saveToken(data.token);
         }
         else{
-            showAlert("Usuario o contraseña incorrectos", "error", form);
+            helpers.showAlert("Usuario o contraseña incorrectos", "error", form);
         }
     } catch (error) {
         console.error('Error al hacer la consulta', error);

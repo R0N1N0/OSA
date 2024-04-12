@@ -1,4 +1,4 @@
-import { showAlert } from "./alert.js";
+import helpers from "./utils.js";
 const baseUrl = "http://localhost:3000/";
 
 export async function fetchPOST(route, data) {
@@ -56,8 +56,40 @@ export async function fetchGetUserInfo(route, token){
             const responseData = await response.json();
             return responseData;
         }
-        window.location.href = "http://127.0.0.1:5500/Frontend/src/index.html";
+        window.location.href = "Frontend/src/index.html";
     } catch (error) {
         return { error: error.message };
+    }
+}
+
+// function para pasar token y datos
+
+export async function fetchPostWithDataToken(route, token, data){
+    try {
+        const response = await fetch(baseUrl + route, {
+            method: "POST",
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+        if(response.ok){
+            const responseData = await response.json();
+            return responseData;
+        }
+        return false;
+    } catch (error) {
+        return console.log(`error al asignar un premio a un usuario: ${error}`);
+    }
+}
+
+// request para crear grupos
+
+export async function addGroup(){
+    try{
+        
+    }catch(error){
+
     }
 }

@@ -1,7 +1,10 @@
-
+import helpers from "../helpers/utils.js";
 
 // function que muestra los premios que tiene disponibles un usuario
 export function printAwards(userAwards, premiosArticle){
+    const premiosContainer = premiosArticle.querySelector(".premiosContainer");
+    const alertContainer = premiosArticle.querySelector(".alert");
+    if(!userAwards.length > 0) return helpers.showStaticAlert("No tienes premios disponibles, canjea tus puntos para obtener premios", "information", alertContainer);
     userAwards.forEach(award => {
         const divAward = document.createElement("div");
         divAward.className = "relative divAward w-64 h-64 rounded flex flex-col justify-center items-center cursor-pointer";
@@ -20,7 +23,7 @@ export function printAwards(userAwards, premiosArticle){
         divAward.appendChild(h4);
         divAward.appendChild(p);
         divAward.appendChild(img);
-        premiosArticle.appendChild(divAward);
+        premiosContainer.appendChild(divAward);
     });
     selectAwards();
 }
