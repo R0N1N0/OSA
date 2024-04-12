@@ -27,33 +27,27 @@ app.use(express.urlencoded({ extended: true }));
 
 
 app.get('/', (req, res) => {
-    res.json( {message: "Hola que tal"} );
+    res.json( {message: "Bienvenido a la OSA API"} );
 });
 
-// ---------------- Rutas publicas ---------------
-// Rutas de usuario --------------------
-const userRoutes = require('./routes/user/userRoute.js');
-app.use('/', userRoutes);
-// ruta para crear un nuevo usuario
-const createUser = require('./routes/user/createUserRoute.js');
-app.use('/', createUser);
+/* Rutas de usuario */
+const userRoutes = require('./routes/user/userRoutes.js');
+app.use('/user', userRoutes);
 
-// Rutas de maquinas
-
-// ruta para recuperar todas las maquinas
+/* Rutas de las maquinas */
 const mvRoutes = require('./routes/mv/mv.js');
-app.use('/', mvRoutes);
+app.use('/mv', mvRoutes);
 
 
-// --------------- Rutas protegidas ----------------- 
+/* Rutas de los premios */
+const awards = require('./routes/awards/awardRoutes.js');
+app.use('/awards', awards);
 
-//ruta para recuperar informacion del usuario
-const getUserInfo = require('./routes/user/getUserInfoRoute.js');
-app.use('/', getUserInfo);
+/* Rutas de los grupos */
+const group = require('./routes/group/groupRoutes.js');
+app.use('/', group);
 
-
-
-// run server
+/* Arrancar servidor en el puerto 3000 */
 app.listen(PORT, () => {
     console.log(`Servidor escuchando por el puerto ${PORT}`);
 });

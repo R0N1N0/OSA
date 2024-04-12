@@ -9,7 +9,7 @@ const db = require('../../db/db.js');
 exports.getUserInfo = async (req, res) => {
     try{
         // recuperamos el id y el rol de la request 
-        const {id, rol} = req.usuario;
+        const {id} = req.usuario;
 
         // la query para recuperar los datos del usuario
         const sql = 
@@ -34,11 +34,11 @@ exports.getUserInfo = async (req, res) => {
 exports.getUserAwards = async (req, res) => {
     try{
         // recuperamos el id y el rol de la request 
-        const {id, rol} = req.usuario;
+        const {id} = req.usuario;
 
         // la query para recuperar los datos del usuario
         const sql = `SELECT premio.* FROM usuario_premio 
-        JOIN premio ON(premio.id_premio = usuario_premio.id_usuario_premio) 
+        JOIN premio ON(premio.id_premio = usuario_premio.id_premio) 
         WHERE usuario_premio.id_usuario = ?;
         `;
         const connexion = await db.getConnection();    
@@ -61,7 +61,7 @@ exports.getUserAwards = async (req, res) => {
 exports.getUserMV = async (req, res) => {
     try{
         // recuperamos el id y el rol de la request 
-        const {id, rol} = req.usuario;
+        const {id} = req.usuario;
 
         // la query para recuperar los datos del usuario
         const sql = `SELECT mv.* FROM mv 
@@ -89,11 +89,18 @@ exports.getUserMV = async (req, res) => {
 exports.getUserGroup = async (req, res) => {
     try{
         // recuperamos el id y el rol de la request 
-        const {id, rol} = req.usuario;
+        const {id} = req.usuario;
 
         // la query para recuperar los datos del usuario
-        const sql = 
-        `select * from usuario_grupo where id_usuario = ?`;
+        const sql = `SELECT usuario_grupo.*, grupo.id_grupo, grupo.nombre, subquery.cantidad
+        FROM usuario_grupo
+        JOIN grupo ON grupo.id_grupo = usuario_grupo.id_grupo
+        JOIN (
+            SELECT id_grupo, COUNT(id_usuario) AS cantidad
+            FROM usuario_grupo
+            GROUP BY id_grupo
+        ) AS subquery ON grupo.id_grupo = subquery.id_grupo
+        WHERE id_usuario = ?`;
         const connexion = await db.getConnection();    
         let result = await connexion.query(sql, id);
         connexion.release();
@@ -114,10 +121,12 @@ exports.getUserGroup = async (req, res) => {
 exports.getUserRanking = async (req, res) => {
     try{
         // recuperamos el id y el rol de la request 
-        const {id, rol} = req.usuario;
+        const {id} = req.usuario;
 
         // la query para recuperar los datos del usuario
-        const sql = `select * from usuario order by usuario.puntos`;
+        const sql = `SELECT usuario.*, 
+        (SELECT sum(mv.puntos) FROM usuario_mv JOIN mv ON usuario_mv.id_mv = mv.id_mv ) as puntos 
+        FROM usuario order by puntos`;
         const connexion = await db.getConnection();    
         let result = await connexion.query(sql, id);
         connexion.release();
