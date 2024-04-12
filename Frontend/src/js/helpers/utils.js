@@ -38,6 +38,9 @@ class helpers {
             divAlert.remove();
         }, 2800);
     }
+    static getToken(){
+        return localStorage.getItem('token');
+    }
 
 }
 

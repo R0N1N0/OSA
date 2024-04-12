@@ -34,7 +34,7 @@ addAward.addEventListener("click", () => {
     assignAward();
 });
 addGroup.addEventListener("click", () => {
-    createGroup(userInfoSection, modalCreateGroup, modalCreateGroup);
+    createGroup(userInfoSection, modalCreateGroup);
 });
 closeModal.addEventListener("click", function(){
     helpers.showModal(modalCreateGroup, userInfoSection);
@@ -63,7 +63,7 @@ async function getAllInfo(){
 }
 
 // function para validar el token
-async function getInfo(route){
+export async function getInfo(route){
     try {
         if(!token){
             window.location.href = "Frontend/src/index.html";

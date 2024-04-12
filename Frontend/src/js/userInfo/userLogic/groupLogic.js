@@ -1,17 +1,18 @@
 
 import helpers from "../../helpers/utils.js";
-export function createGroup(userInfoSection, modal, modalCreateGroup){
+import { fetchPostWithDataToken } from "../../helpers/requests.js";
+export function createGroup(userInfoSection, modalCreateGroup){
     //variables
     const submitButton = modalCreateGroup.querySelector("input[type=submit]");
     console.log(submitButton);
     //eventos
-    helpers.showModal(modal, userInfoSection);
+    helpers.showModal(modalCreateGroup, userInfoSection);
     submitButton.addEventListener("click", (e) => {
-        addGroup(e, modalCreateGroup);
+        addGroup(e, modalCreateGroup, userInfoSection);
     });
 }
 
-function addGroup(e, modalCreateGroup){
+async function addGroup(e, modalCreateGroup, userInfoSection){
     e.preventDefault();
     //variables
     const inputName = modalCreateGroup.querySelector("input[type=text]").value;
@@ -19,6 +20,17 @@ function addGroup(e, modalCreateGroup){
         helpers.showAlert("El nombre de grupo es obligatorio", "error", modalCreateGroup.querySelector("form"));
         return;
     }
-
-    
+    const token = helpers.getToken();
+    const res = await fetchPostWithDataToken("group/addGroup", token, {nombre: inputName.trim()});
+    if(res){
+        helpers.showAlert(res.message, "success", modalCreateGroup.querySelector("form"));
+        setTimeout(() => {
+            helpers.showModal(modalCreateGroup, userInfoSection);
+            modalCreateGroup.querySelector('form').reset();
+            return true;
+          }, 2000);
+    }
+    else{
+        return helpers.showAlert("Error al crear el grupo", "error", modalCreateGroup.querySelector("form"));
+    }
 }

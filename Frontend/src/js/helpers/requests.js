@@ -10,10 +10,12 @@ export async function fetchPOST(route, data) {
             },
             body: JSON.stringify(data)
         });
-        const responseData = await response.json();
-        return responseData;
+        if(response.ok){
+            const responseData = await response.json();
+            return responseData;
+        }
     } catch (error) {
-        return { error: error.message };
+        console.log(error);
     }
 }
 
@@ -80,16 +82,6 @@ export async function fetchPostWithDataToken(route, token, data){
         }
         return false;
     } catch (error) {
-        return console.log(`error al asignar un premio a un usuario: ${error}`);
-    }
-}
-
-// request para crear grupos
-
-export async function addGroup(){
-    try{
-        
-    }catch(error){
-
+        return console.log(`error en fetchPostWithDataToken ${error}`);
     }
 }
