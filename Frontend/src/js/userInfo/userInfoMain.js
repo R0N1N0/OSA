@@ -83,7 +83,7 @@ function printInfo(userData, userMachines){
     const img = document.createElement("img");
     img.src = userData.imagen;
     img.alt = "usuario imagen de perfil";
-    img.className = "rounded-full w-full size-40";
+    img.className = "rounded-full size-40";
     // Crear el h1 con el nombre del usuario
     const h1 = document.createElement("h1");
     h1.className = "mt-4 w-36 text-3xl text-center";

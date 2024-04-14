@@ -124,9 +124,11 @@ exports.getUserRanking = async (req, res) => {
         const {id} = req.usuario;
 
         // la query para recuperar los datos del usuario
-        const sql = `SELECT usuario.*, 
-        (SELECT sum(mv.puntos) FROM usuario_mv JOIN mv ON usuario_mv.id_mv = mv.id_mv ) as puntos 
-        FROM usuario order by puntos`;
+        const sql = `select usuario.*, IFNULL(sum(mv.puntos), 0) as puntos
+        from usuario 
+        left join usuario_mv on usuario_mv.id_usuario = usuario.id_usuario
+        left join mv on mv.id_mv = usuario_mv.id_mv
+        group by usuario.id_usuario`;
         const connexion = await db.getConnection();    
         let result = await connexion.query(sql, id);
         connexion.release();

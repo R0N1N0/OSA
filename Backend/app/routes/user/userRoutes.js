@@ -14,14 +14,14 @@ router.post('/login', userController.getUserAuth);
 router.use('/getUser', validateToken);
 
 // Rutas privadas para obtener información de usuario
-router.use('/getUser/info', getUserInfoController.getUserInfo);
-router.use('/getUser/mv', getUserInfoController.getUserMV);
-router.use('/getUser/group', getUserInfoController.getUserGroup);
-router.use('/getUser/ranking', getUserInfoController.getUserRanking);
-router.use('/getUser/awards', getUserInfoController.getUserAwards);
+router.get('/getUser/info', getUserInfoController.getUserInfo);
+router.get('/getUser/mv', getUserInfoController.getUserMV);
+router.get('/getUser/group', getUserInfoController.getUserGroup);
+router.get('/getUser/ranking', getUserInfoController.getUserRanking);
+router.get('/getUser/awards', getUserInfoController.getUserAwards);
 
 // Ruta para asignar premios a usuarios
 router.use("/award", validateToken);
-router.use('award/assignAward', userAwardController.assignAward);
+router.post('award/assignAward', userAwardController.assignAward);
 
 module.exports = router;

@@ -1,8 +1,10 @@
 const db = require('../../db/db.js');
+const { createConnexion } = require("../../helpers/connexion.js");
 
 
 exports.addGroup = async (req, res) => {
-    const groupData = req.body;
+    try {
+        const groupData = req.body;
     const userData = req.usuario;
     const admin = 1;
 
@@ -25,4 +27,46 @@ exports.addGroup = async (req, res) => {
         }
     }
     res.status(400);
+    }
+    catch(error) {
+        console.log(error);
+    }
+}
+
+exports.deleteGroup = async (req, res) => {
+    try {
+        const groupData = req.body;
+
+        const sql = "delete from group where id_grupo = ?";
+
+        const connexion = await createConnexion();
+        const result = await connexion.query(sql, groupData.id);
+
+        connexion.release();
+
+        if(result){
+            res.status(200).json( {message: "Grupo eliminado correctamente"})
+        }
+    }
+    catch(error) {
+        console.log(error);
+    }
+}
+
+exports.getGroupMembers = async (req, res) => {
+    try{
+        const id = req.query.id;
+
+        const sql = "";
+        const connexion = await createConnexion();
+        const result = await connexion.query(sql, id);
+        connexion.release();
+        result = result[0];
+        if(result){
+            res.status(200).json(result);
+        }
+    }
+    catch(error) {
+        console.log(error);
+    }
 }

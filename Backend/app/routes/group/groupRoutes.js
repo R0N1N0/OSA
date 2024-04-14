@@ -6,6 +6,9 @@ const validateToken = require('../../middleware/tokenMiddleware.js');
 
 router.use("/group", validateToken);
 
-router.use("/group/addGroup", addGroupController.addGroup);
+router.post("/group/addGroup", addGroupController.addGroup);
+router.get("/group/getGroupMembers", addGroupController.getGroupMembers);
+router.delete("/group/deleteGroup", addGroupController.deleteGroup);
+
 
 module.exports = router;
