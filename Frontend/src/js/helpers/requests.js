@@ -49,14 +49,13 @@ export async function fetchPOSTData(route, data) {
 export async function fetchGetUserInfo(route, token){
     try {
         const response = await fetch(baseUrl + route, {
-            method: "POST",
+            method: "GET",
             headers: {
                 'Authorization': `Bearer ${token}`,
             }
         });
         if(response.ok){
-            const responseData = await response.json();
-            return responseData;
+            return await response.json();
         }
         window.location.href = "Frontend/src/index.html";
     } catch (error) {
@@ -77,11 +76,31 @@ export async function fetchPostWithDataToken(route, token, data){
             body: JSON.stringify(data)
         });
         if(response.ok){
-            const responseData = await response.json();
-            return responseData;
+            return await response.json();
         }
         return false;
     } catch (error) {
         return console.log(`error en fetchPostWithDataToken ${error}`);
+    }
+}
+
+// function global para eliminar
+
+export async function deleteRegistres(route, token, data) {
+    try {
+        const response = await fetch(baseUrl + route, {
+            method: "DELETE",
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+        if(response.ok) {
+            return await response.json();
+        }
+    }
+    catch (error) {
+        console.log(`error al borrar: ${error}`);
     }
 }

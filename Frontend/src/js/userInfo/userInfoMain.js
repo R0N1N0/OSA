@@ -39,7 +39,6 @@ addGroup.addEventListener("click", () => {
 closeModal.addEventListener("click", function(){
     helpers.showModal(modalCreateGroup, userInfoSection);
 });
-
 // funciones
 
 // funcion que recupera los datos del usuario
@@ -115,4 +114,10 @@ async function assignAward(){
             printAwards(userAwards, premiosArticle);
         }
     }, 2900);
+}
+
+function deleteGroup(e) {
+    const idGroup = e.target.value;
+    if(!idGroup) return;
+    
 }

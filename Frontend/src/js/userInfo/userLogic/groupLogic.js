@@ -1,6 +1,6 @@
 
 import helpers from "../../helpers/utils.js";
-import { fetchPostWithDataToken } from "../../helpers/requests.js";
+import { fetchPostWithDataToken, deleteRegistres } from "../../helpers/requests.js";
 export function createGroup(userInfoSection, modalCreateGroup){
     //variables
     const submitButton = modalCreateGroup.querySelector("input[type=submit]");
@@ -32,5 +32,12 @@ async function addGroup(e, modalCreateGroup, userInfoSection){
     }
     else{
         return helpers.showAlert("Error al crear el grupo", "error", modalCreateGroup.querySelector("form"));
+    }
+}
+
+export async function deleteGroupLogic(idGroup) {
+    const res = await deleteRegistres("group/deleteGroup", helpers.getToken(), {id: idGroup});
+    if(res){
+        console.log(res.message);
     }
 }

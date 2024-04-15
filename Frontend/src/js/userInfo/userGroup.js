@@ -2,6 +2,7 @@
 // Este fichero gestiona el apartado de grupos de userInfo
 
 import helpers from "../helpers/utils.js";
+import { deleteGroupLogic } from "./userLogic/groupLogic.js";
 
 export function printGroups(userGroup, groupArticle){
     const alertContainer = helpers.returnAlertContainer(groupArticle);
@@ -11,31 +12,31 @@ export function printGroups(userGroup, groupArticle){
         const divConf = document.createElement("div");
         divConf.className = "divConfGroup w-full h-10 absolute top-0";
         const ul = document.createElement("ul");
-        ul.className = "h-full flex flex-row justify-end items-center";
+        ul.className = "h-full flex flex-row justify-end items-center accions";
 
         const liView = document.createElement("li");
         liView.innerHTML = `<i class="fa-solid fa-eye"></i>`;
-        liView.value = group.id_usuario_grupo;
-        liView.className = "cursor-pointer mr-2";
+        liView.value = group.id_grupo;
+        liView.className = "cursor-pointer mr-2 view";
         ul.appendChild(liView);
 
         if(group.admin) {
             const liEdit = document.createElement("li");
             liEdit.innerHTML = `<i class="fa-solid fa-pen-to-square"></i>`;
-            liEdit.value = group.id_usuario_grupo;
-            liEdit.className = "cursor-pointer mr-2";
+            liEdit.value = group.id_grupo;
+            liEdit.className = "cursor-pointer mr-2 edit";
             const liDelete = document.createElement("li");
             liDelete.innerHTML = `<i class="fa-solid fa-trash"></i>`;
-            liDelete.value = group.id_usuario_grupo;
-            liDelete.className = "cursor-pointer mr-2";
+            liDelete.value = group.id_grupo;
+            liDelete.className = "cursor-pointer mr-2 delete";
             ul.appendChild(liEdit);
             ul.appendChild(liDelete);
         }
         else{
             const liOut = document.createElement("li");
             liOut.innerHTML = `<i class="fa-solid fa-right-from-bracket"></i>`;
-            liOut.value = group.id_usuario_grupo;
-            liOut.className = "cursor-pointer mr-2";
+            liOut.value = group.id_grupo;
+            liOut.className = "cursor-pointer mr-2 out";
             ul.appendChild(liOut);
         }
         divConf.appendChild(ul);
@@ -58,4 +59,17 @@ export function printGroups(userGroup, groupArticle){
         divGroup.appendChild(groupNumber);
         groupArticle.appendChild(divGroup);
     });
+
+    const deleteGroupBoton = document.querySelector(".grupos .accions .delete");
+    if(!deleteGroupBoton) return;
+    deleteGroupBoton.querySelector("i").addEventListener("click", (e) => {
+        deleteGroup(e);
+    });
+}
+
+
+function deleteGroup(e) {
+    const idGroup = e.target.parentElement.value;
+    if(!idGroup) return;
+    deleteGroupLogic(idGroup);
 }
