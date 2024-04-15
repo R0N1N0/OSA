@@ -35,17 +35,21 @@ exports.addGroup = async (req, res) => {
 
 exports.deleteGroup = async (req, res) => {
     try {
-        const groupData = req.body;
+        const {id} = req.body;
+        if(!id) {
+            res.status(400).json( {message: "Se requiere el id de grupo para eliminar un grupo."});
+        }
 
-        const sql = "delete from group where id_grupo = ?";
+        const sql = "delete from grupo where id_grupo = ?";
 
         const connexion = await createConnexion();
-        const result = await connexion.query(sql, groupData.id);
-
-        connexion.release();
+        let result = await connexion.query(sql, id);
 
         if(result){
-            res.status(200).json( {message: "Grupo eliminado correctamente"})
+            sql = "delete from usuario_grupo where id_grupo = ?";
+            await connexion.query(sql, id);
+            connexion.release();
+            res.status(200).json( {message: "Grupo eliminado correctamente"});
         }
     }
     catch(error) {
@@ -55,13 +59,17 @@ exports.deleteGroup = async (req, res) => {
 
 exports.getGroupMembers = async (req, res) => {
     try{
-        const id = req.query.id;
+        const {id} = req.query;
+        if(!id) {
+            res.status(400).json( {message: "Se necesita el id del grupo para seleccionar los miembros de un grupo."});
+        }
 
-        const sql = "";
+        const sql = "delete from grupo where id_grupo = ?";
         const connexion = await createConnexion();
         const result = await connexion.query(sql, id);
         connexion.release();
         result = result[0];
+        
         if(result){
             res.status(200).json(result);
         }
