@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
         <ul class="flex flex-row">
           <li>
-            <a href="../index.html"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="./index.html"><i class="fa-solid fa-house"></i> Home</a>
           </li>
           <li class="ml-6">
             <a href="./public/mv.html"

@@ -28,14 +28,15 @@ export function showMV(results){
     results.forEach(result => {
         // contenedor
         const container = document.createElement("div");
-        container.classList.add("relative", "box", "ml-6", "rounded", "w-80", "h-96", "mt-14");
+        container.classList.add("relative", "box", "ml-6", "rounded", "w-80", "h-96", "mt-14", "flex", "items-center", "justify-center", "flex-wrap");
         // imagen maquina
         const img = document.createElement("img");
         img.src = result.imagen;
         img.alt = `Imagen de la maquina ${result.nombre}`;
+        img.className = "w-full rounded";
         //div con la info de la maquina
         const containerInfo = document.createElement("div");
-        containerInfo.classList.add("flex", "mvinfo", "flex-row", "flex-wrap", "items-center", "justify-between");
+        containerInfo.classList.add("flex", "mvinfo", "flex-row", "flex-wrap", "items-center", "justify-between", "w-full", "rounded-b");
         // p con la dificultad
         const pInfo = document.createElement("p");
         pInfo.classList.add("p-dif", "ml-4", "w-full");

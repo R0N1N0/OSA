@@ -1,43 +1,23 @@
-
-import helpers from "../../helpers/utils.js";
 import { fetchPostWithDataToken, deleteRegistres } from "../../helpers/requests.js";
-export function createGroup(userInfoSection, modalCreateGroup){
-    //variables
-    const submitButton = modalCreateGroup.querySelector("input[type=submit]");
-    console.log(submitButton);
-    //eventos
-    helpers.showModal(modalCreateGroup, userInfoSection);
-    submitButton.addEventListener("click", (e) => {
-        addGroup(e, modalCreateGroup, userInfoSection);
-    });
-}
+import helpers from "../../helpers/utils.js";
 
-async function addGroup(e, modalCreateGroup, userInfoSection){
+export async function createGroupLogic(e, modalCreateGroup){
     e.preventDefault();
-    //variables
-    const inputName = modalCreateGroup.querySelector("input[type=text]").value;
-    if(inputName.trim() == ''){
-        helpers.showAlert("El nombre de grupo es obligatorio", "error", modalCreateGroup.querySelector("form"));
-        return;
-    }
-    const token = helpers.getToken();
-    const res = await fetchPostWithDataToken("group/addGroup", token, {nombre: inputName.trim()});
+    const inputValue = modalCreateGroup.querySelector("input[type=text]").value;
+    if(inputValue.trim() == "") return helpers.showAlert("El nombre de grupo es obigatorio", "error", modalCreateGroup.querySelector("form"));
+
+    const res = await fetchPostWithDataToken("group/addgroup", helpers.getToken(), {nombre: inputValue.trim()});
     if(res){
-        helpers.showAlert(res.message, "success", modalCreateGroup.querySelector("form"));
-        setTimeout(() => {
-            helpers.showModal(modalCreateGroup, userInfoSection);
-            modalCreateGroup.querySelector('form').reset();
-            return true;
-          }, 2000);
-    }
-    else{
-        return helpers.showAlert("Error al crear el grupo", "error", modalCreateGroup.querySelector("form"));
+        modalCreateGroup.querySelector("form").reset();
+        return res;
     }
 }
 
-export async function deleteGroupLogic(idGroup) {
+export async function deleteGroupLogic(idGroup){
+    if(!idGroup) return;
     const res = await deleteRegistres("group/deleteGroup", helpers.getToken(), {id: idGroup});
     if(res){
-        console.log(res.message);
+        return true;
     }
+    return false;
 }

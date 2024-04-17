@@ -1,6 +1,8 @@
 
-document.addEventListener("DOMContentLoaded", () => {
-    const header = document.querySelectorAll("header")[0];
+document.addEventListener("DOMContentLoaded", menuLogic)
+
+async function menuLogic(){
+  const header = document.querySelectorAll("header")[0];
     const nav = document.createElement("nav");
     nav.className = "w-full flex h-24 fixed top-0 z-40 justify-around items-center";
     nav.innerHTML = `
@@ -32,4 +34,4 @@ document.addEventListener("DOMContentLoaded", () => {
         </ul>
     `;
     header.insertBefore(nav, header.firstChild);
-})
+}

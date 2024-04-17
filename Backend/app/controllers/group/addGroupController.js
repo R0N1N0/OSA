@@ -40,7 +40,7 @@ exports.deleteGroup = async (req, res) => {
             res.status(400).json( {message: "Se requiere el id de grupo para eliminar un grupo."});
         }
 
-        const sql = "delete from grupo where id_grupo = ?";
+        let sql = "delete from grupo where id_grupo = ?";
 
         const connexion = await createConnexion();
         let result = await connexion.query(sql, id);

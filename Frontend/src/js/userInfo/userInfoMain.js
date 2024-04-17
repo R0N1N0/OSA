@@ -1,16 +1,14 @@
-import { fetchGetUserInfo } from "../helpers/requests.js";
 import { printAwards } from "./userAwards.js";
 import { printMachines } from "./userMachines.js";
 import { printGroups } from "./userGroup.js";
 import { printRanking } from "./userRanking.js";
 import { logicAwards } from "./userLogic/awardsLogic.js";
 import helpers from "../helpers/utils.js";
-import { createGroup } from "./userLogic/groupLogic.js";
+import { getUserRequests } from "../helpers/userRequests.js";
 
 // variables
 let userData = [];
 let userMachines = [];
-let userGroups = [];
 let userRanking = [];
 let userAwards = [];
 let awards = [];
@@ -21,10 +19,8 @@ const divInfo = document.querySelector(".userInfo div.info");
 const premiosArticle = document.querySelector(".premios");
 const premiosContainer = premiosArticle.querySelector(".premiosContainer");
 const maquinasArticle = document.querySelector(".maquinas");
-const gruposArticle = document.querySelector(".grupos");
 const rankingArticle = document.querySelector(".ranking");
 const addAward = premiosArticle.querySelector(".btn-success");
-const addGroup = gruposArticle.querySelector(".btn-success");
 const modalCreateGroup = document.querySelector(".modalCreateGroup");
 const closeModal = document.querySelector(".modalShowMv .close");
 
@@ -32,9 +28,6 @@ const closeModal = document.querySelector(".modalShowMv .close");
 getAllInfo();
 addAward.addEventListener("click", () => {
     assignAward();
-});
-addGroup.addEventListener("click", () => {
-    createGroup(userInfoSection, modalCreateGroup);
 });
 closeModal.addEventListener("click", function(){
     helpers.showModal(modalCreateGroup, userInfoSection);
@@ -44,39 +37,24 @@ closeModal.addEventListener("click", function(){
 // funcion que recupera los datos del usuario
 async function getAllInfo(){
     // recuperar todos los datos del usuario
-    userData = await getInfo("user/getUser/info");
-    userMachines = await getInfo("user/getUser/mv");
-    userGroups = await getInfo("user/getUser/group");
-    userRanking = await getInfo("user/getUser/ranking");
-    userAwards = await getInfo("user/getUser/awards");
-    awards = await getInfo("awards/getAwards");
+    userData = await getUserRequests.getUserInfo();
+    userMachines = await getUserRequests.getUserMachines();
+    userRanking = await getUserRequests.getUserRanking();
+    userAwards = await getUserRequests.getUserAwards();
+    awards = await getUserRequests.getAwards();
     awardsNumber = awards.length;
 
     
     // llamar a las funciones que imprimen los datos devueltos de la api
-    printInfo(userData, userMachines);
+    printInfo(userData);
     printAwards(userAwards, premiosArticle);
     printMachines(userMachines, maquinasArticle);
-    printGroups(userGroups, gruposArticle);
+    printGroups();
     printRanking(userRanking, rankingArticle);
 }
 
-// function para validar el token
-export async function getInfo(route){
-    try {
-        if(!token){
-            window.location.href = "Frontend/src/index.html";
-            return;
-        }
-        const response = await fetchGetUserInfo(route, token);
-        return response;
-    } catch (error) {
-        console.log(error);
-    }
-}
-
 // function para mostrar los datos personales del usuario por pantalla
-function printInfo(userData, userMachines){
+function printInfo(userData){
     userData = userData[0];
     // Creamos la imagen de perfil
     const img = document.createElement("img");
@@ -114,10 +92,4 @@ async function assignAward(){
             printAwards(userAwards, premiosArticle);
         }
     }, 2900);
-}
-
-function deleteGroup(e) {
-    const idGroup = e.target.value;
-    if(!idGroup) return;
-    
 }
