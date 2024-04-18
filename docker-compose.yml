@@ -2,28 +2,22 @@ version: '3.8'
 
 services:
   mysql:
-    image: mysql:8.0.36-bookworm
-    #ports:
-    #  - '3306:3306'
-    #  - '33060:33060'
+    image: ghcr.io/r0n1n0/mysql:latest
     environment:
       - MYSQL_USER=${DB_USER}
       - MYSQL_PASSWORD=${DB_PASSWORD}
       - MYSQL_RANDOM_ROOT_PASSWORD=true
       - MYSQL_DATABASE=${DB_DATABASE}
-    volumes:
-     - ./Database/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
-     - db_data:/var/lib/mysql
     networks:
       osa-network:
         aliases:
           - mysql
         ipv4_address: 192.168.176.2
+    volumes:
+     - db_data:/var/lib/mysql
 
   nodejs:
-    build:
-      context: Backend
-      dockerfile: nodejs.Dockerfile
+    image: ghcr.io/r0n1n0/nodejs:latest
     ports:
       - '3000:3000'
     environment:
@@ -34,8 +28,6 @@ services:
       - TOKEN_SECRET=${TOKEN_SECRET}
     depends_on:
       - mysql
-    volumes:
-      - ./Backend/app:/Backend/app
     networks:
       osa-network:
         aliases:
@@ -43,14 +35,9 @@ services:
         ipv4_address: 192.168.176.3
 
   nginx:
-    image: nginx:1.25.4-alpine
+    image: ghcr.io/r0n1n0/nginx:latest
     ports:
       - '80:80'
-    volumes:
-      - ./Frontend/src:/usr/share/nginx/html
-      #- ./Frontend/nginx.conf:/etc/nginx/nginx.conf
-      - ./Frontend/default.conf:/etc/nginx/conf.d/default.conf
-      - nginx_logs:/var/log/nginx
     depends_on:
       - nodejs
       - mysql
@@ -61,9 +48,6 @@ services:
         ipv4_address: 192.168.176.4
 
 volumes:
-  nginx_logs:
-    name: "nginx_logs"
-    external: false
   db_data:
     name: "db_data"
     external: false
