@@ -34,25 +34,25 @@
         <h1 class="pb-8 text-3xl">Crear cuenta</h1>
         <form id="formLogin" class="h-auto w-auto">
           <label for="username">Nombre de usuario:</label><br />
-          <div class="mt-2 flex items-center rounded flex-row">
+          <div class="mt-2 flex items-center rounded flex-row input">
             <span class="pl-4 pr-4"
               ><i class="fa-solid text-lg fa-user"></i
             ></span>
-            <input type="text" name="username" id="username" placeholder="..." />
+            <input type="text" class="input" name="username" id="username" placeholder="..." />
           </div>
           <br />
           <label for="password">Contraseña:</label><br />
-          <div class="mt-2 rounded flex items-center flex-row">
+          <div class="mt-2 rounded flex items-center flex-row input">
             <span class="pl-4 pr-4"
               ><i class="fa-solid text-lg fa-unlock-keyhole"></i
             ></span>
-            <input type="password" name="password" id="password" placeholder="..." />
+            <input type="password" class="input" name="password" id="password" placeholder="..." />
           </div>
           <br />
           <label for="FProfile">Foto de perfil:</label><br />
-          <div class="mt-2 rounded flex items-center flex-row">
+          <div class="mt-2 rounded flex items-center flex-row input">
             <span class="pl-4 pr-4"><i class="fa-solid fa-image text-lg"></i></span>
-            <input type="file" class="p-0" name="image" id="FProfile" />
+            <input class="input" type="file" class="p-0" name="image" id="FProfile" />
           </div>
           <br />
           <input class="w-36 h-9 rounded" type="submit" value="Crear cuenta" />

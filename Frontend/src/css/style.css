@@ -44,6 +44,13 @@ header nav{
 .color-third{
     color: var(--color-third);
 }
+.input{
+    background-color: var(--color-text);
+}
+.boxStyle{
+    border: 1px solid var(--color-secondary);
+    height: 440px;
+}
 /* buttones */
 
 .btn-info{
