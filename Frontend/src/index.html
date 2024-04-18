@@ -12,31 +12,40 @@
     ></script>
     <link rel="shortcut icon" type="image/jpg" href="./img/OSA_normalLogo.png" sizes="32x32">
   </head>
-  <body>
+  <body class="bg-slate-950 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)">
     <header class="w-full h-screen">
-      <!-- portada fondo -->
-      <div class="absolute top-0 h-full w-full bg-slate-950">
-        <div
-          class="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"
-        ></div>
-      </div>
-      <!--------->
-      <div class="w-full h-full absolute top-0 flex items-center justify-center">
+      <div class="w-full h-full absolute top-0 flex items-center justify-center flex-col gap-8">
         <h1
-          class="text-center absolute flex flex-col justify-center items-center z-40 text-5xl"
+          class="text-center flex flex-col justify-center items-center z-40 text-5xl"
         >
           <img class="size-32" src="./img/OSA_normalLogo.png" alt="Logo OSA" />
           OFFENSIVE SECURITY <br />
           <span>ACADEMY</span>
         </h1>
-        <button class="color-text absolute btn-success">
-          <a href="./public/register.html">GET STARTED</a>
+        <button class="color-text rounded w-48 h-10 btn relative btn-info">
+          <a class="z-40 relative" href="./public/register.html">EMPEZAR GRATIS <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
         </button>
       </div>
     </header>
 
-    <section>
+    <section class="w-full">
+      <article class="w-full gap-12 flex items-center justify-center flex-wrap">
+        <div class="w-96 p-8 flex justify-center items-center flex-col boxStyle rounded">
+          <img class="w-32 h-32" src="https://turbo.build/images/docs/pack/turbopack-hero-logo-dark.svg" alt="">
+          <p class="color-text text-lg mt-4 text-center">¡Únete a nuestra comunidad de hacking y accede a desafíos exclusivos! Regístrate ahora para comenzar a poner a prueba tus habilidades.</p>
+          <button class="color-text rounded w-48 h-10 btn relative btn-info mt-6">
+            <a class="z-40 relative" href="./public/register.html">EMPEZAR GRATIS <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
+          </button>
+        </div>
 
+        <div class="w-96 p-8 flex justify-center items-center flex-col boxStyle rounded">
+          <img class="w-32 h-32" src="https://turbo.build/images/docs/pack/turbopack-hero-logo-dark.svg" alt="">
+          <p class="color-text text-lg mt-4 text-center">¡Explora nuestra academia para descubrir más sobre hacking y seguridad informática! Accede a desafíos exclusivos y amplía tus habilidades.</p>
+          <button class="color-text rounded w-48 h-10 btn relative btn-info mt-6">
+            <a class="z-40 relative" href="./public/academy.html">IR A ACADEMIA <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
+          </button>
+        </div>
+      </article>
     </section>
   </body>
   <script src="./js/helpers/menuLogicForIndex.js"></script>
