@@ -27,30 +27,21 @@ jobs:
         - name: Build the Docker image
           run: |
             docker build ./Frontend --file ./Frontend/nginx.Dockerfile --tag nginx:${{ env.TAG }} --tag nginx:latest
-      
 
-        - name: DigitalOcean App Platform deployment
-          uses: digitalocean/app_action@v1.1.6 # replace this with current version from https://github.com/digitalocean/app_action/releases
+        - name: Install doctl
+          uses: digitalocean/action-doctl@v2
           with:
-            app_name: nginx
             token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-            images: '[
-                      {
-                        "name": "nginx",
-                        "image":{
-                          "registry_type": "${{ env.REGISTRY }}",
-                          "repository": "${{ env.REPO }}",
-                          "tag": "latest"
-                        },
-                      },
-                      {
-                        "name": "nginx",
-                        "image":{
-                          "registry_type": "${{ env.REGISTRY }}",
-                          "repository": "${{ env.REPO }}",
-                          "tag": "${{ env.TAG }}"
-                        },
-                    ]'
+      
+        - name: Prepare images to push
+          run: |
+            docker tag nginx:latest ${{ env.REGISTRY }}/nginx:latest
+            docker tag nginx:${{ env.TAG }} ${{ env.REGISTRY }}/nginx:${{ env.TAG }}
+
+        - name: Push Docker image to DigitalOcean Container Registry
+          run: |
+            docker push nginx:latest ${{ env.REGISTRY }}/nginx:latest
+            docker push ${{ env.REGISTRY }}/nginx:${{ env.TAG }}
             
   nodejs:
     runs-on: ubuntu-latest
