@@ -40,7 +40,7 @@ jobs:
 
         - name: Push Docker image to DigitalOcean Container Registry
           run: |
-            docker push nginx:latest ${{ env.REPO }}/nginx:latest
+            docker push ${{ env.REPO }}/nginx:latest
             docker push ${{ env.REPO }}/nginx:${{ env.TAG }}
             
   nodejs:
