@@ -30,7 +30,7 @@ jobs:
       
 
         - name: DigitalOcean App Platform deployment
-          uses: digitalocean/app_action@v1.1.5 # replace this with current version from https://github.com/digitalocean/app_action/releases
+          uses: digitalocean/app_action@v1.1.6 # replace this with current version from https://github.com/digitalocean/app_action/releases
           with:
             app_name: nginx
             token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
