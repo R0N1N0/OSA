@@ -35,13 +35,13 @@ jobs:
       
         - name: Prepare images to push
           run: |
-            docker tag nginx:latest ${{ env.REGISTRY }}/nginx:latest
-            docker tag nginx:${{ env.TAG }} ${{ env.REGISTRY }}/nginx:${{ env.TAG }}
+            docker tag nginx:latest ${{ env.REPO }}/nginx:latest
+            docker tag nginx:${{ env.TAG }} ${{ env.REPO }}/nginx:${{ env.TAG }}
 
         - name: Push Docker image to DigitalOcean Container Registry
           run: |
-            docker push nginx:latest ${{ env.REGISTRY }}/nginx:latest
-            docker push ${{ env.REGISTRY }}/nginx:${{ env.TAG }}
+            docker push nginx:latest ${{ env.REPO }}/nginx:latest
+            docker push ${{ env.REPO }}/nginx:${{ env.TAG }}
             
   nodejs:
     runs-on: ubuntu-latest
