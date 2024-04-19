@@ -62,6 +62,7 @@ export function showMV(results){
         containerInfo.appendChild(buttonInfo);
         container.appendChild(containerInfo);  
         mvBox.appendChild(container);
+        console.log(mvBox);
     });    
 }
 

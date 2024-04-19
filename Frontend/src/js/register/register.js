@@ -20,8 +20,8 @@ async function verifyInputs(e){
         return;
     }
     const formData = new FormData();
-    formData.append('username', username.value);
-    formData.append('password', password.value);
+    formData.append('username', username.value.trim());
+    formData.append('password', password.value.trim());
     formData.append('image', Fprofile.files[0]);
     createUser(formData);
 }

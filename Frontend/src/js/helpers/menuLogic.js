@@ -18,7 +18,7 @@ async function menuLogic(){
             <a href="../index.html"><i class="fa-solid fa-house"></i> Home</a>
           </li>
           <li class="ml-6">
-            <a href="./public/mv.html"
+            <a href="./mv.html"
               ><i class="fa-solid fa-cube"></i> Maquinas virtuales</a
             >
           </li>

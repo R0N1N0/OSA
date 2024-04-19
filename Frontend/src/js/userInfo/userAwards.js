@@ -10,7 +10,7 @@ export function printAwards(userAwards, premiosArticle){
         divAward.className = "relative divAward w-64 h-64 rounded flex flex-col justify-center items-center cursor-pointer";
         const img = document.createElement("img");
         img.src = award.imagen;
-        img.className = "w-full h-full";
+        img.className = "w-full h-full rounded";
 
         const h4 = document.createElement("h4");
         h4.textContent = award.nombre;
