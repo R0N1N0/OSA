@@ -5,9 +5,6 @@ on:
     branches: ["main"]
 
 env:
-  # Use docker.io for Docker Hub if empty
-  REGISTRY: DOCR
-  ACTOR: R0N1N0
   REPO: registry.digitalocean.com/osa-containerregistry
   TAG: ${{ github.workflow_sha }}
 
@@ -32,6 +29,11 @@ jobs:
           uses: digitalocean/action-doctl@v2
           with:
             token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+
+        - name: Login with Docker
+          run: |
+            docker login registry.digitalocean.com -u ${{ secrets.DOCR_USER }} -p ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+
       
         - name: Prepare images to push
           run: |
