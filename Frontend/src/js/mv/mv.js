@@ -1,5 +1,5 @@
 import { filter } from "./filtersMV.js";
-import { fetchGET } from "../helpers/requests.js";
+import { fetchGET } from "../helpers/Generalrequests.js";
 import helpers from "../helpers/utils.js";
 
 // variables // ---------------

@@ -1,4 +1,3 @@
-import helpers from "./utils.js";
 const baseUrl = "http://localhost:3000/";
 
 export async function fetchPOST(route, data) {
@@ -88,6 +87,7 @@ export async function fetchPostWithDataToken(route, token, data){
 
 export async function deleteRegistres(route, token, data) {
     try {
+        console.log(data);
         const response = await fetch(baseUrl + route, {
             method: "DELETE",
             headers: {

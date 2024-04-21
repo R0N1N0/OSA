@@ -1,4 +1,4 @@
-import { fetchPOST } from "../helpers/requests.js";
+import { fetchPOST } from "../helpers/Generalrequests.js";
 import helpers from "../helpers/utils.js";
 
 // variables

@@ -4,7 +4,9 @@ document.addEventListener("DOMContentLoaded", menuLogic)
 async function menuLogic(){
   const header = document.querySelectorAll("header")[0];
     const nav = document.createElement("nav");
-    nav.className = "w-full flex h-24 fixed top-0 z-40 justify-around items-center";
+    nav.className = `w-full flex h-24 fixed z-40 top-0 z-50 justify-around items-center 
+    bg-slate-950 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)
+    `;
     nav.innerHTML = `
         <div class="flex flex-row items-center">
           <img class="size-24" src="../img/OSA_normalLogo.png" alt="Logo OSA" />
