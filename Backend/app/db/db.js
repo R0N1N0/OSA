@@ -14,14 +14,17 @@ async function getPassword() {
   }
 }
 
-const DB_PASSWORD = await getPassword();
 
-const pool = mysql.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: DB_PASSWORD,
-  database: process.env.DB_DATABASE,
-  port: process.env.DB_PORT
-});
+async function getpool(){
+  return mysql.createPool({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: await getPassword(),
+    database: process.env.DB_DATABASE,
+    port: process.env.DB_PORT
+  });
+}
 
-module.exports = pool;
+module.exports = getpool;
+
+
