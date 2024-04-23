@@ -1,6 +1,6 @@
 
 import helpers from "./utils.js";
-const baseUrl = "http://nodejs:3000/";
+const baseUrl = "http://nodejs.default.svc.cluster.local:3000/";
 
 export async function fetchPOST(route, data) {
     try {
