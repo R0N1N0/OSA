@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nodejs
+  template:
+    metadata:
+      labels:
+        app: nodejs
+    spec:
+      containers:
+      - name: nodejs
+        image: registry.digitalocean.com/osa-containerregistry/nodejs:latest
+        resources:
+          limits:
+            memory: "64Mi"
+            cpu: "250m" 
+        ports:
+        - containerPort: 3000
+        env:
+        - name: DB_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: configmap
+              key: BASE_URL
+        - name: DB_USER
+          valueFrom:
+            configMapKeyRef:
+              name: configmap
+              key: DB_USER
+        - name: DB_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: configmap
+              key: DB_HOST
+      volumeMounts:
+      - name: backendsecrets
+        mountPath: /etc/nodejs-conf
+        readOnly: true
+      volumes:
+      - name: backendsecrets
+        secret:
+          secretName: backendsecrets
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodejs
+spec:
+  type: ClusterIP
+  selector:
+    app: nodejs
+  ports:
+    - name: http
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

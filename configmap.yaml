@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap
+data: 
+  DB_DATABASE: db_proyect
+  DB_USER: bassou
+  DB_HOST: private-db-mysql-ams3-15309-do-user-16371565-0.c.db.ondigitalocean.com:25060

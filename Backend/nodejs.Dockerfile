@@ -20,6 +20,7 @@ COPY package-lock.json /home/node/Backend
 # Download dependecies
 
 RUN npm install
+RUN apk add --no-cache openssl
 
 # Create /Backend/app to import server files
 
@@ -33,8 +34,11 @@ COPY app /home/node/Backend/app/
 
 RUN chown -R node:node /home/node/Backend
 
-# Set variables
+# Pass the encryption key
+ARG ENCRYPTION_KEY
+ENV ENCRYPTION_KEY=${ENCRYPTION_KEY}
 
+# Set default variables variables
 ENV DB_HOST="mysql"
 ENV DB_USER="test"
 ENV DB_PASSWORD="patata123"

@@ -54,7 +54,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Build the Docker image
         run: |
-          docker build ./Backend --file ./Backend/nodejs.Dockerfile --tag nodejs:${{ env.TAG }} --tag nodejs:latest
+          docker build ./Backend --file ./Backend/nodejs.Dockerfile --quiet --tag nodejs:${{ env.TAG }} --tag nodejs:latest --build-arg ENCRYPTION_KEY="${{ secrets.ENCRYPTION_KEY }}"
 
       - name: Login with Docker
         run: |

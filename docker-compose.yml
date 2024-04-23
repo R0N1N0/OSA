@@ -2,12 +2,14 @@ version: '3.8'
 
 services:
   mysql:
-    image: ghcr.io/r0n1n0/mysql:latest
+    build:
+      context: ./Database
+      dockerfile: mysql.Dockerfile
     environment:
-      - MYSQL_USER=${DB_USER}
-      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_USER=bassou
+      - MYSQL_PASSWORD=${DB_PASSWORD_RAW}
       - MYSQL_RANDOM_ROOT_PASSWORD=true
-      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_DATABASE=db_proyect
     networks:
       osa-network:
         aliases:
@@ -17,15 +19,21 @@ services:
      - db_data:/var/lib/mysql
 
   nodejs:
-    image: ghcr.io/r0n1n0/nodejs:latest
+    build:
+      context: ./Backend
+      dockerfile: nodejs.Dockerfile
     ports:
       - '3000:3000'
     environment:
       - DB_HOST=mysql
-      - DB_USER=${DB_USER}
+      - DB_USER=bassou
+      - DB_DATABASE=db_proyect
       - DB_PASSWORD=${DB_PASSWORD}
-      - DB_DATABASE=${DB_DATABASE}
       - TOKEN_SECRET=${TOKEN_SECRET}
+      - CLOUD_NAME=${CLOUD_NAME}
+      - API_KEY=${API_KEY}
+      - API_SECRET=${API_SECRET}
+      - ENCRYPTION_SECRET=${ENCRYPTION_SECRET}
     depends_on:
       - mysql
     networks:
@@ -35,7 +43,9 @@ services:
         ipv4_address: 192.168.176.3
 
   nginx:
-    image: ghcr.io/r0n1n0/nginx:latest
+    build:
+      context: ./Frontend
+      dockerfile: nginx.Dockerfile
     ports:
       - '80:80'
     depends_on:

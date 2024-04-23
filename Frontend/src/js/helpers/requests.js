@@ -1,5 +1,5 @@
 import helpers from "./utils.js";
-const baseUrl = "http://localhost:3000/";
+const baseUrl = "http://nodejs:3000";
 
 export async function fetchPOST(route, data) {
     try {
