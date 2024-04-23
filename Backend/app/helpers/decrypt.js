@@ -18,7 +18,7 @@ async function readSecretFromFile(filePath) {
 
 function decrypt(encryptedValue) {
 
-    const key = process.env.ENCRYPTION_KEY; // To do: put the path to mounted secret, dumbass
+    const key = process.env.ENCRYPTION_KEY; // To do: do something to secure Encryption key
     
     return new Promise((resolve, reject) => {
         const cmd = `echo "${encryptedValue}" | openssl enc -d -aes-256-cbc -pbkdf2 -a -pass "pass:${key}"`;
@@ -27,7 +27,7 @@ function decrypt(encryptedValue) {
             if (error) {
                 console.log(key);
                 console.log(encryptedValue);
-                reject(`Error in decrypt the vaule: ${stderr}`);
+                reject(`Error in decrypt the value: ${stderr}`);
                 return;
             }
             resolve(stdout.trim());
