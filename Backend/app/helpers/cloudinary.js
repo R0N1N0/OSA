@@ -1,13 +1,13 @@
 const cloudinary = require('cloudinary').v2;
 const fs = require('fs');
 require("dotenv").config();
-const decrypt = require("./decrypt.js");
-const readSecretFromFile = require("./decrypt.js");
+
+const API_SECRET = process.env.API_SECRET1 + process.env.API_SECRET2;
 
 cloudinary.config({
-  cloud_name: decrypt(readSecretFromFile("/etc/nodejs-conf/CLOUD_NAME")),
-  api_key: decrypt(readSecretFromFile("/etc/nodejs-conf/API_KEY")),
-  api_secret: decrypt(readSecretFromFile("/etc/nodejs-conf/API_SECRET")),
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: API_SECRET,
   secure: true,
 });
 

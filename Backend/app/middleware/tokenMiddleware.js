@@ -6,6 +6,8 @@ require("dotenv").config();
  * @return {Object} Objeto con la información del usuario asociado con el token.
  */
 function validateToken(req, res, next) {
+ 
+    const TOKEN_SECRET = process.env.TOKEN_SECRET1 + process.env.TOKEN_SECRET2;
 
     let token = req.headers.authorization;
     try {

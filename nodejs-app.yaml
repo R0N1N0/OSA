@@ -42,14 +42,47 @@ spec:
             configMapKeyRef:
               name: configmap
               key: DB_PORT
-        volumeMounts:
-        - name: backendsecrets
-          mountPath: /etc/nodejs-conf
-          readOnly: true
-      volumes:
-      - name: backendsecrets
-        secret:
-          secretName: backendsecrets
+          # secrets
+        - name: DB_PASSWORD1
+          valueFrom:
+            secretKeyRef:
+              name: backendsecrets
+              key: DB_PASSWORD1
+        - name: DB_PASSWORD2
+          valueFrom:
+            secretKeyRef:
+              name: backendsecrets
+              key: DB_PASSWORD2
+        - name: TOKEN_SECRET1
+          valueFrom:
+            secretKeyRef:
+              name: backendsecrets
+              key: TOKEN_SECRET1
+        - name: TOKEN_SECRET2
+          valueFrom:
+            secretKeyRef:
+              name: backendsecrets
+              key: TOKEN_SECRET2
+        - name: CLOUD_NAME
+          valueFrom:
+            secretKeyRef:
+              name: backendsecrets
+              key: CLOUD_NAME
+        - name: API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: backendsecrets
+              key: API_KEY
+        - name: API_SECRET1
+          valueFrom:
+            secretKeyRef:
+              name: backendsecrets
+              key: API_SECRET1
+        - name: API_SECRET2
+          valueFrom:
+            secretKeyRef:
+              name: backendsecrets
+              key: API_SECRET2
 
 ---
 
