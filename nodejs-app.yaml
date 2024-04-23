@@ -37,6 +37,11 @@ spec:
             configMapKeyRef:
               name: configmap
               key: DB_HOST
+        - name: DB_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: configmap
+              key: DB_PORT
       volumeMounts:
       - name: backendsecrets
         mountPath: /etc/nodejs-conf

@@ -9,6 +9,7 @@ router.use("/group", validateToken);
 router.post("/group/addGroup", addGroupController.addGroup);
 router.get("/group/getGroupMembers", addGroupController.getGroupMembers);
 router.delete("/group/deleteGroup", addGroupController.deleteGroup);
+router.delete("/group/deleteMember", addGroupController.removeMember);
 
 
 module.exports = router;

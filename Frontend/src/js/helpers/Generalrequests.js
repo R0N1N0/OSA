@@ -1,5 +1,9 @@
+<<<<<<< HEAD:Frontend/src/js/helpers/requests.js
 import helpers from "./utils.js";
 const baseUrl = "http://nodejs:3000";
+=======
+const baseUrl = "http://localhost:3000/";
+>>>>>>> 0a1c27867308fc4aa7bacbff15b40c428435073d:Frontend/src/js/helpers/Generalrequests.js
 
 export async function fetchPOST(route, data) {
     try {
@@ -88,6 +92,7 @@ export async function fetchPostWithDataToken(route, token, data){
 
 export async function deleteRegistres(route, token, data) {
     try {
+        console.log(data);
         const response = await fetch(baseUrl + route, {
             method: "DELETE",
             headers: {

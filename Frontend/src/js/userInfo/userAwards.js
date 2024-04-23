@@ -1,8 +1,19 @@
+import { getUserRequests } from "../helpers/userRequests.js";
 import helpers from "../helpers/utils.js";
+import { logicAwards } from "./userLogic/awardsLogic.js";
+const premiosArticle = document.querySelector(".premios");
+const addAward = premiosArticle.querySelector(".btn-success");
+
+//eventos
+addAward.addEventListener("click", async () => {
+    logicAwards(premiosArticle, await getAwardsNumber(), await getUserRequests.getUserAwards());
+});
 
 // function que muestra los premios que tiene disponibles un usuario
-export function printAwards(userAwards, premiosArticle){
+export async function printAwards(){
+    const userAwards = await getUserRequests.getUserAwards();
     const premiosContainer = premiosArticle.querySelector(".premiosContainer");
+    helpers.clearHTML(premiosContainer);
     const alertContainer = premiosArticle.querySelector(".alert");
     if(!userAwards.length > 0) return helpers.showStaticAlert("No tienes premios disponibles, canjea tus puntos para obtener premios", "information", alertContainer);
     userAwards.forEach(award => {
@@ -52,4 +63,9 @@ function logicAward(e){
     img.classList.add("hidden");
     h4.classList.remove("hidden");
     p.classList.remove("hidden");
+}
+
+async function getAwardsNumber(){
+    const awards = await getUserRequests.getAwards();
+    return awards.length;
 }

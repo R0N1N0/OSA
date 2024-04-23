@@ -1,9 +1,13 @@
 import { points } from "../userInfoMain.js";
-import { fetchPostWithDataToken } from "../../helpers/requests.js";
 import helpers from "../../helpers/utils.js";
+import { getUserRequests } from "../../helpers/userRequests.js";
+import { printAwards } from "../userAwards.js";
 
 
-export async function logicAwards(premiosArticle, awardsNumber, awards, userAwards, token){
+export async function logicAwards(premiosArticle, awardsNumber, userAwards){
+    console.log(premiosArticle);
+    console.log(awardsNumber);
+    console.log(userAwards);
     const alertContainer = helpers.returnAlertContainer(premiosArticle);
     if(points() < 5) return helpers.showAlert("No tienes suficientes puntos disponibles.", "error", alertContainer);
     if(awardsNumber == 0) return helpers.showStaticAlert("No hay premios disponibles.", "error", alertContainer);
@@ -17,14 +21,12 @@ export async function logicAwards(premiosArticle, awardsNumber, awards, userAwar
         hasAward = userAwards.some(award => award.id_premio == awardNumber);
     }
 
-    const result = await fetchPostWithDataToken("user/award/assignAward", token, {awardNumber});
+    const result = await getUserRequests.assignAward({awardNumber});
     if(result) {
         helpers.deleteContainer(premiosArticle.querySelector(".alert > div"));
         helpers.showAlert(result.message, "success", alertContainer);
-        return true;
+        return printAwards();
     }
-
-    helpers.showStaticAlert("Error al canjear premio, vuelva a intentarlo más tarde", "error", alertContainer);
-
+    helpers.showAlert("Error al canjear premio, vuelva a intentarlo más tarde", "error", alertContainer);
 }
 

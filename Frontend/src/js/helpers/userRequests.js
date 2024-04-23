@@ -1,5 +1,5 @@
 import helpers from "./utils.js";
-import { fetchGetUserInfo } from "./requests.js";
+import { deleteRegistres, fetchGetUserInfo, fetchPostWithDataToken } from "./Generalrequests.js";
 async function getInfo(route){
     try {
         const token = helpers.getToken();
@@ -34,6 +34,15 @@ export class getUserRequests {
     }
     static async getAwards(){
         return await getInfo("awards/getAwards");
+    }
+    static async addGroup(nombre) {
+        return await fetchPostWithDataToken("group/addgroup", helpers.getToken(), nombre);
+    }
+    static async deleteGroup(id) {
+        return await deleteRegistres("group/deleteGroup", helpers.getToken(), id);
+    }
+    static async assignAward(awardNumber) {
+        return await fetchPostWithDataToken("user/award/assignAward", helpers.getToken(), awardNumber);
     }
 
 }

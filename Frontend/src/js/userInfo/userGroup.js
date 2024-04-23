@@ -1,7 +1,7 @@
 // Este fichero gestiona el apartado de grupos de userInfo
 import helpers from "../helpers/utils.js";
 import { getUserRequests } from "../helpers/userRequests.js";
-import { createGroupLogic, deleteGroupLogic } from "./userLogic/groupLogic.js";
+import { createGroupLogic, deleteGroupLogic, viewMembersLogic } from "./userLogic/groupLogic.js";
 
 const gruposArticle = document.querySelector(".grupos");
 const addGroup = gruposArticle.querySelector(".btn-success");
@@ -9,6 +9,7 @@ const modalCreateGroup = document.querySelector(".modalCreateGroup");
 const buttonAddGroup = modalCreateGroup.querySelector("input[type=submit]");
 const userInfoSection = document.querySelector(".userInfo");
 const containerGroups = gruposArticle.querySelector(".gruposContainer");
+const modalViewMembers = gruposArticle.querySelector(".modalViewMembers");
 
 export async function printGroups() {
   const alertContainer = helpers.returnAlertContainer(gruposArticle);
@@ -27,6 +28,9 @@ export async function printGroups() {
       liView.innerHTML = `<i class="fa-solid fa-eye"></i>`;
       liView.value = group.id_grupo;
       liView.className = "cursor-pointer mr-2 view";
+      liView.onclick = (e) => {
+        viewMembers(e);
+      }
       ul.appendChild(liView);
 
       if (group.admin) {
@@ -121,6 +125,12 @@ async function deleteGroup(e) {
     helpers.returnAlertContainer(gruposArticle)
   );
 }
+}
+
+function viewMembers(){
+  e = e.target.parentElement.value;
+  if(!e) return;
+  viewMembersLogic(e);
 }
 function reset() {
   helpers.clearHTML(containerGroups);

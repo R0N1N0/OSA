@@ -22,6 +22,6 @@ router.get('/getUser/awards', getUserInfoController.getUserAwards);
 
 // Ruta para asignar premios a usuarios
 router.use("/award", validateToken);
-router.post('award/assignAward', userAwardController.assignAward);
+router.post('/award/assignAward', userAwardController.assignAward);
 
 module.exports = router;
