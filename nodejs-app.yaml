@@ -12,7 +12,6 @@ spec:
       labels:
         app: nodejs
     spec:
-      #restartPolicy: none
       containers:
       - name: nodejs
         image: registry.digitalocean.com/osa-containerregistry/nodejs:latest

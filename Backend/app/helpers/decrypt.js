@@ -35,5 +35,7 @@ function decrypt(encryptedValue) {
     });
 }
 
-module.exports = decrypt;
-module.exports = readSecretFromFile;
+module.exports = {
+  decrypt,
+  readSecretFromFile
+};
