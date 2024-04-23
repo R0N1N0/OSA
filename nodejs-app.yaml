@@ -42,10 +42,10 @@ spec:
             configMapKeyRef:
               name: configmap
               key: DB_PORT
-      volumeMounts:
-      - name: backendsecrets
-        mountPath: /etc/nodejs-conf
-        readOnly: true
+        volumeMounts:
+        - name: backendsecrets
+          mountPath: /etc/nodejs-conf
+          readOnly: true
       volumes:
       - name: backendsecrets
         secret:
