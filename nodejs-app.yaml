@@ -12,6 +12,7 @@ spec:
       labels:
         app: nodejs
     spec:
+      #restartPolicy: none
       containers:
       - name: nodejs
         image: registry.digitalocean.com/osa-containerregistry/nodejs:latest
@@ -26,7 +27,7 @@ spec:
           valueFrom:
             configMapKeyRef:
               name: configmap
-              key: BASE_URL
+              key: DB_DATABASE
         - name: DB_USER
           valueFrom:
             configMapKeyRef:

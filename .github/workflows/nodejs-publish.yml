@@ -1,0 +1,42 @@
+name: nodejs-publish
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'Backend/**'
+
+env:
+  REPO: registry.digitalocean.com/osa-containerregistry
+  TAG: ${{ github.sha }}
+
+jobs:
+  nodejs:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+          
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Build the Docker image
+        run: |
+          docker build ./Backend --file ./Backend/nodejs.Dockerfile --quiet --tag nodejs:${{ env.TAG }} --tag nodejs:latest --build-arg ENCRYPTION_KEY="${{ secrets.ENCRYPTION_KEY }}"
+
+      - name: Login with Docker
+        run: |
+          docker login registry.digitalocean.com -u ${{ secrets.DOCR_USER }} -p ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+
+      - name: Prepare images to push
+        run: |
+          docker tag nodejs:latest ${{ env.REPO }}/nodejs:latest
+          docker tag nodejs:${{ env.TAG }} ${{ env.REPO }}/nodejs:${{ env.TAG }}
+
+      - name: Push Docker image to DigitalOcean Container Registry
+        run: |
+          docker push ${{ env.REPO }}/nodejs:latest
+          docker push ${{ env.REPO }}/nodejs:${{ env.TAG }}

@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const mysql = require('mysql2/promise');
 const decrypt = require("../helpers/decrypt.js");
-const readSecretFromFile = require("./decrypt.js");
+const readSecretFromFile = require("../helpers/decrypt.js");
 
 const pool = mysql.createPool({
   host: process.env.DB_HOST,

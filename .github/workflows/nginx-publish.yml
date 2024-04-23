@@ -1,0 +1,42 @@
+name: nginx-publish
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'Frontend/**'
+
+env:
+  REPO: registry.digitalocean.com/osa-containerregistry
+  TAG: ${{ github.sha }}
+
+jobs:
+  nginx:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Build the Docker image
+        run: |
+          docker build ./Frontend --file ./Frontend/nginx.Dockerfile --tag nginx:${{ env.TAG }} --tag nginx:latest
+
+      - name: Login with Docker
+        run: |
+          docker login registry.digitalocean.com -u ${{ secrets.DOCR_USER }} -p ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      
+      - name: Prepare images to push
+        run: |
+          docker tag nginx:latest ${{ env.REPO }}/nginx:latest
+          docker tag nginx:${{ env.TAG }} ${{ env.REPO }}/nginx:${{ env.TAG }}
+
+      - name: Push Docker image to DigitalOcean Container Registry
+        run: |
+          docker push ${{ env.REPO }}/nginx:latest
+          docker push ${{ env.REPO }}/nginx:${{ env.TAG }}
