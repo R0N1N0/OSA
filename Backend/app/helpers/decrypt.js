@@ -1,8 +1,6 @@
-require("dotenv").config();
-
 const base64decode = (str) => Buffer.from(str, 'base64').toString('utf-8');
 
-const { exec } = require('child_process');
+const { exec } = require("child_process");
 
 const fs = require('fs').promises;
 
@@ -16,24 +14,5 @@ async function readSecretFromFile(filePath) {
   }
 }
 
-function decrypt(encryptedValue) {
-
-    const key = process.env.ENCRYPTION_KEY; // To do: do something to secure Encryption key
-    
-    return new Promise((resolve, reject) => {
-        const cmd = `echo "${encryptedValue}" | openssl enc -d -aes-256-cbc -pbkdf2 -a -pass "pass:${key}"`;
-
-        exec(cmd, (error, stdout, stderr) => {
-            if (error) {
-                console.log(key);
-                console.log(encryptedValue);
-                reject(`Error in decrypt the value: ${stderr}`);
-                return;
-            }
-            resolve(stdout.trim());
-        });
-    });
-}
-
-module.exports = decrypt;
-module.exports.readSecretFromFile = readSecretFromFile;
+module.exports = base64decode;
+module.exports = readSecretFromFile;

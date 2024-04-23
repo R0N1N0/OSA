@@ -1,12 +1,12 @@
 require('dotenv').config();
 
 const mysql = require('mysql2/promise');
-const decrypt = require("../helpers/decrypt.js");
+const {readSecretFromFile, base64decode} = require("../helpers/decrypt.js");
 
 async function getPassword() {
   try {
     const encryptedPassword = await decrypt.readSecretFromFile("/etc/nodejs-conf/DB_PASSWORD");
-    const password = await decrypt(encryptedPassword);
+    const password = await base64decode(encryptedPassword);
     return password;
   } catch (error) {
     console.error('Error reading or decrypting password:', error);
