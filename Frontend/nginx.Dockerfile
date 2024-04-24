@@ -11,12 +11,6 @@ COPY default.conf /etc/nginx/conf.d/default.conf
 
 COPY src /usr/share/nginx/html
 
-# Install dependencies
-
-WORKDIR /usr/share/nginx/html
-
-RUN apk add --update --no-cache nodejs npm && npm install
-
 # Volume to store logs
 
 VOLUME ["/var/log/nginx"]

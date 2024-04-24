@@ -1,10 +1,7 @@
 
 import helpers from "./utils.js";
 
-import dotenv from 'dotenv';
-dotenv.config();
-
-const baseUrl = process.env.BASE_URL;
+const baseUrl = "http://143.244.199.1:3000/";
 
 export async function fetchPOST(route, data) {
     try {
