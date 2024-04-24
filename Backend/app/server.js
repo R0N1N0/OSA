@@ -6,11 +6,7 @@ const formData = require('express-form-data');
 const cors = require('cors');
 
 // Middleware para habilitar CORS
-app.use(cors({
-    origin: 'http://osaproject.es',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], 
-    allowedHeaders: ['Content-Type', 'Authorization'],
-  }));
+app.use(cors());
 
 // Middleware para manejar formdata
 app.use(formData.parse());
