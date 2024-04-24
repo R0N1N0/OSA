@@ -7,3 +7,4 @@ data:
   DB_USER: bassou
   DB_HOST: private-db-mysql-ams3-15309-do-user-16371565-0.c.db.ondigitalocean.com
   DB_PORT: "25060"
+  BASE_URL: nodejs.osaproject.es

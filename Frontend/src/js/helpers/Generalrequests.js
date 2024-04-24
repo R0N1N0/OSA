@@ -1,6 +1,9 @@
 
 import helpers from "./utils.js";
-const baseUrl = "http://nodejs.default.svc.cluster.local:3000/";
+
+require('dotenv').config();
+
+const baseUrl = process.env.BASE_URL;
 
 export async function fetchPOST(route, data) {
     try {
