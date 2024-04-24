@@ -7,7 +7,7 @@ require("dotenv").config();
  */
 function validateToken(req, res, next) {
  
-    const TOKEN_SECRET = process.env.TOKEN_SECRET1 + process.env.TOKEN_SECRET2;
+    const TOKEN_SECRET = `${process.env.TOKEN_SECRET1.trim()}${process.env.TOKEN_SECRET2.trim()}`;
 
     let token = req.headers.authorization;
     try {
@@ -15,7 +15,7 @@ function validateToken(req, res, next) {
             return res.status(401).json({ error: "Token no proporcionado" });
         }
         // Verificar el token 
-        jwt.verify(token.split(' ')[1], process.env.TOKEN_SECRET, (error, payload) => {
+        jwt.verify(token.split(' ')[1], TOKEN_SECRET, (error, payload) => {
             if (error) {
                 return res.status(401).json({ error: 'Token inválido' });
             }

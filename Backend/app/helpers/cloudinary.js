@@ -2,7 +2,7 @@ const cloudinary = require('cloudinary').v2;
 const fs = require('fs');
 require("dotenv").config();
 
-const API_SECRET = process.env.API_SECRET1 + process.env.API_SECRET2;
+const API_SECRET = `${process.env.API_SECRET1.trim()}${process.env.API_SECRET2.trim()}`;
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,

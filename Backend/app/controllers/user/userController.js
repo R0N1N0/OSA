@@ -33,7 +33,8 @@ exports.getUserAuth = async (req, res) => {
         rol: results[0].rol
       }
       // devolver token al cliente
-      const token = jwt.sign(payload, process.env.TOKEN_SECRET, { expiresIn: '1h' });
+      const TOKEN_SECRET = `${process.env.TOKEN_SECRET1.trim()}${process.env.TOKEN_SECRET2.trim()}`;
+      const token = jwt.sign(payload, TOKEN_SECRET, { expiresIn: '1h' });
       res.json({ token });
     }
   } catch(error) {
