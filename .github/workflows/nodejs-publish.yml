@@ -25,7 +25,7 @@ jobs:
 
       - name: Build the Docker image
         run: |
-          docker build ./Backend --file ./Backend/nodejs.Dockerfile --quiet --tag nodejs:${{ env.TAG }} --tag nodejs:latest --build-arg ENCRYPTION_KEY="${{ secrets.ENCRYPTION_KEY }}"
+          docker build ./Backend --file ./Backend/nodejs.Dockerfile --quiet --tag nodejs:${{ env.TAG }} --tag nodejs:latest
 
       - name: Login with Docker
         run: |

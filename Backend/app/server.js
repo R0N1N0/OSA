@@ -4,18 +4,16 @@ const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 3000;
 const formData = require('express-form-data');
 const cors = require('cors');
-// manejar cors
-app.use(cors());
-// esto es para poder manejar formdata
-app.use(formData.parse());
 
 // Middleware para habilitar CORS
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*'); // Permitir solicitudes desde cualquier origen
-    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // Permitir los métodos HTTP especificados
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept'); // Permitir los encabezados especificados
-    next();
-});
+app.use(cors({
+    origin: 'http://osaproject.es',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], 
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  }));
+
+// Middleware para manejar formdata
+app.use(formData.parse());
 
 // Configurar body-parser con un límite más alto
 app.use(bodyParser.json({ limit: '50mb' }));
@@ -25,9 +23,8 @@ app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
 app.get('/', (req, res) => {
-    res.json( {message: "Bienvenido a la OSA API"} );
+    res.json({ message: "Bienvenido a la OSA API" });
 });
 
 /* Rutas de usuario */
@@ -37,7 +34,6 @@ app.use('/user', userRoutes);
 /* Rutas de las maquinas */
 const mvRoutes = require('./routes/mv/mv.js');
 app.use('/mv', mvRoutes);
-
 
 /* Rutas de los premios */
 const awards = require('./routes/awards/awardRoutes.js');
@@ -51,7 +47,3 @@ app.use('/', group);
 app.listen(PORT, () => {
     console.log(`Servidor escuchando por el puerto ${PORT}`);
 });
-
-
-
-
