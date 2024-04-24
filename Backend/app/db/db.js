@@ -2,8 +2,7 @@ require('dotenv').config();
 
 const mysql = require('mysql2/promise');
 
-const DB_PASSWORD = `${process.env.DB_PASSWORD1}${process.env.DB_PASSWORD2}`;
-console.log(DB_PASSWORD);
+const DB_PASSWORD = `${process.env.DB_PASSWORD1.trim()}${process.env.DB_PASSWORD2.trim()}`;
 
 const pool = mysql.createPool({
   host: process.env.DB_HOST,
