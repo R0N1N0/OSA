@@ -15,7 +15,7 @@ COPY src /usr/share/nginx/html
 
 WORKDIR /usr/share/nginx/html
 
-RUN apk add --update --no-cache nodejs npm
+RUN apk add --update --no-cache nodejs npm && npm install
 
 # Volume to store logs
 
