@@ -6,7 +6,8 @@ const formData = require('express-form-data');
 const cors = require('cors');
 
 // Middleware para habilitar CORS
-app.use(cors());
+const allowedSites = ['osaproject.es', '159.223.243.152', 'www.osaproject.es'];
+app.use(cors( {origin: allowedSites }));
 
 // Middleware para manejar formdata
 app.use(formData.parse());
