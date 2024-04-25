@@ -25,7 +25,6 @@ app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
 app.get('/', (req, res) => {
     res.json( {message: "Bienvenido a la OSA API"} );
 });
@@ -37,7 +36,6 @@ app.use('/user', userRoutes);
 /* Rutas de las maquinas */
 const mvRoutes = require('./routes/mv/mv.js');
 app.use('/mv', mvRoutes);
-
 
 /* Rutas de los premios */
 const awards = require('./routes/awards/awardRoutes.js');
@@ -51,7 +49,3 @@ app.use('/', group);
 app.listen(PORT, () => {
     console.log(`Servidor escuchando por el puerto ${PORT}`);
 });
-
-
-
-

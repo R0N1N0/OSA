@@ -4,12 +4,15 @@ services:
   mysql:
     build:
       context: ./Database
+      dockerfile: mysql.Dockerfile
+    build:
+      context: ./Database
       dockerfile: ./mysql.Dockerfile
     environment:
-      - MYSQL_USER=${DB_USER}
-      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_USER=bassou
+      - MYSQL_PASSWORD=${DB_PASSWORD_RAW}
       - MYSQL_RANDOM_ROOT_PASSWORD=true
-      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_DATABASE=db_proyect
     networks:
       osa-network:
         aliases:
@@ -21,15 +24,19 @@ services:
   nodejs:
     build:
       context: ./Backend
-      dockerfile: ./nodejs.Dockerfile
+      dockerfile: nodejs.Dockerfile
     ports:
       - '3000:3000'
     environment:
       - DB_HOST=mysql
-      - DB_USER=${DB_USER}
+      - DB_USER=bassou
+      - DB_DATABASE=db_proyect
       - DB_PASSWORD=${DB_PASSWORD}
-      - DB_DATABASE=${DB_DATABASE}
       - TOKEN_SECRET=${TOKEN_SECRET}
+      - CLOUD_NAME=${CLOUD_NAME}
+      - API_KEY=${API_KEY}
+      - API_SECRET=${API_SECRET}
+      - ENCRYPTION_SECRET=${ENCRYPTION_SECRET}
     depends_on:
       - mysql
     networks:
@@ -37,7 +44,6 @@ services:
         aliases:
           - nodejs
         ipv4_address: 192.168.176.3
-
   nginx:
     build:
       context: ./Frontend
