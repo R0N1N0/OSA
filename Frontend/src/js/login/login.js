@@ -21,8 +21,8 @@ async function verifyInputs(e){
     }
 
     const userData = {
-        username: username.value,
-        password: password.value
+        username: username.value.trim(),
+        password: password.value.trim()
     }
 
     // ejecutamos esta funcion que llama a la api para hacer la auth

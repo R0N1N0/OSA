@@ -9,7 +9,7 @@ const modalCreateGroup = document.querySelector(".modalCreateGroup");
 const buttonAddGroup = modalCreateGroup.querySelector("input[type=submit]");
 const userInfoSection = document.querySelector(".userInfo");
 const containerGroups = gruposArticle.querySelector(".gruposContainer");
-const modalViewMembers = gruposArticle.querySelector(".modalViewMembers");
+const modalViewMembers = document.querySelector(".modalViewMembers");
 
 export async function printGroups() {
   const alertContainer = helpers.returnAlertContainer(gruposArticle);
@@ -28,7 +28,7 @@ export async function printGroups() {
       liView.innerHTML = `<i class="fa-solid fa-eye"></i>`;
       liView.value = group.id_grupo;
       liView.className = "cursor-pointer mr-2 view";
-      liView.onclick = (e) => {
+      liView.onclick = function(e) {
         viewMembers(e);
       }
       ul.appendChild(liView);
@@ -127,10 +127,10 @@ async function deleteGroup(e) {
 }
 }
 
-function viewMembers(){
+function viewMembers(e){
   e = e.target.parentElement.value;
   if(!e) return;
-  viewMembersLogic(e);
+  viewMembersLogic(e, modalViewMembers, userInfoSection);
 }
 function reset() {
   helpers.clearHTML(containerGroups);

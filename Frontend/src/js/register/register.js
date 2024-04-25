@@ -19,6 +19,14 @@ async function verifyInputs(e){
         helpers.showAlert("Todos los campos son obligatorios", "error", form);
         return;
     }
+    if (!Fprofile.files[0].name.split(".").pop().toLowerCase().match(/^(png|jpg)$/)) {
+        helpers.showAlert("La extension de la imagen no es valida", "error", form);
+        return;
+    }
+    if((Fprofile.files[0].size / (1024*1024) > 2)){
+        helpers.showAlert("La imagen debe pesar menos de 2MB", "error", form);
+        return;
+    }
     const formData = new FormData();
     formData.append('username', username.value.trim());
     formData.append('password', password.value.trim());

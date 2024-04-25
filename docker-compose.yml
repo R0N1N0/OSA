@@ -2,7 +2,9 @@ version: '3.8'
 
 services:
   mysql:
-    image: ghcr.io/r0n1n0/mysql:latest
+    build:
+      context: ./Database
+      dockerfile: ./mysql.Dockerfile
     environment:
       - MYSQL_USER=${DB_USER}
       - MYSQL_PASSWORD=${DB_PASSWORD}
@@ -17,7 +19,9 @@ services:
      - db_data:/var/lib/mysql
 
   nodejs:
-    image: ghcr.io/r0n1n0/nodejs:latest
+    build:
+      context: ./Backend
+      dockerfile: ./nodejs.Dockerfile
     ports:
       - '3000:3000'
     environment:
@@ -35,7 +39,9 @@ services:
         ipv4_address: 192.168.176.3
 
   nginx:
-    image: ghcr.io/r0n1n0/nginx:latest
+    build:
+      context: ./Frontend
+      dockerfile: ./nginx.Dockerfile 
     ports:
       - '80:80'
     depends_on:

@@ -64,9 +64,13 @@ exports.getGroupMembers = async (req, res) => {
             res.status(400).json( {message: "Se necesita el id del grupo para seleccionar los miembros de un grupo."});
         }
 
-        const sql = "select * from grupo where id_grupo = ?";
+        const sql = `SELECT usuario.*, IFNULL(SUM(mv.puntos), 0) as puntos FROM usuario 
+        JOIN usuario_grupo ON usuario.id_usuario = usuario_grupo.id_usuario 
+        JOIN usuario_mv ON usuario_mv.id_usuario = usuario.id_usuario 
+        JOIN mv ON mv.id_mv = usuario_mv.id_mv 
+        WHERE usuario_grupo.id_grupo = ?;`;
         const connexion = await createConnexion();
-        const result = await connexion.query(sql, id);
+        let result = await connexion.query(sql, id);
         connexion.release();
         result = result[0];
         

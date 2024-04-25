@@ -222,6 +222,7 @@ label {
   color: var(--color-text);
   padding: 6px 50px 6px 10px;
   border-radius: 6px;
+  cursor: pointer;
 }
 .menuLateral li.active {
   background-color: var(--hover-li-sidebar);
@@ -237,15 +238,17 @@ label {
 }
 .maquinas table,
 .ranking table {
-  width: 80%;
+  width: 90%;
+}
+table , th, tr, td {
+  text-align: center;
+  border: 1px solid var(--border-radius-color);
+  color: var(--color-text);
+  font-weight: 500;
 }
 .maquinas table tr img {
   width: 100px;
   height: 100px;
-}
-.maquinas tr th {
-  color: var(--color-text);
-  font-weight: 500;
 }
 .maquinas table tr,
 .ranking table tr {

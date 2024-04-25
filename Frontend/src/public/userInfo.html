@@ -47,7 +47,7 @@
       <article
         class="ml-64 premios tab pl-12 pt-12 w-full flex flex-row flex-wrap justify-center gap-10"
       >
-        <header class="header flex justify-between w-4/5">
+        <header class="header flex justify-between w-11/12">
           <h3 class="text-2xl color-text">
             <i class="fa-solid fa-crown"></i> Premios disponibles
           </h3>
@@ -64,7 +64,7 @@
       <article
         class="ml-64 maquinas tab hidden pl-12 pt-12 w-full flex flex-row flex-wrap justify-center gap-10"
       >
-        <header class="header flex justify-between w-4/5">
+        <header class="header flex justify-between w-11/12">
           <h3 class="text-2xl color-text">
             <i class="fa-solid fa-cube"></i> Máquinas hackeadas
           </h3>
@@ -74,13 +74,26 @@
           </button>
         </header>
 
-        <table></table>
+        <table>
+          <thead>
+            <tr>
+              <th class="pt-2 pb-2">Imagen</th>
+              <th>Nombre</th>
+              <th>Descripcion</th>
+              <th>Puntos</th>
+              <th>Difficultad</th>
+            </tr>
+          </thead>
+          <tbody>
+
+          </tbody>
+        </table>
       </article>
 
       <article
         class="ml-64 grupos tab hidden pl-12 pt-12 w-full flex flex-row flex-wrap justify-center gap-10"
       >
-        <header class="header flex justify-between w-4/5">
+        <header class="header flex justify-between w-11/12">
           <h3 class="text-2xl color-text">
             <i class="fa-solid fa-user-group"></i> Grupos
           </h3>
@@ -95,14 +108,26 @@
       <article
         class="ml-64 ranking tab hidden pl-12 pt-12 w-full flex flex-row flex-wrap justify-center gap-10"
       >
-        <header class="header w-4/5">
+        <header class="header w-11/12">
           <h3 class="text-2xl color-text">
             <i class="fa-solid fa-bolt"></i> Ranking
           </h3>
           <button></button>
         </header>
 
-        <table></table>
+        <table>
+          <thead>
+            <tr>
+              <th class="pt-2 pb-2">Numero</th>
+              <th>Imagen</th>
+              <th>Nombre</th>
+              <th>Puntos</th>
+            </tr>
+          </thead>
+          <tbody>
+
+          </tbody>
+        </table>
       </article>
     </section>
 
@@ -128,17 +153,21 @@
       </article>
     </section>
 
-    <section class="modalViewMembers modalShowMv w-full h-screen flex justify-center fixed top-0 left-0 items-center flex-wrap">
-      <header class="header flex justify-between w-4/5">
-        <h3 class="text-2xl color-text">
-          <i class="fa-solid fa-user-group"></i> Grupos
-        </h3>
-      </header>
-      <table>
-        
+    <section class="modalViewMembers modalShowMv w-full h-screen flex justify-center fixed top-0 items-center flex-wrap">
+      <span class="close absolute top-28 cursor-pointer right-6"> <i class="fa-solid text-2xl fa-circle-xmark"></i></span>
+      <table class="w-4/5">
+        <thead>
+          <tr>
+            <th class="pt-2 pb-2">Numero</th>
+            <th>Nombre</th>
+            <th>Puntos</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
       </table>
     </section>
-
 
   </body>
   <script type="module" src="../js/userInfo/sidebarLogic.js"></script>

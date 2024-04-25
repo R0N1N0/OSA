@@ -44,5 +44,8 @@ export class getUserRequests {
     static async assignAward(awardNumber) {
         return await fetchPostWithDataToken("user/award/assignAward", helpers.getToken(), awardNumber);
     }
+    static async getGroupMembers(route) {
+        return await fetchGetUserInfo(route, helpers.getToken());
+    }
 
 }
