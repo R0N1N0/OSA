@@ -1,7 +1,7 @@
 const db = require("../../db/db.js");
+const { createConnexion } = require("../../helpers/connexion.js");
 
-
-exports.getVirtualMachine = async(req, res) => {
+exports.getVirtualMachines = async(req, res) => {
     try{
         // crear la connexion
         const connexion = await db.getConnection();
@@ -26,4 +26,23 @@ exports.getVirtualMachine = async(req, res) => {
     }
 }
 
+exports.getSpecificMv = async(req, res) => {
+    try {
+        const { id } = req.query;
+        if(!id) return res.status(400).json({ message: "No has proporcionado el id de la maquina." });
+        
+        const sql = "select * from mv where id_mv = ?";
+        const connexion = await createConnexion();
+        let result = await connexion.query(sql, id);
+        connexion.release();
 
+        result = result[0];
+        if(result){
+            return res.status(200).json(result);
+        }
+        res.status(400).json( {error: "Maquina no encontrada."} );
+    }
+    catch(error){
+        console.log(`El error al recuperar una maquina especifica. ${error}`);
+    }
+}

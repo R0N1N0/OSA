@@ -261,6 +261,14 @@ table , th, tr, td {
   background-color: hsla(0, 0%, 100%, 0.1);
 }
 
+/* Las maquinas virtuales */
+.mvComments form {
+  background-color: var(--box-style-background);
+}
+button.send i{
+  font-size: 25px;
+}
+
 /* gestion de alertas */
 .error {
   background-color: var(--color-third);

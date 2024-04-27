@@ -24,7 +24,9 @@ export async function fetchGET(route) {
     try {
         const response = await fetch(baseUrl + route);
         const responseData = await response.json();
-        return responseData;
+        if(responseData){
+            return responseData;
+        }
     } catch (error) {
         return { error: error.message };
     }

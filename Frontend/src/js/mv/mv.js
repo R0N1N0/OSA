@@ -1,16 +1,13 @@
 import { filter } from "./filtersMV.js";
-import { fetchGET } from "../helpers/Generalrequests.js";
 import helpers from "../helpers/utils.js";
-
+import { requestMv } from "./requestsMv.js";
 // variables // ---------------
 const mvBox = document.querySelector(".mvbox");
 const modalShowMV = document.querySelector(".modalShowMv");
-const modalShowMVArticle = document.querySelector(".modalShowMv > article");
 const searchInput = document.querySelector("form .search");
 let mvDisp = [];
-
 //eventos
-document.addEventListener("DOMContentLoaded", getMv);
+getVirtualMachines();
 //filtrar por nombre de la maquina
 searchInput.addEventListener("input", e => filter(e, mvDisp));
 //cerrar modal
@@ -23,9 +20,10 @@ modalShowMV.querySelector(".close").addEventListener("click", function(){
 // funciones // -------------
 
 // mostrar las maquinas
-export function showMV(results){
+export async function printMvs(mvDisp){
+
     helpers.clearHTML(mvBox);
-    results.forEach(result => {
+    mvDisp.forEach(result => {
         // contenedor
         const container = document.createElement("div");
         container.classList.add("relative", "box", "ml-6", "rounded", "w-80", "h-96", "mt-14", "flex", "items-center", "justify-center", "flex-wrap");
@@ -66,71 +64,12 @@ export function showMV(results){
     });    
 }
 
-// funcion para mostrar info sobre una maquina especifica
-function getEspecificMV(id){
-    // funcion para limpiar el html
-    helpers.clearHTML(modalShowMVArticle);
-    // filtramos para recuperar los datos de esa maquina en especifico
-    let mvEspecific = mvDisp.filter(mv => mv.id_mv === id);
-
-    // mostrar la maquina recuperada por pantalla en el modal
-    mvEspecific.forEach( mv => {
-        const { nombre, descripcion, puntos, dif, imagen, descargas } = mv;
-
-        // la imagen
-        const img = document.createElement("img");
-        img.src = imagen;
-        img.classList.add("size-96", "rounded");
-        // div con toda la info
-        const divInfo = document.createElement("div");
-        divInfo.classList.add("w-96", "ml-6", "p-6", "pt-0", "flex", "flex-col");
-
-        // h1 --> titulo de la maquina
-        const h1 = document.createElement("h1");
-        h1.classList.add("text-3xl");
-        h1.textContent = nombre;
-
-        // p --> para la descripcion
-        const p = document.createElement("p");
-        p.classList.add("mt-2", "text-base");
-        p.textContent = descripcion;
-
-        // ul con toda la info
-        const ul = document.createElement("ul");
-        ul.classList.add("mt-6");
-        ul.innerHTML = `
-        <li class="mt-2"> <strong class="font-bold"> Dificultad: </strong> ${dif} </li>
-        <li class="mt-2"> <strong class="font-bold"> Puntos: </strong> ${puntos} </li>
-        <li class="mt-2"> <strong class="font-bold"> Descargas: </strong> ${descargas} </li>
-        <button class="text-base btn-info btn mt-4 rounded"><i class="fa-solid fa-cloud-arrow-down"></i> Descargar </button>
-        `;
-
-        // añadir elementos al html
-        divInfo.appendChild(h1);
-        divInfo.appendChild(p);
-        divInfo.appendChild(ul);
-        modalShowMVArticle.appendChild(img);
-        modalShowMVArticle.appendChild(divInfo);
-    });
-    helpers.showModal(modalShowMV, mvBox);
+function getEspecificMV(idMv){
+    if(!idMv) return;
+    window.location.href = `./specificMv.html?idMv=${idMv}`;
 }
 
-/////////////////
-
-// llamadas a la api //
-
-// recuperar todas las maquinas disponibles
-async function getMv(){
-    try{
-        mvDisp = await fetchGET("mv/getMv");
-            if(mvDisp.length > 0){
-                showMV(mvDisp);
-            }
-            else{
-                showAlert("No hay maquinas disponibles", "error", mvBox);
-            }
-    }
-    catch(error)  {
-
-    }
+async function getVirtualMachines() {
+    mvDisp = await requestMv.getMvs();
+    printMvs(mvDisp);
 }

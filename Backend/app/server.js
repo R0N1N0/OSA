@@ -45,6 +45,10 @@ app.use('/awards', awards);
 const group = require('./routes/group/groupRoutes.js');
 app.use('/', group);
 
+/* Rutas de los comentarios */
+const comments = require('./routes/comments/comments.js');
+app.use('/comments', comments);
+
 /* Arrancar servidor en el puerto 3000 */
 app.listen(PORT, () => {
     console.log(`Servidor escuchando por el puerto ${PORT}`);
