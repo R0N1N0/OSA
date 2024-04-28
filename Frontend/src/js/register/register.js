@@ -39,11 +39,13 @@ async function verifyInputs(e){
 
 async function createUser(formData){
     try{
-        const data = await fetchPOSTData("user/createUser", formData);
-        if(data.message){
+        const response = await fetchPOSTData("user/createUser", formData);
+        if(response.message){
             helpers.showAlert("Usuario creado correctamente", "success", form);
             form.reset();
+            return;
         }
+        helpers.showAlert(response.error, "error", form);
     }
     catch(error){
         console.error("Error al crear el usuario:", error.message);

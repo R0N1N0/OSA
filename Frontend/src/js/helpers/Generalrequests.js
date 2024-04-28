@@ -56,7 +56,7 @@ export async function fetchGetUserInfo(route, token){
         if(response.ok){
             return await response.json();
         }
-        window.location.href = "index.html";
+        return false;
     } catch (error) {
         return { error: error.message };
     }

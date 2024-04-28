@@ -28,6 +28,7 @@ closeModal.addEventListener("click", function(){
 async function getAllInfo(){
     // recuperar todos los datos del usuario
     userData = await getUserRequests.getUserInfo();
+    checkUserAuth(userData);
     userMachines = await getUserRequests.getUserMachines();
     userRanking = await getUserRequests.getUserRanking();
     userAwards = await getUserRequests.getUserAwards();
@@ -68,4 +69,8 @@ export function points(){
     const pointsMachines = userMachines.reduce((total, object) => object.puntos + total, 0);
     const pointsAwards = userAwards.length * 5;
     return pointsMachines - pointsAwards;
+}
+function checkUserAuth(userData) {
+    if(userData) return;
+    window.location.href = "../index.html";
 }

@@ -3,10 +3,6 @@ import { deleteRegistres, fetchGetUserInfo, fetchPostWithDataToken } from "./Gen
 async function getInfo(route){
     try {
         const token = helpers.getToken();
-        if(!token){
-            window.location.href = "../../../index.html";
-            return;
-        }
         const response = await fetchGetUserInfo(route, token);
         return response;
     } catch (error) {

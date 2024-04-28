@@ -34,7 +34,7 @@ exports.getUserAuth = async (req, res) => {
       }
       // devolver token al cliente
       const token = jwt.sign(payload, process.env.TOKEN_SECRET, { expiresIn: '1h' });
-      res.json({ token });
+      res.status(200).json({ token });
     }
   } catch(error) {
     res.send(`Error en el servidor ${error}`);
