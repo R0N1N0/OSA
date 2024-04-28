@@ -1,7 +1,8 @@
-document.addEventListener("DOMContentLoaded", menuLogic)
+import { getUserRequests } from "./userRequests.js";
 
+menuLogic();
 async function menuLogic(){
-  const header = document.querySelectorAll("header")[0];
+  const header = document.querySelector("header");
     const nav = document.createElement("nav");
     nav.className = `w-full flex h-24 fixed z-40 top-0 z-50 justify-around items-center 
     bg-slate-950 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)
@@ -29,10 +30,18 @@ async function menuLogic(){
           <li class="ml-6">
             <a href=""><i class="fa-solid fa-info"></i> Ayuda</a>
           </li>
-          <li class="ml-10">
+          <li class="ml-10 user">
             <a href="login.html"><i class="fa-regular fa-user"></i></a>
           </li>
         </ul>
     `;
     header.insertBefore(nav, header.firstChild);
+    header.insertBefore(nav, header.firstChild);
+    const elementUser = document.querySelector(".user a");
+    checkUserAuth(elementUser);
+}
+async function checkUserAuth(elementUser) {
+  const userData = await getUserRequests.getUserInfo();
+  if(userData) return elementUser.href = "../public/userInfo.html";
+  return elementUser.href = "../public/login.html";
 }
