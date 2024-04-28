@@ -108,13 +108,12 @@ async function printMachine() {
 }
 
 
-function addComment(e) {
+async function addComment(e) {
     e.preventDefault();
     const parentElement = e.target.parentElement;
     if (!parentElement || !parentElement.classList.contains("send")) return;
     if(!window.confirm("Confirma para añadir un comentario.")) return;
-    const inputValue = parentElement.previousElementSibling.value;
-    if (!inputValue.trim()) return;
-
-    console.log(inputValue);
+    const comment = parentElement.previousElementSibling.value.trim();
+    const result = await requestMv.addcomment(idMv, comment)
+    alert(result.message);
 }

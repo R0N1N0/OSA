@@ -47,7 +47,7 @@ app.use('/', group);
 
 /* Rutas de los comentarios */
 const comments = require('./routes/comments/comments.js');
-app.use('/comments', comments);
+app.use('/', comments);
 
 /* Arrancar servidor en el puerto 3000 */
 app.listen(PORT, () => {
