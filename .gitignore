@@ -1,3 +1,6 @@
+# Kubernetes secrets
+secrets.yaml
+
 # Logs
 logs
 *.log
