@@ -3,6 +3,7 @@
 
 import helpers from "../helpers/utils.js";
 import { requestMv } from "./requestsMv.js";
+import { getUserRequests } from "../helpers/userRequests.js";
 
 // variables
 
@@ -11,9 +12,12 @@ const idMv = urlParams.get("idMv");
 const modalShowMVArticle = document.querySelector(".specificMvSection > article");
 const buttonSend = document.querySelector("button.send");
 const form = document.querySelector("form");
+const mvCommentsArticle = document.querySelector('.mvComments');
 
 // eventos
 printMachine();
+printComments();
+checkUserAuth();
 buttonSend.addEventListener("click", (e) => {
     addComment(e);
 });
@@ -106,7 +110,19 @@ async function printMachine() {
         modalShowMVArticle.appendChild(divInfo);
     });
 }
+async function printComments() {
+    const mvComments = await requestMv.getComments(idMv);
+    if(!mvComments || mvComments.error) return helpers.showStaticAlert("No hay comentarios disponibles", "information", mvCommentsArticle.querySelector("article"));
+    mvComments.forEach(comment => {
+        
+    });
+}
 
+async function checkUserAuth() {
+    const userData = await getUserRequests.getUserInfo();
+    if(userData) return form.classList.remove("hidden");
+    return form.classList.add("hidden");
+}
 
 async function addComment(e) {
     e.preventDefault();
@@ -116,4 +132,5 @@ async function addComment(e) {
     const comment = parentElement.previousElementSibling.value.trim();
     const result = await requestMv.addcomment(idMv, comment)
     alert(result.message);
+    form.reset();
 }

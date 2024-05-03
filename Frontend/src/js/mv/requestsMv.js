@@ -9,6 +9,9 @@ export class requestMv {
         return await fetchGET("mv/getMv");
     }
     static async addcomment(idMv, comment) {
-        return fetchPostWithDataToken("comments/addComment", helpers.getToken(), {idMv, comment});
+        return await fetchPostWithDataToken("comments/addComment", helpers.getToken(), {idMv, comment});
+    }
+    static async getComments(idMv) {
+        return await fetchGET(`comments/getComments?idMv=${idMv}`);
     }
 }
