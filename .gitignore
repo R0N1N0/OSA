@@ -1,3 +1,9 @@
+# Kubernetes secrets
+secrets.yaml
+
+# IDE files
+.idea
+
 # Logs
 logs
 *.log

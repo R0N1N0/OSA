@@ -1,6 +1,6 @@
-# Use alpine version to build low weight image
+# We use nginx-alpine to build low weight images
 
-FROM node:21-alpine3.18
+FROM node:20.12.2-alpine3.18
 
 # Set node user and group ID
 
@@ -20,9 +20,8 @@ COPY package-lock.json /home/node/Backend
 # Download dependecies
 
 RUN npm install
-RUN apk add --no-cache openssl
 
-# Create /Backend/app to import server files
+# Create app directory to import server files
 
 WORKDIR /home/node/Backend/app 
 
@@ -34,15 +33,14 @@ COPY app /home/node/Backend/app/
 
 RUN chown -R node:node /home/node/Backend
 
-# Pass the encryption key
-ARG ENCRYPTION_KEY
-ENV ENCRYPTION_KEY=${ENCRYPTION_KEY}
-
 # Set default variables variables
-ENV DB_HOST="mysql"
-ENV DB_USER="test"
+
+ENV DB_HOST="private-db-mysql-ams3-15309-do-user-16371565-0.c.db.ondigitalocean.com"
+ENV D_PORT=25060
+ENV DB_USER="bassou"
+ENV DB_DATABASE="db_proyect"
+
 ENV DB_PASSWORD="patata123"
-ENV DB_DATABASE="testdb"
 ENV TOKEN_SECRET="patata"
 
 # Open port 3000

@@ -1,6 +1,6 @@
 # We use nginx-alpine to build low weight images
 
-FROM nginx:1.25.4-alpine AS nginx-custom
+FROM nginx:1.25.5-alpine
 
 # Insert conf files
 
