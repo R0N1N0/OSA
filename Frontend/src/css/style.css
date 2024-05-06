@@ -55,6 +55,9 @@ header nav {
 .ubuntuFont{
   font-family: "Ubuntu", sans-serif !important;
 }
+.border-bottom{
+  border-bottom: 1px solid var(--border-radius-color);
+}
 /* buttones */
 
 .btn-info {
