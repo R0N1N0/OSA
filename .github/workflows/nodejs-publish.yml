@@ -49,6 +49,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
+    needs: push 
     permissions:
       contents: read
       packages: write
@@ -70,7 +71,7 @@ jobs:
         run: sed -i 's|<IMAGE>|registry.digitalocean.com/osa-containerregistry/nodejs:'${{ env.TAG }}'|' Kubernetes/nodejs-app.yaml
         
       - name: Deploy to DigitalOcean Kubernetes
-        run: kubectl apply -f Kubernetes/nodejs-app.yml
+        run: kubectl apply -f Kubernetes/nodejs-app.yaml
    
       - name: Verify deployment
         run: kubectl rollout status deployment/nodejs-deployment
