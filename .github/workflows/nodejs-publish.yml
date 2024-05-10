@@ -6,37 +6,71 @@ on:
       - main
     paths:
       - 'Backend/**'
+      - '.github/workflows/nodejs-publish.yml'
+      - 'Kubernetes/nodejs-app.yaml'
 
 env:
   REPO: registry.digitalocean.com/osa-containerregistry
   TAG: ${{ github.sha }}
 
 jobs:
-  nodejs:
+  push:
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
       id-token: write
-          
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Build the Docker image
         run: |
-          docker build ./Backend --file ./Backend/nodejs.Dockerfile --quiet --tag nodejs:${{ env.TAG }} --tag nodejs:latest
+          docker build ./Frontend --file ./Frontend/nodejs.Dockerfile --tag nodejs:${{ env.TAG }} --tag nodejs:latest
 
-      - name: Login with Docker
-        run: |
-          docker login registry.digitalocean.com -u ${{ secrets.DOCR_USER }} -p ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+    
+      - name: Log in to DigitalOcean Container Registry with short-lived credentials
+        run: doctl registry login --expiry-seconds 600    
+      
       - name: Prepare images to push
         run: |
           docker tag nodejs:latest ${{ env.REPO }}/nodejs:latest
           docker tag nodejs:${{ env.TAG }} ${{ env.REPO }}/nodejs:${{ env.TAG }}
 
       - name: Push Docker image to DigitalOcean Container Registry
-        run: |
+        run: | 
           docker push ${{ env.REPO }}/nodejs:latest
           docker push ${{ env.REPO }}/nodejs:${{ env.TAG }}
+
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+
+      - name: Save DigitalOcean kubeconfig with short-lived credentials
+        run: doctl kubernetes cluster kubeconfig save --expiry-seconds 600 k8s-1-29-1-do-0-ams3-1713426853798
+
+      - name: Update deployment file
+        run: sed -i 's|<IMAGE>|registry.digitalocean.com/osa-containerregistry/nodejs:'${{ env.TAG }}'|' $GITHUB_WORKSPACE/Kubernetes/nodejs-app.yaml
+        
+      - name: Deploy to DigitalOcean Kubernetes
+        run: kubectl apply -f $GITHUB_WORKSPACE/Kubernetes/nodejs-app.yml
+   
+      - name: Verify deployment
+        run: kubectl rollout status deployment/nodejs-deployment

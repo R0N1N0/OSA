@@ -9,18 +9,34 @@ Hemos decidido repartir el trabajo principalmente en los siguientes 3 sub aparta
 ## Workflow status:
 
 Custom Docker Images
-Mysql: [![mysql-image](https://github.com/R0N1N0/OSA/actions/workflows/main-publish.yml/badge.svg)](https://github.com/R0N1N0/OSA/actions/workflows/main-publish.yml).
-Nginx: [![nginx-image](https://github.com/R0N1N0/OSA/actions/workflows/main-publish.yml/badge.svg)](https://github.com/R0N1N0/OSA/actions/workflows/main-publish.yml).
-Nodejs: [![nodejs-image](https://github.com/R0N1N0/OSA/actions/workflows/main-publish.yml/badge.svg)](https://github.com/R0N1N0/OSA/actions/workflows/main-publish.yml).
+Nginx: [![nginx-publish](https://github.com/R0N1N0/OSA/actions/workflows/nginx-publish.yml/badge.svg)](https://github.com/R0N1N0/OSA/actions/workflows/nginx-publish.yml).
+Nodejs: [![nodejs-publish](https://github.com/R0N1N0/OSA/actions/workflows/nodejs-publish.yml/badge.svg)](https://github.com/R0N1N0/OSA/actions/workflows/nodejs-publish.yml).
 
 ## ¿Como usarlo?
 
-- Para trabajar en local, tienes que poner un archiv .env en el directorio [conf](https://github.com/R0N1N0/OSA/tree/main/conf) con las variables de entorno que usa nodeJS y mysql en el docker-compose.yml.
+- Para trabajar en local, tienes que poner un archivo .env en el directorio con las variables de entorno que usa nodeJS en el docker-compose.yml.
+
+### Variables de entorno requeridas
+
+* DB_HOST
+* DB_PORT
+* DB_DATABASE
+* DB_USER
+* DB_PASSWORD1
+* DB_PASSWORD2
+* TOKEN_SECRET1
+* TOKEN_SECRET2
+* CLOUD_NAME
+* API_KEY
+* API_SECRET1
+* API_SECRET2
+
+### ¿Como montar los contenedores?
 
 - Seguidamente para crear los contenedores pon el siguiente comando:
 
 ```bash
-docker-compose --env-file "./conf/.env" up -d
+docker-compose --env-file ".env" up -d
 ```
 
 ### Página web
@@ -34,6 +50,16 @@ Y finalmente, un apartado donde podrás canjear los puntos, por cursillos o por 
 
 ### Estructura
 
-Hemos decidido estructurar el repositorio basado en docker, es decir, en microservicios. Para poder crear los
+Hemos decidido estructurar el repositorio basado en docker, es decir, en microservicios ya que nos aporta escalabilidad tanto horizontal como vertical y portabilidad. Para trabajar con microservicios, hemos dividido cada microservicio en una carpeta.
 
-### CTFs y cursillos
+1. Frontend
+2. Backend
+3. Database
+
+En estos directorios, están los Dockerfiles y los archivos para crear los contenedores para probar y montar los servicios
+
+#### Frontend
+
+En este directorio, tenemos el Dockerfile, los archivos de configuración y el directorio donde montamos la página web en el contenedor, es decir, "/usr/share/nginx/html".
+
+Usamos un Nginx-alpine para ahorrar espacio y además por la integración con Ingress con el módulo nginx-ingress.

@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nodejs
+  name: nodejs-deployment
 spec:
   replicas: 3
   selector:
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: nodejs
-        image: registry.digitalocean.com/osa-containerregistry/nodejs:latest
+        image: <IMAGE>
         resources:
           limits:
             memory: "64Mi"
@@ -83,3 +83,27 @@ spec:
             secretKeyRef:
               name: backendsecrets
               key: API_SECRET2
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodejs-service
+  annotations:
+    kubernetes.digitalocean.com/load-balancer-id: "ams3-load-balancer-01"
+    service.beta.kubernetes.io/do-loadbalancer-name: "nodejs"
+    service.beta.kubernetes.io/do-loadbalancer-hostname: "nodejs"
+    service.beta.kubernetes.io/do-loadbalancer-size-unit: "1"
+    service.beta.kubernetes.io/do-loadbalancer-disable-lets-encrypt-dns-records: "false"
+    #service.beta.kubernetes.io/do-loadbalancer-protocol: "https"
+    #service.beta.kubernetes.io/do-loadbalancer-certificate-id: "your-certificate-id"
+spec:
+  type: LoadBalancer
+  selector:
+    app: nodejs
+  ports:
+    - name: http
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

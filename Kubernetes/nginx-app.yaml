@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: nginx-deployment
 spec:
   replicas: 3
   selector:
@@ -14,10 +14,33 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: registry.digitalocean.com/osa-containerregistry/nginx:latest
+        image: <IMAGE>
         resources:
           limits:
             memory: "64Mi"
             cpu: "250m" 
         ports:
         - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+  annotations:
+    kubernetes.digitalocean.com/load-balancer-id: "ams3-load-balancer-01"
+    service.beta.kubernetes.io/do-loadbalancer-name: "nginx"
+    service.beta.kubernetes.io/do-loadbalancer-hostname: "nginx"
+    service.beta.kubernetes.io/do-loadbalancer-size-unit: "1"
+    service.beta.kubernetes.io/do-loadbalancer-disable-lets-encrypt-dns-records: "false"
+    #service.beta.kubernetes.io/do-loadbalancer-protocol: "https"
+    #service.beta.kubernetes.io/do-loadbalancer-certificate-id: "your-certificate-id"
+    #service.beta.kubernetes.io/do-loadbalancer-redirect-http-to-https: "true"
+spec:
+  type: LoadBalancer
+  selector:
+    app: nginx
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 80
