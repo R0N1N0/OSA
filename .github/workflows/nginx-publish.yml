@@ -68,7 +68,7 @@ jobs:
         run: doctl kubernetes cluster kubeconfig save --expiry-seconds 600 k8s-1-29-1-do-0-ams3-1713426853798
 
       - name: Update deployment file
-        run: sed -i 's|<IMAGE>|registry.digitalocean.com/osa-containerregistry/nginx:'${{ env.TAG }}'|' Kubernetes/nginx-app.yaml
+        run: sed -i 's|<IMAGE>|${{ env.REPO }}/nginx:'${{ env.TAG }}'|' Kubernetes/nginx-app.yaml
         
       - name: Deploy to DigitalOcean Kubernetes
         run: kubectl apply -f Kubernetes/nginx-app.yaml

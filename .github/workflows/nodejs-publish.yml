@@ -27,7 +27,7 @@ jobs:
 
       - name: Build the Docker image
         run: |
-          docker build ./Frontend --file ./Frontend/nodejs.Dockerfile --tag nodejs:${{ env.TAG }} --tag nodejs:latest
+          docker build ./Backend --file ./Backend/nodejs.Dockerfile --tag nodejs:${{ env.TAG }} --tag nodejs:latest
 
       - name: Install doctl
         uses: digitalocean/action-doctl@v2
@@ -68,7 +68,7 @@ jobs:
         run: doctl kubernetes cluster kubeconfig save --expiry-seconds 600 k8s-1-29-1-do-0-ams3-1713426853798
 
       - name: Update deployment file
-        run: sed -i 's|<IMAGE>|registry.digitalocean.com/osa-containerregistry/nodejs:'${{ env.TAG }}'|' Kubernetes/nodejs-app.yaml
+        run: sed -i 's|<IMAGE>|${{ env.REPO }}/nodejs:'${{ env.TAG }}'|' Kubernetes/nodejs-app.yaml
         
       - name: Deploy to DigitalOcean Kubernetes
         run: kubectl apply -f Kubernetes/nodejs-app.yaml
