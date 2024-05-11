@@ -10,18 +10,12 @@ let userData = [];
 let userMachines = [];
 let userRanking = [];
 let userAwards = [];
-const userInfoSection = document.querySelector(".userInfo");
 const divInfo = document.querySelector(".userInfo div.info");
 const maquinasArticle = document.querySelector(".maquinas");
 const rankingArticle = document.querySelector(".ranking");
-const modalCreateGroup = document.querySelector(".modalCreateGroup");
-const closeModal = document.querySelector(".modalShowMv .close");
 
 //eventos 
 getAllInfo();
-closeModal.addEventListener("click", function(){
-    helpers.showModal(modalCreateGroup, userInfoSection);
-});
 // funciones
 
 // funcion que recupera los datos del usuario
