@@ -342,6 +342,17 @@ button.send i{
   background-color: #2d2e36;
   padding: 25px;
   border-radius: 12px;
+  width: 80%;
+  margin-top: 1rem;
+  font-weight: normal;
+}
+.academyBox strong, .academyResumen strong {
+  font-weight: normal;
+}
+.academyResumen{
+  color: var(--color-success);
+  margin-top: 1rem;
+  font-weight: normal;
 }
 .academy img{
   border-radius: 12px;
