@@ -7,15 +7,15 @@ export function printMachines(userMachines, maquinasArticle){
         const tr = document.createElement("tr");
         
         const thImg = document.createElement("td");
-        thImg.className = "relative w-1/8 flex justify-center border-0";
+        thImg.className = "relative flex justify-center border-0";
         const img = document.createElement("img");
         img.src = machine.imagen;
         img.alt = "Imagen maquina hackeada";
-        img.className = "rounded-full";
+        img.className = "rounded-xl";
         thImg.appendChild(img);
 
         const thNombre = document.createElement("td");
-        thNombre.className = "w-1/8";
+        thNombre.className = "text-2xl color-third";
         thNombre.textContent = machine.nombre;
 
         const thDesc = document.createElement("td");

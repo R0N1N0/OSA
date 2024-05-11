@@ -55,12 +55,38 @@ header nav {
 .ubuntuFont{
   font-family: "Ubuntu", sans-serif !important;
 }
+.border-bottom{
+  border-bottom: 1px solid var(--border-radius-color);
+}
+thead tr{
+  background-color: #2d2e36;
+}
+td, th{
+  padding: 10px;
+}
+thead th:first-child{
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+thead th:last-child{
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+.p-0{
+  padding: 0 !important;
+}
+
 /* buttones */
 
 .btn-info {
   padding: 5px 15px;
   border: 1px solid var(--color-secondary);
   position: relative;
+  line-height: 0 !important;
+}
+.btn-info a{
+  position: relative;
+  z-index: 20;
 }
 .btn::before {
   content: " ";
@@ -243,17 +269,12 @@ label {
 }
 table , th, tr, td {
   text-align: center;
-  border: 1px solid var(--border-radius-color);
   color: var(--color-text);
   font-weight: 500;
 }
 .maquinas table tr img {
   width: 100px;
   height: 100px;
-}
-.maquinas table tr,
-.ranking table tr {
-  box-shadow: 0px 5px 4px 0px rgba(101, 129, 240, 0.2);
 }
 .divGroup {
   border: 1px solid hsla(0, 0%, 100%, 0.1);
@@ -311,6 +332,33 @@ button.send i{
 .mvBoxClose {
   transform: translate(100%);
   animation: remove 0.3 ease;
+}
+
+
+/* Academy clases */
+
+.academyBox {
+  color: var(--color-text);
+  background-color: #2d2e36;
+  padding: 25px;
+  border-radius: 12px;
+  width: 80%;
+  margin-top: 1rem;
+  font-weight: normal;
+}
+.academyBox strong, .academyResumen strong {
+  font-weight: normal;
+}
+.academyResumen{
+  color: var(--color-success);
+  margin-top: 1rem;
+  font-weight: normal;
+}
+.academy img{
+  border-radius: 12px;
+}
+.academy > article{
+  width: 80%;
 }
 
 /** clases js **/

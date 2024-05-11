@@ -3,6 +3,7 @@
 
 import helpers from "../helpers/utils.js";
 import { requestMv } from "./requestsMv.js";
+import { getUserRequests } from "../helpers/userRequests.js";
 
 // variables
 
@@ -11,9 +12,12 @@ const idMv = urlParams.get("idMv");
 const modalShowMVArticle = document.querySelector(".specificMvSection > article");
 const buttonSend = document.querySelector("button.send");
 const form = document.querySelector("form");
+const mvCommentsArticle = document.querySelector('.mvComments');
 
 // eventos
 printMachine();
+printComments();
+checkUserAuth();
 buttonSend.addEventListener("click", (e) => {
     addComment(e);
 });
@@ -106,7 +110,43 @@ async function printMachine() {
         modalShowMVArticle.appendChild(divInfo);
     });
 }
+async function printComments() {
+    helpers.clearHTML(mvCommentsArticle.querySelector(".commentsContainer"));
+    const mvComments = await requestMv.getComments(idMv);
+    console.log("aaaa", mvComments);
+    if(!mvComments || mvComments.error) return helpers.showStaticAlert("No hay comentarios disponibles", "information", mvCommentsArticle.querySelector("article"));
+    mvComments.forEach(comment => {
+        const divContainer = document.createElement("div");
+        divContainer.className = "w-6/12 h-auto flex flex-row items-center mt-2 border-bottom pt-4 pb-4";
 
+        const img = document.createElement("img");
+        img.src = comment.imagenUsuario;
+        img.className = "rounded-full w-28 h-28";
+        
+        const divInfo = document.createElement("div");
+        divInfo.className = "flex flex-col justify-between ml-6 gap-1";
+
+        const spanName = document.createElement("span");
+        spanName.className = "text-2xl color-secondary font-bold";
+        spanName.textContent = comment.nombre;
+        const pComment = document.createElement("p");
+        pComment.className = "color-text";
+        pComment.textContent = comment.comentario
+        
+        
+        divContainer.appendChild(img);
+        divInfo.appendChild(spanName);
+        divInfo.appendChild(pComment);
+        divContainer.appendChild(divInfo);
+        mvCommentsArticle.querySelector(".commentsContainer").appendChild(divContainer);
+    });
+}
+
+async function checkUserAuth() {
+    const userData = await getUserRequests.getUserInfo();
+    if(userData) return form.classList.remove("hidden");
+    return form.classList.add("hidden");
+}
 
 async function addComment(e) {
     e.preventDefault();
@@ -116,4 +156,6 @@ async function addComment(e) {
     const comment = parentElement.previousElementSibling.value.trim();
     const result = await requestMv.addcomment(idMv, comment)
     alert(result.message);
+    form.reset();
+    printComments();
 }

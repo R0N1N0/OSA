@@ -35,7 +35,7 @@ export async function printGroups() {
 
       if (group.admin) {
         const liEdit = document.createElement("li");
-        liEdit.innerHTML = `<i class="fa-solid fa-pen-to-square"></i>`;
+        liEdit.innerHTML = `<i class="fa-solid fa-user-plus"></i>`;
         liEdit.value = group.id_grupo;
         liEdit.className = "cursor-pointer mr-2 edit";
         const liDelete = document.createElement("li");

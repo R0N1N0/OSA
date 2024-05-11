@@ -39,6 +39,9 @@
           <li class="mt-2 tab-controller" name="grupos">
             <i class="fa-solid fa-users"></i> Grupos
           </li>
+          <li class="mt-2 tab-controller" name="invitaciones">
+            <i class="fa-solid fa-user-plus"></i> Invitaciones
+          </li>
           <li class="mt-2 tab-controller" name="ranking">
             <i class="fa-solid fa-bolt"></i> Ranking
           </li>
@@ -68,8 +71,8 @@
           <h3 class="text-2xl color-text">
             <i class="fa-solid fa-cube"></i> Máquinas hackeadas
           </h3>
-          <button class="text-lg w-72 h-9 rounded btn-success">
-            <i class="fa-solid fa-plus"></i>
+          <button class="text-lg w-72 h-9 rounded btn-info color-text btn">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
             <a href="/Frontend/src/public/mv.html">Ver máquinas disponibles</a>
           </button>
         </header>
@@ -100,6 +103,18 @@
           <button class="text-lg w-48 h-9 rounded btn-success">
             <i class="fa-solid fa-plus"></i> Nuevo grupo
           </button>
+        </header>
+        <div class="w-4/5 alert flex justify-center flex-wrap"></div>
+        <article class="gruposContainer w-full h-full flex flex-row flex-wrap justify-center gap-10"></article>
+      </article>
+
+      <article
+        class="ml-64 invitaciones tab hidden pl-12 pt-12 w-full flex flex-row flex-wrap justify-center gap-10"
+      >
+        <header class="header flex justify-between w-11/12">
+          <h3 class="text-2xl color-text">
+            <i class="fa-solid fa-user-plus"></i> Invitaciones
+          </h3>
         </header>
         <div class="w-4/5 alert flex justify-center flex-wrap"></div>
         <article class="gruposContainer w-full h-full flex flex-row flex-wrap justify-center gap-10"></article>
@@ -138,7 +153,7 @@
     <span class="close absolute top-28 cursor-pointer right-6"> <i class="fa-solid text-2xl fa-circle-xmark"></i></span>
       <article class="flex justify-center items-center flex-col py-10 px-12 rounded relative w-auto box-shadow00405">
         <img class="size-32" src="../img/OSA_normalLogo.png" alt="" />
-        <h1 class="pb-8 text-3xl">Crear grupo</h1>
+        <span class="pb-8 text-3xl color-secondary">Crear grupo</span>
         <form id="modalCreateGroup" class="h-auto w-auto">
           <label for="username">Nombre de grupo:</label><br />
           <div class="mt-2 flex items-center rounded flex-row">
@@ -153,24 +168,29 @@
       </article>
     </section>
 
-    <section class="modalViewMembers modalShowMv w-full h-screen flex justify-center fixed top-0 items-center flex-wrap">
-      <span class="close absolute top-28 cursor-pointer right-6"> <i class="fa-solid text-2xl fa-circle-xmark"></i></span>
-      <table class="w-4/5">
-        <thead>
-          <tr>
-            <th class="pt-2 pb-2">Numero</th>
-            <th>Nombre</th>
-            <th>Puntos</th>
-          </tr>
-        </thead>
-        <tbody>
-
-        </tbody>
-      </table>
+    <section class="modalViewMembers modalShowMv w-full fixed top-0">
+      <span class="close absolute top-28 cursor-pointer right-6 z-10"> <i class="fa-solid text-2xl fa-circle-xmark"></i></span>
+      <article class="w-full flex flex-col justify-center items-center relative top-28">
+        <div class="flex items-center w-4/5">
+          <span class="text-2xl color-secondary"><i class="fa-solid fa-users color-third"></i> Miembros del grupo</span>
+        </div>
+        <table class="w-4/5 mt-8">
+          <thead>
+            <tr>
+              <th class="pt-2 pb-2">Numero</th>
+              <th>Nombre</th>
+              <th>Puntos</th>
+            </tr>
+          </thead>
+          <tbody>
+  
+          </tbody>
+        </table>
+      </article>
     </section>
 
   </body>
-  <script type="module" src="../js/userInfo/sidebarLogic.js"></script>
+  <script type="module" src="../js/helpers/sidebarLogic.js"></script>
   <script type="module" src="../js/userInfo/userInfoMain.js"></script>
   <script type="module" src="../js/helpers/menuLogic.js"></script>
 </html>

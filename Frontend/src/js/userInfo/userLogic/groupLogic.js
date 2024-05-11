@@ -1,6 +1,21 @@
 import helpers from "../../helpers/utils.js";
 import { getUserRequests } from "../../helpers/userRequests.js";
 
+// variables
+
+const modals = document.querySelectorAll(".modalShowMv");
+const closes = document.querySelectorAll(".close");
+const userInfoSection = document.querySelector(".userInfo");
+
+//eventos
+closes.forEach(function(close, index) {
+    close.addEventListener("click", function() {
+        helpers.showModal(modals[index], userInfoSection);
+    });
+});
+
+// funciones
+
 export async function createGroupLogic(e, modalCreateGroup){
     e.preventDefault();
     const inputValue = modalCreateGroup.querySelector("input[type=text]").value;
@@ -29,6 +44,7 @@ export async function viewMembersLogic(idGroup, modalView, userInfoSection){
 
 function printMembers(members, modalView){
     const table = modalView.querySelector("table tbody");
+    helpers.clearHTML(table);
     let number = 0;
     members.forEach(member => {
         number++;
@@ -36,12 +52,9 @@ function printMembers(members, modalView){
         const tdNumero = document.createElement("td");
         tdNumero.textContent = number;
 
-        if(member.admin == "1"){
-            console.log(typeof(member.admin))
-            member.username = `${member.username} (admin)`;
-        }
         const tdName = document.createElement("td");
         tdName.textContent = member.username;
+        tdName.className = "color-third text-2xl";
 
         const tdPuntos = document.createElement("td");
         tdPuntos.textContent = member.puntos

@@ -1,4 +1,3 @@
-const db = require("../../db/db.js");
 const { createConnexion } = require("../../helpers/connexion.js");
 
 
@@ -10,6 +9,7 @@ exports.addComment = async (req, res) => {
         const sql = "insert into comentario_usuario_mv(id_usuario, id_mv, comentario) values(?, ?, ?)";
         const connexion = await createConnexion();
         const result = await connexion.query(sql, [id, idMv, comment]);
+        connexion.release();
         if(result){
             res.status(200).json({ message: "Commentario insertado correctamente." });
         }
