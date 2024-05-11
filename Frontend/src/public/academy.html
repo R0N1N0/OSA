@@ -31,10 +31,10 @@
       >
         <ul class="flex flex-col mt-12">
           <li class="mt-2 tab-controller active" name="nmap">
-            <i class="fa-solid fa-crown"></i> Nmap
+            <i class="fa-regular fa-map"></i> Nmap
           </li>
-          <li class="mt-2 tab-controller" name="maquinas">
-            <i class="fa-solid fa-cube"></i> Metasploit
+          <li class="mt-2 tab-controller" name="metasploit">
+            <i class="fa-solid fa-shield-halved"></i> Metasploit
           </li>
           <li class="mt-2 tab-controller" name="grupos">
             <i class="fa-solid fa-users"></i> Grupos
@@ -197,20 +197,172 @@
         </article>
       </article>
 
-      <!------------------------------------------>
+      <!-------------------METASPLOIT----------------------->
 
       <article
-        class="ml-64 maquinas tab hidden pl-12 pt-12 w-full flex flex-row flex-wrap justify-center gap-10"
+        class="ml-64 metasploit tab hidden pl-12 pt-12 w-full flex flex-row flex-wrap justify-center gap-10"
       >
-        <header class="header flex justify-between w-11/12">
-          <h3 class="text-2xl color-text">
-            <i class="fa-solid fa-cube"></i> Máquinas hackeadas
+        <header class="header flex justify-between w-full">
+          <h3 class="text-3xl color-text flex flex-row items-center">
+            <img
+                    class="size-20 mr-4"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS83leTqEV2GAapYSAxL4FLoXVQ44aBBw_-yXyxZB1TzS6Ct_hkjCvJnmOSbVXrl56K2Sc&usqp=CAU"
+                    alt="metasploit logo"
+            />
+            Metasploit
           </h3>
-          <button class="text-lg w-72 h-9 rounded btn-info color-text btn">
-            <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            <a href="/Frontend/src/public/mv.html">Ver máquinas disponibles</a>
-          </button>
         </header>
+        <div class="w-4/5 alert flex justify-center flex-wrap"></div>
+        <article
+                class="w-full h-full flex flex-row flex-wrap justify-center gap-10"
+        >
+          <article class="h-full w-full">
+            <span class="text-2xl color-third"> ¿Qué es Metasploit? </span>
+            <p class="academyBox mt-6 text-lg">
+              <strong class="color-secondary">Metasploit Framework o Metasploit </strong>
+              para abreviar, es una herramienta muy popular en el mundo del hacking, pues permite automatizar y agilizar
+              el pentesting (tests de intrusión) en todo tipo de servicios y dispositivos. Esta herramienta, por lo tanto,
+              puede ayudar al descubrimiento de vulnerabilidades y a sus posibles vías de explotación.
+              Este proyecto fue creado en 2003 por HD Moore utilizando el lenguaje de programación Perl, aunque en 2007
+              fue reescrito en Ruby y posteriormente adquirido por Rapid7
+              <strong class="color-secondary">
+                <a target="_blank" href="https://www.metasploit.com/"
+                >(https://www.metasploit.com/)</a
+                ></strong
+              >. Metasploit Framework consta de cuatro partes principales:
+              <strong class="color-secondary">Las interfaces, las bibliotecas, los módulos y los añadidos.</strong>
+            </p>
+            <p class="academyBox mt-6 text-lg">
+              - <strong class="color-secondary">Las interfaces</strong> son la manera de acceder al entorno de Metasploit. La más empleada y que vamos a
+              utilizar más adelante es MSFconsole (uso de la consola).
+              <br>
+              <br>
+              - <strong class="color-secondary">Las bibliotecas o APIs</strong> son conjuntos de instrucciones que dan forma a la sintaxis de Metasploit.
+              Se utilizan tres: MSFCore, MSF y REX.
+              <br>
+              <br>
+              - <strong class="color-secondary">Los añadidos o plugins</strong> son creados por la comunidad y sirven para extender las capacidades de Metasploit.
+              Algunos ejemplos son nexpose o nessus para poder integrar estos buscadores de vulnerabilidades con Metasploit,
+              lab para controlar distintas máquinas virtuales, etc.
+              <br>
+              <br>
+              - <strong class="color-secondary">Los módulos</strong> son otra parte esencial de Metasploit, y definen el
+              ámbito de la tarea que se quiere realizar. Hay de 6 tipos:
+              <br>
+              <br>
+              <sub class="academySpanTab"><strong class="color-secondary">- Exploits:</strong> Estos son comandos o vectores de entrada que permiten acceder al sistema o aplicación de destino, aprovechándose de vulnerabilidades.
+              <br><strong class="color-secondary ">- Payloads:</strong> Estas son las cargas maliciosas de nuestra intrusión. Son fragmentos de código que se ejecutarán en la máquina o servicio atacado después del exploit.
+              <br><strong class="color-secondary">- Post Explotación:</strong> Permiten realizar pruebas adicionales después de ya tener acceso al objetivo.
+              <br><strong class="color-secondary">- Encoders:</strong> Cifran el contenido malicioso para intentar evadir cortafuegos y sistemas de detección y prevención de intrusiones.
+              <br><strong class="color-secondary">- Auxiliaries:</strong> Son tipos de módulos sin una categoría concreta.
+              <br><strong class="color-secondary">- NOPs:</strong> Generan secuencias de bytes aleatorias, para confundir a los IDS e IPS.</sub>
+            </p>
+
+          </article>
+          <article class="h-full w-full">
+            <span class="text-2xl color-third"> Ejemplos </span>
+
+            <div class="academyBox">
+              <p class="academyBox p-0 mb-6 text-lg">
+                Dado que todo el entorno de Metasploit es muy extenso y completo, nos centraremos en explicar las
+                funcionalidades más básicas e interesantes que nos puede ofrecer mediante un ejemplo práctico con un CTF.
+                La máquina que vamos a utilizar es Metasploitable 3, diseñada especialmente para usarse con este programa,
+                tal y como su nombre indica.
+              </p>
+              <img src="../img/nmap7.png" alt="ejemplos de nmap" />
+              <p class="academyResumen">
+                Ejemplo básico de nmap. Aqui se muestran las IPs de las máquinas
+                virtuales, junto a los puertos abiertos. La red es 200.200.10.0
+                y el bloque CIDR /24
+              </p>
+            </div>
+
+            <div class="academyBox">
+              <p class="academyBox p-0 mb-6 text-lg">
+                Normalmente saldrán varias IPs, y un listado de puertos abiertos
+                por cada una de estas. Los puertos más comunes, y que pueden
+                indicar la presencia de una máquina virtual CTF, son el puerto
+                22 de TCP (SSH) para conectarse remotamente; y 80 de TCP (HTTP)
+                por alguna página web que se está hospedando en la máquina
+                destino.
+              </p>
+              <img src="../img/nmap6.png" alt="ejemplos de nmap" />
+              <p class="academyResumen">
+                Potencial candidato de ser un CTF, ya que tiene los dos puertos
+                mencionados anteriormente.
+              </p>
+            </div>
+            <div class="academyBox">
+              <p class="academyBox p-0 mb-6 text-lg">
+                Para poder saber más información sobre los sistemas, podemos
+                poner la IP del sistema junto a diversas banderas o
+                <strong class="color-secondary"> “flags” </strong> en la
+                terminal. Una muy interesante es la
+                <strong class="color-secondary"> -sV </strong>, para saber la
+                versión de los servicios.
+              </p>
+              <img src="../img/nmap4.png" alt="ejemplos de nmap" />
+              <p class="academyResumen">
+                Esta máquina Windows Server, por ejemplo, tiene un Active
+                Directory abierto, y podemos saber el nombre del dominio, la
+                dirección MAC y cuánto tiempo lleva activa por el servicio de
+                Kerberos
+              </p>
+            </div>
+            <div class="academyBox">
+              <p class="academyBox p-0 mb-6 text-lg">
+                Con <strong class="color-secondary"> -O </strong>, podemos saber
+                el sistema operativo de la máquina con la IP especificada:
+              </p>
+              <img src="../img/nmap3.png" alt="ejemplos de nmap" />
+              <p class="academyResumen">
+                En este caso, nos encontramos ante una máquina virtual que
+                utiliza Linux 4 o Linux 5, gracias a su kernel.
+              </p>
+            </div>
+            <div class="academyBox">
+              <p class="academyBox p-0 mb-6 text-lg">
+                Otra opción muy interesante es la de
+                <strong class="color-secondary"> –script </strong>, la cual nos
+                permite ejecutar un script de LUA para poder detectar cosas más
+                específicas. Casi todos los scripts están hechos y mantenidos
+                por la comunidad y hay de muchos tipos. Algunos de los que nos
+                pueden ser más útiles a la hora de resolver máquinas son los
+                scripts que detectan vulnerabilidades. Ejemplos de estos son
+                <strong class="color-secondary">vulscan, vulners, etc.</strong>
+              </p>
+              <img src="../img/nmap1.png" alt="ejemplos de nmap" />
+              <p class="academyResumen">
+                Podemos observar distintos tipos de vulnerabilidades y exploits
+                de Apache2 encontrados en esta máquina.
+              </p>
+            </div>
+            <div class="academyBox">
+              <p class="academyBox p-0 mb-6 text-lg">
+                Si detectamos algún cortafuegos en la máquina objetivo, podemos
+                emplear técnicas de evasión como fragmentar los paquetes de IP a
+                la hora de detectar máquinas, crear IPs falsas mediante spoofing
+                para complicar la detección de nuestra IP con
+                <strong class="color-secondary"> -S </strong> o incluso crear
+                señuelos con <strong class="color-secondary"> -D </strong> para
+                que el IDS o cortafuegos crea que se están realizando escaneos
+                desde distintos lugares.
+              </p>
+              <img src="../img/nmap2.png" alt="ejemplos de nmap" />
+              <p class="academyResumen">
+                En el ejemplo, se puede ver como se utilizan 3 IPs como señuelo,
+                seguida de “ME”, que es nuestra IP real. Si no ponemos nuestra
+                IP, no se podrá realizar el escaneo.
+              </p>
+            </div>
+          </article>
+          <article class="w-full h-full">
+            <span class="text-2xl color-third"> Resumen </span>
+            <div class="academyBox">
+              <p class="text-lg academyResumen m-0">Para finalizar, y como curiosidad, Nmap es una herramienta tan popular que incluso ha aparecido en la gran pantalla, en películas como Matrix Reloaded, Dredd, Snowden, Elysium, Los Cuatro Fantásticos, etc.</p>
+            </div>
+          </article>
+        </article>
       </article>
     </section>
   </body>

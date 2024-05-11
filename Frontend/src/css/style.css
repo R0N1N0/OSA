@@ -361,6 +361,9 @@ button.send i{
   width: 80%;
 }
 
+.academySpanTab {
+}
+
 /** clases js **/
 .rotate {
   transform-style: preserve-3d;
