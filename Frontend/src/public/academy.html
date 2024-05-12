@@ -264,102 +264,93 @@
 
             <div class="academyBox">
               <p class="academyBox p-0 mb-6 text-lg">
-                Dado que todo el entorno de Metasploit es muy extenso y completo, nos centraremos en explicar las
-                funcionalidades más básicas e interesantes que nos puede ofrecer mediante un ejemplo práctico con un CTF.
-                La máquina que vamos a utilizar es Metasploitable 3, diseñada especialmente para usarse con este programa,
-                tal y como su nombre indica.
+                Todo comienza escribiendo en la terminal <strong class="color-secondary ">sudo msfconsole</strong>. Nos aparecerá
+                un bonito logo seguido de una interfaz para poner los comandos.
               </p>
-              <img src="../img/nmap7.png" alt="ejemplos de nmap" />
+              <img src="../img/msploit1.png" alt="ejemplos de metasploit" />
               <p class="academyResumen">
-                Ejemplo básico de nmap. Aqui se muestran las IPs de las máquinas
-                virtuales, junto a los puertos abiertos. La red es 200.200.10.0
-                y el bloque CIDR /24
+                Ejemplo de Metasploit Framework Console. Aquí empieza la magia.
               </p>
             </div>
 
             <div class="academyBox">
               <p class="academyBox p-0 mb-6 text-lg">
-                Normalmente saldrán varias IPs, y un listado de puertos abiertos
-                por cada una de estas. Los puertos más comunes, y que pueden
-                indicar la presencia de una máquina virtual CTF, son el puerto
-                22 de TCP (SSH) para conectarse remotamente; y 80 de TCP (HTTP)
-                por alguna página web que se está hospedando en la máquina
-                destino.
+                Si queremos escanear la red en busca de nuestra máquina objetivo (Metasploitable 3), podemos ejecutar Nmap como en
+                el tutorial anterior, o podemos utilizar algún módulo de Metasploit. En nuestro caso, ya que es una guía de uso, vamos
+                a hacerlo con este último, más concretamente con el módulo <strong class="color-secondary ">auxiliary/scanner/discovery/arp_sweep</strong>.
+                Para utilizar cualquier módulo podemos escribir <strong class="color-secondary ">use</strong> seguido del nombre.
+                Podemos también saber los parámetros con <strong class="color-secondary ">info</strong>.
               </p>
-              <img src="../img/nmap6.png" alt="ejemplos de nmap" />
+              <img src="../img/msploit2.png" alt="ejemplos de metasploit" />
               <p class="academyResumen">
-                Potencial candidato de ser un CTF, ya que tiene los dos puertos
-                mencionados anteriormente.
+                  Se puede observar que necesitamos poner la opción RHOSTS.
               </p>
             </div>
+
             <div class="academyBox">
               <p class="academyBox p-0 mb-6 text-lg">
-                Para poder saber más información sobre los sistemas, podemos
-                poner la IP del sistema junto a diversas banderas o
-                <strong class="color-secondary"> “flags” </strong> en la
-                terminal. Una muy interesante es la
-                <strong class="color-secondary"> -sV </strong>, para saber la
-                versión de los servicios.
+                Como necesitamos la opción RHOSTS como mínimo, vamos a ponerla con <strong class="color-secondary ">set RHOSTS (ip de red) </strong>.
+                En ip de red, ponemos nuestra ip, seguida del bloque CIDR (en este caso, 200.200.10.0/24)
+                <br>
+                Para finalizar, podemos arrancar nuestro script con <strong class="color-secondary ">run</strong>.
               </p>
-              <img src="../img/nmap4.png" alt="ejemplos de nmap" />
+              <img src="../img/msploit3.png" alt="ejemplos de metasploit" />
               <p class="academyResumen">
-                Esta máquina Windows Server, por ejemplo, tiene un Active
-                Directory abierto, y podemos saber el nombre del dominio, la
-                dirección MAC y cuánto tiempo lleva activa por el servicio de
-                Kerberos
+                Aquí nos salen varios resultados. Las 3 primeras son de los routers NAT de VirtualBox, por lo tanto, tiene que set la 4a IP
+                (200.200.10.11)
               </p>
             </div>
+
             <div class="academyBox">
               <p class="academyBox p-0 mb-6 text-lg">
-                Con <strong class="color-secondary"> -O </strong>, podemos saber
-                el sistema operativo de la máquina con la IP especificada:
+                Ahora que ya tenemos nuestra IP objectivo, podemos probar a buscar servicios que puedan ser vulnerados. Un módulo muy interesante
+                es el de <strong class="color-secondary ">auxiliary/scanner/portscan/syn</strong>, el cual enviará paquetes de TCP con la flag "SYN"
+                a todos los puertos de una máquina. Si reciben respuesta para establecer la conexión, sabremos que existen.
+                Este módulo también necesita <strong class="color-secondary ">RHOSTS</strong> para saber la IP(s) de destino,
+                así que se la ponemos de igual manera y lo arrancamos.
               </p>
-              <img src="../img/nmap3.png" alt="ejemplos de nmap" />
+              <img src="../img/msploit4.png" alt="ejemplos de metasploit" />
               <p class="academyResumen">
-                En este caso, nos encontramos ante una máquina virtual que
-                utiliza Linux 4 o Linux 5, gracias a su kernel.
+                Si esperamos un rato, saldrán una serie de puertos. En este tutorial intentaremos explotar el 21 (FTP).
+                FTP es un protocolo de transferencia de archivos, así que podemos pasar un archivo malicioso para poder controlar la máquina desde fuera.
               </p>
             </div>
+
             <div class="academyBox">
               <p class="academyBox p-0 mb-6 text-lg">
-                Otra opción muy interesante es la de
-                <strong class="color-secondary"> –script </strong>, la cual nos
-                permite ejecutar un script de LUA para poder detectar cosas más
-                específicas. Casi todos los scripts están hechos y mantenidos
-                por la comunidad y hay de muchos tipos. Algunos de los que nos
-                pueden ser más útiles a la hora de resolver máquinas son los
-                scripts que detectan vulnerabilidades. Ejemplos de estos son
-                <strong class="color-secondary">vulscan, vulners, etc.</strong>
+                Podemos atacar a FTP con el <strong class="color-secondary ">exploit de proftpd_modcopy_exec</strong>
+                para generar una terminal interactiva con netcat. El exploit se encuentra en <strong class="color-secondary ">
+                exploit/unix/ftp/proftpd_modcopy_exec</strong>
               </p>
-              <img src="../img/nmap1.png" alt="ejemplos de nmap" />
+              <img src="../img/msploit5.png" alt="ejemplos de metasploit" />
+              <img src="../img/msploit6.png" alt="ejemplos de metasploit" />
               <p class="academyResumen">
-                Podemos observar distintos tipos de vulnerabilidades y exploits
-                de Apache2 encontrados en esta máquina.
+                Aquí podemos ver que necesitamos poner el RHOSTS, y que por defecto utilizará la carga de netcat para hacer una connexión inversa.
+                También hay que cambiar el directorio SITEPATH a /var/www/html
               </p>
             </div>
+
             <div class="academyBox">
               <p class="academyBox p-0 mb-6 text-lg">
-                Si detectamos algún cortafuegos en la máquina objetivo, podemos
-                emplear técnicas de evasión como fragmentar los paquetes de IP a
-                la hora de detectar máquinas, crear IPs falsas mediante spoofing
-                para complicar la detección de nuestra IP con
-                <strong class="color-secondary"> -S </strong> o incluso crear
-                señuelos con <strong class="color-secondary"> -D </strong> para
-                que el IDS o cortafuegos crea que se están realizando escaneos
-                desde distintos lugares.
+                Finalmente, ponemos el valor de <strong class="color-secondary ">RHOSTS</strong> a la IP de la máquina,
+                y <strong class="color-secondary ">SITEPATH</strong> a donde se encuentra la página web
+                <strong class="color-secondary ">(/var/www/html)</strong>
               </p>
-              <img src="../img/nmap2.png" alt="ejemplos de nmap" />
+              <img src="../img/msploit7.png" alt="ejemplos de metasploit" />
+              <img src="../img/msploit8.png" alt="ejemplos de metasploit" />
               <p class="academyResumen">
-                En el ejemplo, se puede ver como se utilizan 3 IPs como señuelo,
-                seguida de “ME”, que es nuestra IP real. Si no ponemos nuestra
-                IP, no se podrá realizar el escaneo.
+                Si lo ejecutamos, ya tenemos una connexión inversa con la víctima, a partir de aquí se puede hacer side-stepping para encontrar
+                otros usuarios o hacer una escalada de privilegios.
               </p>
             </div>
+
           </article>
           <article class="w-full h-full">
             <span class="text-2xl color-third"> Resumen </span>
             <div class="academyBox">
-              <p class="text-lg academyResumen m-0">Para finalizar, y como curiosidad, Nmap es una herramienta tan popular que incluso ha aparecido en la gran pantalla, en películas como Matrix Reloaded, Dredd, Snowden, Elysium, Los Cuatro Fantásticos, etc.</p>
+              <p class="text-lg academyResumen m-0">Para finalizar, y como curiosidad, Metasploit cuenta en la actualidad
+                com más de 5500 modulos y más de 10000 colaboradores, y es tan poderoso que su uso está limitado en certificaciones como OSCP.
+                En este tutorial solo mencionamos una pequeña parte del gran potencial de esta herramienta.</p>
             </div>
           </article>
         </article>
