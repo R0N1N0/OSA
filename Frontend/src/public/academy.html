@@ -36,14 +36,8 @@
           <li class="mt-2 tab-controller" name="metasploit">
             <i class="fa-solid fa-shield-halved"></i> Metasploit
           </li>
-          <li class="mt-2 tab-controller" name="grupos">
-            <i class="fa-solid fa-users"></i> Grupos
-          </li>
-          <li class="mt-2 tab-controller" name="invitaciones">
-            <i class="fa-solid fa-user-plus"></i> Invitaciones
-          </li>
-          <li class="mt-2 tab-controller" name="ranking">
-            <i class="fa-solid fa-bolt"></i> Ranking
+          <li class="mt-2 tab-controller" name="sqlinjection">
+            <i class="fa-solid fa-syringe"></i> SQL Injection
           </li>
         </ul>
       </nav>
@@ -355,6 +349,226 @@
           </article>
         </article>
       </article>
+
+      <!------------------- SQLInjection ----------------------->
+
+      <article
+              class="ml-64 sqlinjection tab hidden pl-12 pt-12 w-full flex flex-row flex-wrap justify-center gap-10"
+      >
+        <header class="header flex justify-between w-full">
+          <h3 class="text-3xl color-text flex flex-row items-center">
+            <img
+                    class="size-20 mr-4"
+                    src="../img/sqlinjection1.png"
+                    alt="sqlinjection logo"
+            />
+            SQL Injection
+          </h3>
+        </header>
+        <div class="w-4/5 alert flex justify-center flex-wrap"></div>
+        <article
+                class="w-full h-full flex flex-row flex-wrap justify-center gap-10"
+        >
+          <article class="h-full w-full">
+            <span class="text-2xl color-third"> ¿Qué es SQL Injection? </span>
+            <p class="academyBox mt-6 text-lg">
+              <strong class="color-secondary">SQL Injection</strong>
+              es una vulnerabilidad de código que permite a un atacante acceder y/o modificar el contenido de una o varias bases de datos.
+              Una inyección exitosa permite no solo realizar consultas, sino añadir, modificar, actualizar o borrar entradas en una base
+              de datos relacional. Todos los ataques de SQL Injection se hacen a partir de una consulta SQL, pero de manera malintencionada.
+              Las SQL Injection pueden dividirse en varios tipos:
+            </p>
+
+            <p class="academyBox mt-6 text-lg">
+              <strong class="color-secondary">- Basadas en errores: </strong>Este tipo se basa en los mensajes de error generados al intentar
+              hacer la consulta. A partir de ahí se pueden deducir algunos datos o la estructura de la base de datos.
+              <br>
+              <br>
+              <strong class="color-secondary">- Basadas en uniones: </strong>Se caracterizan por utilizar la palabra clave resevada <strong class="color-secondary">
+              UNION</strong> en la consulta original para inyectar o incrustar otra consulta malintencionada.
+              <br>
+              <br>
+              <strong class="color-secondary">- Basadas en booleanos: </strong>Son las que se pueden comparar con valores booleanos (verdadero o falso), para
+              comprovar si la consulta maliciosa funciona o incluso utilizarlas de cabecera para que se ejecuten.
+              <br>
+              <br>
+              <strong class="color-secondary">- Basadas en tiempo: </strong>Se pueden inyectar consultas que fuerzen a la base de datos a acceder a muchas
+              tablas, provocando así que tarden mucho tiempo. Suelen estar relacionadas con el siguiente tipo.
+              <br>
+              <br>
+              <strong class="color-secondary">- Inyecciones ciegas: </strong>Son las inyecciones que no muestran resultado alguno, pero que
+              en realidad, se están realizando. Eso quiere decir que aunque no se muestren resultados
+              por pantalla, se siguen haciendo. Se combinan muy bien con las basadas en tiempo, ya que si pasa mucho tiempo antes de que la aplicación
+              responda de nuevo, sabremos que hay una vulnerabilidad de SQLi.
+              <br>
+              <br>
+              <strong class="color-secondary">- Basadas en consultas apiladas: </strong>Este tipo permite a un atacante poder hacer varias consultas
+              en una sola solicitud, haciendo posible la inyección de muchas consultas malintencionadas.
+              <br>
+              <br>
+              <strong class="color-secondary">- Inyecciones de segundo orden: </strong>Son las que se almacenan en la propia base de datos de forma latente,
+              hasta que el atacante decida ejecutarlas.
+            </p>
+
+            <p class="academyBox mt-6 text-lg">
+              Para el ejemplo de SQL Inyection, estaremos utilizando una Aplicación Web J*didamente Vulnerable (DVWA), la cual se puede encontrar
+              en el siguiente enlace <strong class="color-secondary">https://github.com/digininja/DVWA/pkgs/container/dvwa</strong>.
+              También utilizaremos <strong class="color-secondary">SQLMap</strong>, para ilustrar una posible manera de automatizar las consultas maliciosas.
+            </p>
+
+            <article class="h-full w-full">
+              <span class="text-2xl color-third"> Ejemplos </span>
+
+              <div class="academyBox">
+                <p class="academyBox p-0 mb-6 text-lg">
+                  Cuando tengamos nuestra máquina o contenedor víctima, podremos acceder a él con el navegador poniendo su IP y su puerto.
+                  En nuestro caso, será <strong class="color-secondary">192.168.1.34:32768</strong>. Nos dará la bienvenida un portal de acceso.
+                  Para continuar pondremos los credenciales <strong class="color-secondary">admin, password</strong>.
+                </p>
+                <img src="../img/sqlinjection2.png" alt="ejemplos de sqlinjection" />
+                <p class="academyResumen">
+                  El portal de login de DVWA.
+                </p>
+              </div>
+
+              <div class="academyBox">
+                <p class="academyBox p-0 mb-6 text-lg">
+                  Una vez dentro, nos saldrá un menú en el lateral izquierdo. De momento solo nos centraremos en 2 apartados, el de SQLInjection y el de
+                  DVWA Security. Continuaremos clicando al de DVWA Security y seleccionando el nivel de dificultad. Existen 4 tipos de dificultad:
+                  <strong class="color-secondary">low o fácil, medium o intermedio, hard o difícil e imposible</strong>.
+                  Haremos el <strong class="color-secondary">fácil</strong>, todo y que con SQLMap podremos hacer los tres
+                  primeros modos de la misma manera. El modo <strong class="color-secondary">imposible</strong> es un
+                  ejemplo de buena práxis, ya que no podemos hacer SQLInjection con él.
+                </p>
+                <img src="../img/sqlinjection3.png" alt="ejemplos de sqlinjection" />
+                <p class="academyResumen">
+                  Seguridad de DVWA. Para seleccionar el modo, clicamos en el desplegable y luego a submit.
+                </p>
+              </div>
+
+              <div class="academyBox">
+                <p class="academyBox p-0 mb-6 text-lg">
+                  Si entramos al apartado de SQLInjection, nos encontraremos con una caja de texto donde nos pide un ID.
+                  Si ponemos un numero cualquiera, nos devolverá un resultado. Si en vez de seleccionar SQL Injection hemos
+                  seleccionado la opción de <strong class="color-secondary">(blind)</strong>, no nos devolverá nada por pantalla.
+                </p>
+                <img src="../img/sqlinjection4.png" alt="ejemplos de sqlinjection" />
+                <p class="academyResumen">
+                  Sale que el nombre del usuario 1 es admin, y su apellido es admin. Poco original, la verdad.
+                </p>
+              </div>
+
+              <div class="academyBox">
+                <p class="academyBox p-0 mb-6 text-lg">
+                  Ahora, utilizaremos <strong class="color-secondary">SQLMap</strong> para sacar todas las bases de datos, tablas y valores que queramos.
+                  Primero, especificaremos la opción <strong class="color-secondary">-u con la URL completa</strong> de la página.
+                  Solo bastará con copiar y pegar la que tenemos en el buscador y ponerla entre comillas dobles.
+                  Luego, necesitaremos especificar las <strong class="color-secondary">cookies</strong> que se utilizan, ya que
+                  aquí se incluyen datos como la dificultad y la sesión de PHP. Para extraer las cookies podemos ir al
+                  <strong class="color-secondary">inspector de elementos</strong> de nuestro navegador web.
+                  A partir de aquí cambia entre navegadores, pero en todos hay un apartado de <strong class="color-secondary">almacenamiento/aplicación</strong>
+                  con las cookies dentro en una tabla. Las copiamos a SQLMap con el parámetro <strong class="color-secondary">--cookie</strong>
+                  , separadas por ";".
+                </p>
+                <img src="../img/sqlinjection5.png" alt="ejemplos de sqlinjection" />
+                <p class="academyResumen">
+                  Aquí podemos observar nuestras cookies. Son necesarias para que SQLMap funcione correctamente. Ten en cuenta que las que salen aqui no
+                  tienen por qué ser las mismas que las tuyas.
+                </p>
+                <img src="../img/sqlinjection6.png" alt="ejemplos de sqlinjection" />
+                <p class="academyResumen">
+                  El comando de SQLMap tendría que lucir así.
+                </p>
+              </div>
+
+              <div class="academyBox">
+                <p class="academyBox p-0 mb-6 text-lg">
+                  Si lo hemos hecho correctamente, nos irá pidiendo nuestro feedback para ir concretando más las búsquedas. Al principio nos
+                  preguntará si queremos probar solamente las inyecciones de <strong class="color-secondary">MySQL</strong>. Le decimos que si con
+                  <strong class="color-secondary">"y"</strong>. Luego nos pedirá si queremos probar solamente el nivel de inyección 1, y le decimos
+                  que <strong class="color-secondary">"y"</strong>.
+                </p>
+                <img src="../img/sqlinjection7.png" alt="ejemplos de sqlinjection" />
+                <p class="academyResumen">
+                  Aquí podemos observar las consultas maliciosas que va probando. Nos dice en varias ocasiones que el parámetro "id" es vulnerable.
+                </p>
+              </div>
+
+              <div class="academyBox">
+                <p class="academyBox p-0 mb-6 text-lg">
+                  Finalmente, nos dirá que ya ha encontrado un parámetro vulnerable en <strong class="color-secondary">"id"</strong>.
+                  Le podemos decir que no <strong class="color-secondary">"n"</strong> para que no continue probando más.
+                </p>
+                <img src="../img/sqlinjection8.png" alt="ejemplos de sqlinjection" />
+                <p class="academyResumen">
+                  Se ven las pruebas que se han realizado en la imagen. Entre ellas salen varios tipos que hemos mencionado con anterioridad,
+                  basadas en tiempo, en errores, en booleanos o con UNIONS. Todas tienen el campo "id" en común, ya que hemos dicho
+                  que nos basta con ese.
+                </p>
+              </div>
+
+              <div class="academyBox">
+                <p class="academyBox p-0 mb-6 text-lg">
+                  Si queremos saber más info sobre las bases de datos activas, podemos utilizar el parámetro <strong class="color-secondary">--dbs</strong> en
+                  SQLMap, así sabremos las que hay.
+                </p>
+                <img src="../img/sqlinjection9.png" alt="ejemplos de sqlinjection" />
+                <img src="../img/sqlinjection10.png" alt="ejemplos de sqlinjection" />
+                <p class="academyResumen">
+                  En este caso está la base de datos dvwa y la base de datos information_schema, adónde se encuentra toda la estructura de MySQL.
+                </p>
+              </div>
+
+              <div class="academyBox">
+                <p class="academyBox p-0 mb-6 text-lg">
+                  Si queremos saber las tablas de una base de datos, necesitamos el parámetro <strong class="color-secondary">--tables -D </strong>
+                  seguido del nombre de la tabla.
+                </p>
+                <img src="../img/sqlinjection11.png" alt="ejemplos de sqlinjection" />
+                <img src="../img/sqlinjection12.png" alt="ejemplos de sqlinjection" />
+                <p class="academyResumen">
+                  Si nos fijamos en el ejemplo, podemos ver todas las tablas de dvwa.
+                </p>
+              </div>
+
+              <div class="academyBox">
+                <p class="academyBox p-0 mb-6 text-lg">
+                  Si queremos saber las columnas de una tabla, necesitamos el parámetro <strong class="color-secondary">-T "tabla" --columns </strong>
+                  donde "tabla" es el nombre de la tabla.
+                </p>
+                <img src="../img/sqlinjection13.png" alt="ejemplos de sqlinjection" />
+                <img src="../img/sqlinjection14.png" alt="ejemplos de sqlinjection" />
+                <p class="academyResumen">
+                  Los usuarios de dvwa tienen 6 campos/columnas. Podemos ver que uno de ellos es "password".
+                </p>
+              </div>
+
+              <div class="academyBox">
+                <p class="academyBox p-0 mb-6 text-lg">
+                  A la hora de saber todos los valores de la tabla, podemos poner el parámetro <strong class="color-secondary">-C "columna1, columna2..." --dump</strong>
+                  donde los nombres de las columnas están entre comillas y separados entre ellos por comas.
+                  A continuación nos pedirá si queremos guardar los <strong class="color-secondary">hashes de las contraseñas</strong>
+                  o intentar descifrarlas con un <strong class="color-secondary">ataque basado en diccionarios</strong>.
+                  Le podemos decir que si con "y" a todas estas opciones y seleccionar un diccionario por defecto.
+                </p>
+                <img src="../img/sqlinjection15.png" alt="ejemplos de sqlinjection" />
+                <img src="../img/sqlinjection16.png" alt="ejemplos de sqlinjection" />
+                <p class="academyResumen">
+                  Ahora ya podemos entrar con el usuario que nos plazca a la Aplicación Web J*didamente Vulnerable.
+                </p>
+              </div>
+            </article>
+            <article class="w-full h-full">
+              <span class="text-2xl color-third"> Resumen </span>
+              <div class="academyBox">
+                <p class="text-lg academyResumen m-0">Para finalizar, y como curiosidad, ha habido grandes filtraciones
+                de datos por culpa de SQLi; entre ellas en 2012 a LinkedIn, en 2011 a Sony Pictures o en 2015 a Ashley Madison.
+                La moraleja es que si quieres mantener un amorío con otra persona, asegúrate de que tu pareja no sepa SQLi.
+                </p>
+              </div>
+            </article>
+          </article>
+        </article>
     </section>
   </body>
   <script src="../js/helpers/sidebarLogic.js"></script>
