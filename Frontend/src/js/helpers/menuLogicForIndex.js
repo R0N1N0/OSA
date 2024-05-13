@@ -1,4 +1,4 @@
-import { getUserRequests } from "./userRequests.js";
+import { getUserRequests } from "../userInfo/userRequests.js";
 
 document.addEventListener("DOMContentLoaded", menuLogic);
 

@@ -60,7 +60,7 @@ async function printMachine() {
 
         const liDif = document.createElement("li");
         const strongDif = document.createElement("strong");
-        strongDif.className = "font-bold";
+        strongDif.className = "font-normal color-secondary";
         strongDif.textContent = "Dificultad: ";
         const spanDif = document.createElement("span");
         spanDif.textContent = dif;
@@ -71,7 +71,7 @@ async function printMachine() {
 
         const liPoints = document.createElement("li");
         const strongPoints = document.createElement("strong");
-        strongPoints.className = "font-bold";
+        strongPoints.className = "font-normal color-secondary";
         strongPoints.textContent = "Puntos: ";
         const spanPoints = document.createElement("span");
         spanPoints.textContent = puntos;
@@ -81,7 +81,7 @@ async function printMachine() {
 
         const liDownloads = document.createElement("li");
         const strongDownloads = document.createElement("strong");
-        strongDownloads.className = "font-bold";
+        strongDownloads.className = "font-normal color-secondary";
         strongDownloads.textContent = "Descargas: ";
         const spanDownloads = document.createElement("span");
         spanDownloads.textContent = descargas;
@@ -127,7 +127,7 @@ async function printComments() {
         divInfo.className = "flex flex-col justify-between ml-6 gap-1";
 
         const spanName = document.createElement("span");
-        spanName.className = "text-2xl color-secondary font-bold";
+        spanName.className = "text-2xl color-secondary font-normal";
         spanName.textContent = comment.nombre;
         const pComment = document.createElement("p");
         pComment.className = "color-text";

@@ -24,7 +24,7 @@
     </header>
 
     <!-- menu lateral  -->
-    <section class="userInfo w-auto relative flex items-center top-24 h-auto">
+    <section class="userInfo controller w-auto relative flex items-center top-24 h-auto">
       <nav
         class="w-64 menuLateral h-screen top-24 fixed flex flex-col items-center"
       >
@@ -168,6 +168,8 @@
       </article>
     </section>
 
+    <!-- modal para ver los miembros de un grupo -->
+
     <section class="modalViewMembers modalShowMv w-full fixed top-0">
       <span class="close absolute top-28 cursor-pointer right-6 z-10"> <i class="fa-solid text-2xl fa-circle-xmark"></i></span>
       <article class="w-full flex flex-col justify-center items-center relative top-28">
@@ -187,6 +189,33 @@
           </tbody>
         </table>
       </article>
+    </section>
+
+    <!-- modal para invitar a un usuario a un grupo -->
+    <section class="modalAddUserGroup modalShowMv w-full h-screen flex justify-center fixed top-0 left-0 items-center">
+      <span class="close absolute top-28 cursor-pointer right-6 z-10"> <i class="fa-solid text-2xl fa-circle-xmark"></i></span>
+        <article class="flex justify-center items-center flex-col py-10 px-12 rounded relative w-auto box-shadow00405">
+          <span class="pb-8 text-3xl color-secondary">Añadir usuario</span>
+          <form id="modalCreateGroup" class="h-auto w-auto">
+            <label for="username">Nombre de usuario:</label><br />
+            <div class="mt-2 flex items-center rounded flex-row">
+              <span class="pl-4 pr-4">
+                <i class="fa-solid text-lg fa-user"></i>
+              </span>
+              <input type="text" name="username" id="username" placeholder="..." />
+            </div>
+            <br>
+            <label for="code">Código de usuario</label><br />
+            <div class="mt-2 flex items-center rounded flex-row">
+              <span class="pl-4 pr-4">
+                <i class="fa-solid text-lg fa-id-card-clip"></i>
+              </span>
+              <input type="text" name="code" id="code" placeholder="..." />
+            </div>
+            <br>
+            <input class="w-36 h-9 rounded" type="submit" value="Enviar invitación" />
+          </form>
+        </article>
     </section>
 
   </body>

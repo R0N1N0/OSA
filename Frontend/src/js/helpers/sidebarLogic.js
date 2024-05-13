@@ -2,7 +2,7 @@
 // aqui esta el codigo de la logica del sidebar 
 
 //variables
-const articles = document.querySelectorAll("section > article");
+const articles = document.querySelectorAll("section.controller > article");
 const tab_controllers = document.querySelectorAll("section nav li");
 
 //eventos

@@ -1,4 +1,3 @@
-const db = require("../../db/db.js");
 const { createConnexion } = require("../../helpers/connexion.js");
 
 exports.addGroup = async (req, res) => {

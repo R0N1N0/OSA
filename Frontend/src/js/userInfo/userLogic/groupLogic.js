@@ -1,5 +1,5 @@
 import helpers from "../../helpers/utils.js";
-import { getUserRequests } from "../../helpers/userRequests.js";
+import { getUserRequests } from "../userRequests.js";
 
 // variables
 
@@ -65,4 +65,26 @@ function printMembers(members, modalView){
         tr.appendChild(tdPuntos);
         table.appendChild(tr);
     });
+}
+
+
+export async function addUserGroupLogic(idGroup, modalAddgroup, userInfoSection){
+    helpers.showModal(modalAddgroup, userInfoSection);
+    const form = modalAddgroup.querySelector("form");
+    form.addEventListener("submit", async function(e) {
+        sendInvitation(e, idGroup)
+    });   
+}
+
+async function sendInvitation(e, idGroup) {
+    e.preventDefault();
+    const form = e.target;
+    const username = form.querySelectorAll("input")[0].value.trim();
+    const code = form.querySelectorAll("input")[1].value.trim();
+    if(username === "" || code === "") return helpers.showAlert("Los dos campos son obligatorios.", "error", form);
+    const res = await getUserRequests.sendInvitation({username, code, idGroup}, "group/addUserGroup");
+    
+    form.reset();
+    if(res.error) return helpers.showAlert(res.error, "error", form);
+    else if(res.message) return helpers.showAlert(res.message, "success", form);
 }

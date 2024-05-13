@@ -76,10 +76,7 @@ export async function fetchPostWithDataToken(route, token, data){
             },
             body: JSON.stringify(data)
         });
-        if(response.ok){
             return await response.json();
-        }
-        return false;
     } catch (error) {
         return console.log(`error en fetchPostWithDataToken ${error}`);
     }

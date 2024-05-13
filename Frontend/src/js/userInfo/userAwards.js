@@ -1,4 +1,4 @@
-import { getUserRequests } from "../helpers/userRequests.js";
+import { getUserRequests } from "./userRequests.js";
 import helpers from "../helpers/utils.js";
 import { logicAwards } from "./userLogic/awardsLogic.js";
 const premiosArticle = document.querySelector(".premios");
