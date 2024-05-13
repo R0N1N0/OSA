@@ -9,8 +9,12 @@ exports.addUserGroup = async (req, res) => {
         .send("Debe proporcionar los datos necesarios para invitar a un usuario");
     }
     const idUser = await checkUser(username, code);
+    
     if (!idUser) {
       return res.status(200).json({ error: "Usuario no encontrado." });
+    }
+    if(await isExists(idUser, idGroup)) {
+      return res.status(200).json({ error: "Error, La invitación ya existe." });
     }
 
     if (await sendInvitation(idGroup, idUser)) {
@@ -51,6 +55,23 @@ async function sendInvitation(idGroup, idUser) {
     }
     return false;
   } catch (err) {
+    console.error("Error al enviar invitación: ", err);
+    throw err;
+  }
+}
+
+async function isExists(idUser, idGroup) {
+  try {
+    const sql = "select id_invitaciones_usuario_grupo from invitaciones_usuario_grupo where id_usuario = ? and id_grupo = ?";
+    const connexion = await createConnexion();
+    const [result] = await connexion.query(sql, [idUser, idGroup]);
+    connexion.release();
+    if(result.length > 0) {
+      return true;
+    }
+    return false;
+  }
+  catch (err) {
     console.error("Error al enviar invitación: ", err);
     throw err;
   }
