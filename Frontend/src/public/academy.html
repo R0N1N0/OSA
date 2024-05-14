@@ -39,6 +39,9 @@
           <li class="mt-2 tab-controller" name="sqlinjection">
             <i class="fa-solid fa-syringe"></i> SQL Injection
           </li>
+          <li class="mt-2 tab-controller" name="fuzzing">
+            <i class="fa-brands fa-searchengin"></i> Fuzzing Web
+          </li>
         </ul>
       </nav>
 
@@ -569,8 +572,125 @@
             </article>
           </article>
         </article>
-    </section>
-  </body>
+      </article>
+
+
+    <!------------------- Fuzzing Web ----------------------->
+
+    <article
+            class="ml-64 fuzzing tab hidden pl-12 pt-12 w-full flex flex-row flex-wrap justify-center gap-10"
+    >
+      <header class="header flex justify-between w-full">
+        <h3 class="text-3xl color-text flex flex-row items-center">
+          <img
+                  class="size-20 mr-4"
+                  src="../img/fuzzing1.png"
+                  alt="fuzzing web logo"
+          />
+          Fuzzing Web
+        </h3>
+      </header>
+      <div class="w-4/5 alert flex justify-center flex-wrap"></div>
+      <article
+              class="w-full h-full flex flex-row flex-wrap justify-center gap-10"
+      >
+        <article class="h-full w-full">
+          <span class="text-2xl color-third"> ¿Qué es Fuzzing Web? </span>
+          <p class="academyBox mt-6 text-lg">
+            <strong class="color-secondary">El Fuzzing Web </strong>es una técnica de pruebas de seguridad que se utiliza
+            para identificar vulnerabilidades y errores en aplicaciones web. Consiste en enviar datos aleatorios, o de un diccionario
+            para provocar respuestas inesperadas como <strong class="color-secondary">SQL Injections, Buffer Overflows,
+            Enumeración de archivos,</strong> etc.
+          </p>
+
+          <p class="academyBox mt-6 text-lg">
+            Para automatizar el fuzzing web, existen una serie de programas como <strong class="color-secondary">wfuzz o gobuster</strong>,
+            los cuales prueban respuestas por parte del servidor a nivel de protocolo (HTTP GET/POST...) o a nivel de datos (HTML, JPG, TXT...)
+            los valores que prueban pueden ser de varios tipos:
+            <br>
+            <br>
+            <strong class="color-secondary">- Numeros: </strong> pueden ser enteros, flotantes, dobles, con signo o sin signo.
+            Si se prueban numeros muy grandes o inesperados, se puede provocar un <strong class="color-secondary">Buffer Overflow</strong>,
+            que puede revelar posiciones de memoria y datos comprometidos.
+            <strong class="color-secondary">- Caracteres: </strong> pueden ser saltos de linea, escapados, palabras reservadas o instrucciones,
+            por ejemplo un <strong class="color-secondary">&</strong> para incrustar una variable GET, o un <strong class="color-secondary">'</strong>
+            para un SQL Injection.
+            <strong class="color-secondary">- Secuencias binarias: </strong> son cadenas aleatorias de unos y ceros que pueden alterar
+            el funcionamiento de la aplicación web.
+            <strong class="color-secondary">- Metadatos: </strong> en el caso de no hacer fuzzing web, se pueden probar metadatos corruptos para
+            ciertas extensiones de archivo, por ejemplo, cambiando el autor de una canción a un valor inválido en <strong class="color-secondary">mp3 con id3</strong>.
+          </p>
+          <article class="h-full w-full">
+            <span class="text-2xl color-third"> Ejemplos </span>
+
+            <div class="academyBox">
+              <p class="academyBox p-0 mb-6 text-lg">
+                Vamos a revelar todos los secretos de una página web, en nuestro caso, utilizaremos de ejemplo la máquina CTF de Please Hack Me,
+                ya que contiene una página web muy interesante con diversos directorios a explorar.
+              </p>
+              <img src="../img/fuzzing2.png" alt="ejemplos de fuzzing web" />
+              <p class="academyResumen">
+                Página de inicio de HackMePlease.
+              </p>
+            </div>
+
+            <div class="academyBox">
+              <p class="academyBox p-0 mb-6 text-lg">
+                Ahora que tenemos la página, podemos utilizar <strong class="color-secondary">Gobuster</strong> para obtener todos los archivos y directorios expuestos.
+                Primero, ponemos <strong class="color-secondary">gobuster</strong> seguido de la opción <strong class="color-secondary">dir</strong>, ya que queremos listar
+                los directorios. También especificamos con <strong class="color-secondary">-u</strong> la url de la página; en este caso con la IP ya basta.
+                También debemos especificar un diccionario con <strong class="color-secondary">-w</strong> para poder encontrar el contenido web. Un diccionario básico para hacer
+                fuzzing web se puede encontrar en <strong class="color-secondary">Web-Content/common.txt</strong>
+                Finalmente, si queremos filtrar por extensiones de archivo, ponemos <strong class="color-secondary">-x</strong> seguido de las extensiones que queremos, separadas por comas.
+              </p>
+              <img src="../img/fuzzing3.png" alt="ejemplos de fuzzing web" />
+              <p class="academyResumen">
+                En este caso, vamos a buscar en la página 10.10.10.69 con el diccionario de palabras common.txt directorios y archivos con las extensiones
+                txt,pdf,tar,gz,zip,js y php.
+              </p>
+            </div>
+
+            <div class="academyBox">
+              <p class="academyBox p-0 mb-6 text-lg">
+                Una vez ejecutado podremos ver los resultados. Si pone <strong class="color-secondary">Status:403</strong> significará que ha encontrado el archivo o directorio,
+                pero que no tiene acceso a él. Esto puede ser debido a que tiene algún tipo de protección como un <strong class="color-secondary">.htaccess, por ejemplo.</strong>
+                Si pone <strong class="color-secondary">Status:200</strong> significa que ha encontrado el archivo, y tiene acceso a él.
+                Con el código <strong class="color-secondary">Status:301</strong> sabemos que el enlace que se proporciona redirige a otro enlace, ya que con ése no hay soporte.
+                Finalmente, cabe comentar que por defecto gobuster no muestra los <strong class="color-secondary">Status:404</strong>, ya que no son enlaces válidos, y por lo tanto,
+                no nos interesan.
+              </p>
+              <img src="../img/fuzzing4.png" alt="ejemplos de fuzzing web" />
+              <p class="academyResumen">
+                Se han encontrado carpetas con css, img, js, fonts y un index.html con la página principal.
+              </p>
+            </div>
+
+            <div class="academyBox">
+              <p class="academyBox p-0 mb-6 text-lg">
+                Ahora que sabemos que tienen expuesta una carpeta con scripts de js, podemos seguir investigando, cambiando el directorio de búsqueda.
+              </p>
+              <img src="../img/fuzzing5.png" alt="ejemplos de fuzzing web" />
+              <p class="academyResumen">
+                Si cambiamos la página web a 10.10.10.69/js/ podemos ver más resultados.
+              </p>
+            </div>
+          </article>
+          <article class="w-full h-full">
+            <span class="text-2xl color-third"> Resumen </span>
+            <div class="academyBox">
+              <p class="text-lg academyResumen m-0">Para finalizar, y como curiosidad, hay páginas que ofrecen archivos de texto para los web crawlers llamados
+                robots.txt, pero también suelen haber versiones para humanos, como humans.txt con huevos de pascua.
+                <br>
+                Netflix hoy en día tiene una página helloworld abierta al público, todo y que no tiene ningún sentido aparente. Esta página se puede descubrir
+                con fuzzing web. https://www.netflix.com/helloworld
+              </p>
+            </div>
+          </article>
+        </article>
+      </article>
+    </article>
+  </section>
   <script src="../js/helpers/sidebarLogic.js"></script>
   <script type="module" src="../js/helpers/menuLogic.js"></script>
+  </body>
 </html>
