@@ -10,6 +10,7 @@ spec:
     - hosts:
       - osaproject.es
       - www.osaproject.es
+      - nodejs.osaproject.es
       secretName: ssl
   rules:
   - host: "www.osaproject.es"
@@ -22,3 +23,13 @@ spec:
             name: nginx-service
             port:
               number: 80
+  - host: "nodejs.osaproject.es"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: nodejs-service
+            port:
+              number: 3000

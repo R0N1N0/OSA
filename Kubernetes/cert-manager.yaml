@@ -13,3 +13,4 @@ spec:
   dnsNames:
     - osaproject.es
     - www.osaproject.es
+    - nodejs.osaproject.es
