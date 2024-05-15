@@ -12,4 +12,5 @@ spec:
     encoding: PKCS1
   dnsNames:
     - osaproject.es
+    - www.osaproject.es
     - nodejs.osaproject.es
