@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const trim = require("../helpers/trim.js");
+const juntar = require("../helpers/trim.js");
 require("dotenv").config();
 /**
  * Función que valida un token de autenticación.

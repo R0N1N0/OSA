@@ -1,4 +1,4 @@
-const trim = require("../helpers/trim.js");
+const juntar = require("../helpers/trim.js");
 require('dotenv').config();
 
 const mysql = require('mysql2/promise');
