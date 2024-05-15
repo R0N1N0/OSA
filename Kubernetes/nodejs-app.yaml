@@ -93,7 +93,7 @@ metadata:
   annotations:
     kubernetes.digitalocean.com/load-balancer-id: "ams3-load-balancer-02"
     service.beta.kubernetes.io/do-loadbalancer-name: "nodejs"
-    service.beta.kubernetes.io/do-loadbalancer-hostname: "nodejs"
+    service.beta.kubernetes.io/do-loadbalancer-hostname: "nodejs.osaproject.es"
     service.beta.kubernetes.io/do-loadbalancer-size-unit: "1"
     service.beta.kubernetes.io/do-loadbalancer-disable-lets-encrypt-dns-records: "false"
     #service.beta.kubernetes.io/do-loadbalancer-protocol: "https"

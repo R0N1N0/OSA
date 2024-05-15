@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: certificate
+spec:
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer 
+  secretName: ssl
+  privateKey:
+    algorithm: RSA
+    encoding: PKCS1
+  dnsNames:
+    - osaproject.es
+    - www.osaproject.es
