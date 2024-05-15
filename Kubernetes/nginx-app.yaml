@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: <IMAGE>
+        image: registry.digitalocean.com/osa-containerregistry/nginx:366f8715ad044572f3986f929164c0d34819660f
         resources:
           limits:
             memory: "64Mi"
@@ -32,13 +32,13 @@ metadata:
   annotations:
     kubernetes.digitalocean.com/load-balancer-id: "ams3-load-balancer-01"
     service.beta.kubernetes.io/do-loadbalancer-name: "nginx"
-    service.beta.kubernetes.io/do-loadbalancer-hostname: "www.osaproject.es"
+    service.beta.kubernetes.io/do-loadbalancer-hostname: "osaproject.es"
     service.beta.kubernetes.io/do-loadbalancer-size-unit: "1"
     service.beta.kubernetes.io/do-loadbalancer-disable-lets-encrypt-dns-records: "false"
     service.beta.kubernetes.io/do-loadbalancer-protocol: "http"
     service.beta.kubernetes.io/do-loadbalancer-tls-ports: "443"
-    service.beta.kubernetes.io/do-loadbalancer-certificate-id: "6302ce53-e2a0-40c2-b7af-5ade2aa203fa"
-    service.beta.kubernetes.io/do-loadbalancer-redirect-http-to-https: "true"
+    #service.beta.kubernetes.io/do-loadbalancer-certificate-id: "6302ce53-e2a0-40c2-b7af-5ade2aa203fa"
+    #service.beta.kubernetes.io/do-loadbalancer-redirect-http-to-https: "true"
 spec:
   type: LoadBalancer
   selector:
@@ -48,7 +48,7 @@ spec:
       protocol: TCP
       port: 80
       targetPort: 80
-    - name: https
-      protocol: TCP
-      port: 443
-      targetPort: 80
+    #- name: https
+    #  protocol: TCP
+    #  port: 443
+    #  targetPort: 80

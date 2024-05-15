@@ -6,14 +6,14 @@ metadata:
     spec.ingressClassName: nginx
     cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
-  tls:
-    - hosts:
-      - osaproject.es
-      - www.osaproject.es
-      - nodejs.osaproject.es
-      secretName: ssl
+  #tls:
+    #- hosts:
+      #- osaproject.es
+      #- www.osaproject.es
+      #- nodejs.osaproject.es
+      #secretName: ssl
   rules:
-  - host: "www.osaproject.es"
+  - host: "osaproject.es"
     http:
       paths:
       - pathType: Prefix
