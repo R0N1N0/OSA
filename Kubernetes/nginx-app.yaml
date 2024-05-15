@@ -31,7 +31,7 @@ metadata:
   annotations:
     kubernetes.digitalocean.com/load-balancer-id: "ams3-load-balancer-01"
     service.beta.kubernetes.io/do-loadbalancer-name: "nginx"
-    service.beta.kubernetes.io/do-loadbalancer-hostname: "www.osaproject.es"
+    service.beta.kubernetes.io/do-loadbalancer-hostname: "osaproject.es"
     service.beta.kubernetes.io/do-loadbalancer-size-unit: "1"
     service.beta.kubernetes.io/do-loadbalancer-disable-lets-encrypt-dns-records: "false"
     #service.beta.kubernetes.io/do-loadbalancer-protocol: "https"

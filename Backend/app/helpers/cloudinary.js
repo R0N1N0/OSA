@@ -6,7 +6,7 @@ require("dotenv").config();
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.API_KEY,
-  api_secret: trim(process.env.API_SECRET1, process.env.API_SECRET2),
+  api_secret: juntar(process.env.API_SECRET1, process.env.API_SECRET2),
   secure: true,
 });
 
