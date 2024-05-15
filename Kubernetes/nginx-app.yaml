@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: registry.digitalocean.com/osa-containerregistry/nginx:366f8715ad044572f3986f929164c0d34819660f
+        image: <IMAGE>
         resources:
           limits:
             memory: "64Mi"
