@@ -1,6 +1,6 @@
 const cloudinary = require('cloudinary').v2;
 const fs = require('fs');
-const juntar = require("../helpers/trim.js");
+const juntar = require("./trim.js");
 require("dotenv").config();
 
 cloudinary.config({
