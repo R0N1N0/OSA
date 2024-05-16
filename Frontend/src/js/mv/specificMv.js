@@ -3,7 +3,7 @@
 
 import helpers from "../helpers/utils.js";
 import { requestMv } from "./requestsMv.js";
-import { getUserRequests } from "../helpers/userRequests.js";
+import { getUserRequests } from "../userInfo/userRequests.js";
 
 // variables
 
@@ -113,7 +113,6 @@ async function printMachine() {
 async function printComments() {
     helpers.clearHTML(mvCommentsArticle.querySelector(".commentsContainer"));
     const mvComments = await requestMv.getComments(idMv);
-    console.log("aaaa", mvComments);
     if(!mvComments || mvComments.error) return helpers.showStaticAlert("No hay comentarios disponibles", "information", mvCommentsArticle.querySelector("article"));
     mvComments.forEach(comment => {
         const divContainer = document.createElement("div");
