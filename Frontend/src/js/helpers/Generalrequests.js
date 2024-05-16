@@ -9,10 +9,8 @@ export async function fetchPOST(route, data) {
             },
             body: JSON.stringify(data)
         });
-        if(response.ok){
             const responseData = await response.json();
             return responseData;
-        }
     } catch (error) {
         console.log(error);
     }
