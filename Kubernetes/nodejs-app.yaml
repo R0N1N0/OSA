@@ -98,7 +98,7 @@ metadata:
     service.beta.kubernetes.io/do-loadbalancer-disable-lets-encrypt-dns-records: "false"
     service.beta.kubernetes.io/do-loadbalancer-protocol: "http"
     service.beta.kubernetes.io/do-loadbalancer-tls-ports: "443"
-    service.beta.kubernetes.io/do-loadbalancer-certificate-id: "6302ce53-e2a0-40c2-b7af-5ade2aa203fa"
+    service.beta.kubernetes.io/do-loadbalancer-certificate-id: "89465f8f-b695-43e3-ac31-c37a98c3f5df"
 spec:
   type: LoadBalancer
   selector:
