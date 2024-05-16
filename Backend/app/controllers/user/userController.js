@@ -12,30 +12,29 @@ exports.getUserAuth = async (req, res) => {
     const connection = await db.getConnection();
 
     // hacer la consulta
-    let results = await connection.query("select id_usuario, rol, password from usuario where username = ?", [username]);
+    let [[result]] = await connection.query("select id_usuario, rol, password from usuario where username = ?", [username]);
     
     //liberar la connexion
     connection.release();
 
-    // coger solo el array de resultados
-    results = results[0];
-
-    // comprobar la contraseña del usuario
-    const checkPassword = await bcrypt.compare(password, results[0].password);
 
     // ahora hacer todo el tema de la validacion 
-    if (results.length === 0 || !checkPassword) {
-      res.json( {message: "Nombre de usuario o contraseña incorrectos"} );
-    } else {
-      // Crear el token si el usuario existe
+    if (!result) {
+      console.log("yass");
+      return res.status(401).json( {error: "Nombre de usuario o contraseña incorrectos"} );
+    } 
+
+      const checkPassword = await bcrypt.compare(password, result.password);
+      if(!checkPassword) return res.status(401).json( {error: "Nombre de usuario o contraseña incorrectos"} );
+
       const payload = {
-        id: results[0].id_usuario,
-        rol: results[0].rol
+        id: result.id_usuario,
+        rol: result.rol
       }
-      // devolver token al cliente
+
       const token = jwt.sign(payload, process.env.TOKEN_SECRET, { expiresIn: '1h' });
-      res.status(200).json({ token });
-    }
+      res.status(200).json( { token: token } );
+
   } catch(error) {
     res.send(`Error en el servidor ${error}`);
   }
