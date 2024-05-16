@@ -1,4 +1,4 @@
-import { getUserRequests } from "./userRequests.js";
+import { getUserRequests } from "../userInfo/userRequests.js";
 
 document.addEventListener("DOMContentLoaded", menuLogic);
 
@@ -26,7 +26,7 @@ function menuLogic() {
             >
           </li>
           <li class="ml-6">
-            <a href=""><i class="fa-solid fa-building-columns"></i> Academia</a>
+            <a href="./public/academy.html"><i class="fa-solid fa-building-columns"></i> Academia</a>
           </li>
           <li class="ml-6">
             <a href=""><i class="fa-solid fa-info"></i> Ayuda</a>

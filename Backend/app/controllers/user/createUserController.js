@@ -22,9 +22,9 @@ exports.createUser = async (req, res) => {
 
     password = await convertPassword(password);
 
-    const userData = [username, password, pathImg, "usuario"];
+    const userData = [username, password, getCode(username), pathImg, "usuario"];
     // La query
-    query = "insert into usuario(username, password, imagen, rol) values(?, ?, ?, ?)";
+    query = "insert into usuario(username, password, codigo, imagen, rol) values(?, ?, ?, ?, ?)";
     const result = await connexion.query(query, userData);
     connexion.release();
     if(result){
@@ -37,7 +37,7 @@ exports.createUser = async (req, res) => {
 
 
 async function checkUser(connexion, username) {
-    const sql = "select id_usuario from usuario where username = ?;";
+    const sql = "select id_usuario from usuario where username = ?";
     let res = await connexion.query(sql, username);
     res = res[0];
     if(res && res.length > 0) return true;
@@ -45,4 +45,11 @@ async function checkUser(connexion, username) {
 }
 async function convertPassword(password){ 
   return await bcrypt.hash(password, 10);
+}
+
+function getCode(username){
+  username = username.slice(0, 2);
+  const d = new Date();
+  username += d.getTime().toString().slice(-5);
+  return username;
 }

@@ -1,4 +1,4 @@
-import { getUserRequests } from "./userRequests.js";
+import { getUserRequests } from "../userInfo/userRequests.js";
 
 menuLogic();
 async function menuLogic(){
@@ -25,7 +25,7 @@ async function menuLogic(){
             >
           </li>
           <li class="ml-6">
-            <a href=""><i class="fa-solid fa-building-columns"></i> Academia</a>
+            <a href="./academy.html"><i class="fa-solid fa-building-columns"></i> Academia</a>
           </li>
           <li class="ml-6">
             <a href=""><i class="fa-solid fa-info"></i> Ayuda</a>

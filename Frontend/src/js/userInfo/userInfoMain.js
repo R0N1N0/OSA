@@ -2,26 +2,19 @@ import { printAwards } from "./userAwards.js";
 import { printMachines } from "./userMachines.js";
 import { printGroups } from "./userGroup.js";
 import { printRanking } from "./userRanking.js";
-import helpers from "../helpers/utils.js";
-import { getUserRequests } from "../helpers/userRequests.js";
+import { getUserRequests } from "./userRequests.js";
 
 // variables
 let userData = [];
 let userMachines = [];
 let userRanking = [];
 let userAwards = [];
-const userInfoSection = document.querySelector(".userInfo");
 const divInfo = document.querySelector(".userInfo div.info");
 const maquinasArticle = document.querySelector(".maquinas");
 const rankingArticle = document.querySelector(".ranking");
-const modalCreateGroup = document.querySelector(".modalCreateGroup");
-const closeModal = document.querySelector(".modalShowMv .close");
 
 //eventos 
 getAllInfo();
-closeModal.addEventListener("click", function(){
-    helpers.showModal(modalCreateGroup, userInfoSection);
-});
 // funciones
 
 // funcion que recupera los datos del usuario

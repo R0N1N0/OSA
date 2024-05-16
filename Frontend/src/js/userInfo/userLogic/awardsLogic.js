@@ -1,6 +1,6 @@
 import { points } from "../userInfoMain.js";
 import helpers from "../../helpers/utils.js";
-import { getUserRequests } from "../../helpers/userRequests.js";
+import { getUserRequests } from "../userRequests.js";
 import { printAwards } from "../userAwards.js";
 
 

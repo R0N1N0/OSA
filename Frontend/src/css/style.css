@@ -55,12 +55,37 @@ header nav {
 .ubuntuFont{
   font-family: "Ubuntu", sans-serif !important;
 }
+.border-bottom{
+  border-bottom: 1px solid var(--border-radius-color);
+}
+thead tr{
+  background-color: #2d2e36;
+}
+td, th{
+  padding: 10px;
+}
+thead th:first-child{
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+thead th:last-child{
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+.p-0{
+  padding: 0 !important;
+}
+
 /* buttones */
 
 .btn-info {
   padding: 5px 15px;
   border: 1px solid var(--color-secondary);
   position: relative;
+}
+.btn-info a{
+  position: relative;
+  z-index: 20;
 }
 .btn::before {
   content: " ";
@@ -183,7 +208,7 @@ label {
 
 /***** Login article ****/
 
-.box-shadow00405:hover {
+.box-shadow00405 {
   box-shadow: 0px 0px 40px 5px rgba(190, 190, 190, 0.3);
 }
 
@@ -243,17 +268,12 @@ label {
 }
 table , th, tr, td {
   text-align: center;
-  border: 1px solid var(--border-radius-color);
   color: var(--color-text);
   font-weight: 500;
 }
 .maquinas table tr img {
   width: 100px;
   height: 100px;
-}
-.maquinas table tr,
-.ranking table tr {
-  box-shadow: 0px 5px 4px 0px rgba(101, 129, 240, 0.2);
 }
 .divGroup {
   border: 1px solid hsla(0, 0%, 100%, 0.1);
@@ -313,6 +333,37 @@ button.send i{
   animation: remove 0.3 ease;
 }
 
+
+/* Academy clases */
+
+.academyBox {
+  color: var(--color-text);
+  background-color: #2d2e36;
+  padding: 25px;
+  border-radius: 12px;
+  width: 80%;
+  margin-top: 1rem;
+  font-weight: normal;
+}
+.academyBox strong, .academyResumen strong {
+  font-weight: normal;
+}
+.academyResumen{
+  color: var(--color-success);
+  margin-top: 1rem;
+  font-weight: normal;
+}
+.academy img{
+  border-radius: 12px;
+}
+.academy > article{
+  width: 80%;
+}
+
+/* footer */
+footer {
+  border-top: 1px solid var(--color-third);
+}
 /** clases js **/
 .rotate {
   transform-style: preserve-3d;
@@ -321,7 +372,45 @@ button.send i{
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
   background-color: black;
 }
+.slider-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.slider {
+  display: flex;
+  width: calc(250px * 14);
+  animation: sliderLogic 25s linear infinite;
+}
+.slider-container::before,
+.slider-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 50px;
+  z-index: 1;
+}
+
+.slider-container::before {
+  left: 0;
+  background: linear-gradient(to right, #020617, rgba(0, 0, 0, 0) 100%);
+}
+
+.slider-container::after {
+  right: 0;
+  background: linear-gradient(to left, #020617, rgba(0, 0, 0, 0) 100%);
+}
+
 /* Animaciones */
+@keyframes sliderLogic {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-250px * 7));
+  }
+}
 @keyframes remove {
   0% {
     opacity: 1;
@@ -388,7 +477,7 @@ button.send i{
 .linuxTerminal > div > div{
   background-color: var(--box-style-background);
 }
-.linuxTerminal > div > div > span{
+.linuxTerminal > div > div > div > span{
   background-color: #292a2b;
   width: 30px;
   height: 30px;

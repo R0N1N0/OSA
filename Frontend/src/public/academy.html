@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OSA Academia</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      src="https://kit.fontawesome.com/0da2217e8f.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="shortcut icon"
+      type="image/jpg"
+      href="../img/OSA_normalLogo.png"
+      sizes="32x32"
+    />
+  </head>
+  <body
+    class="bg-slate-950 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)"
+  >
+    <header></header>
+
+    <!-- menu lateral  -->
+    <section
+      class="academy controller leading-5 w-auto relative flex items-center top-24 h-auto"
+    >
+      <nav
+        class="w-64 menuLateral h-screen top-24 fixed flex flex-col items-center"
+      >
+        <ul class="flex flex-col mt-12">
+          <li class="mt-2 tab-controller active" name="nmap">
+            <i class="fa-solid fa-crown"></i> Nmap
+          </li>
+          <li class="mt-2 tab-controller" name="metasploit">
+            <i class="fa-solid fa-cube"></i> Metasploit
+          </li>
+          <li class="mt-2 tab-controller" name="grupos">
+            <i class="fa-solid fa-users"></i> Grupos
+          </li>
+          <li class="mt-2 tab-controller" name="invitaciones">
+            <i class="fa-solid fa-user-plus"></i> Invitaciones
+          </li>
+          <li class="mt-2 tab-controller" name="ranking">
+            <i class="fa-solid fa-bolt"></i> Ranking
+          </li>
+        </ul>
+      </nav>
+
+      <!--------------------- NMAP --------------------->
+      <article
+        class="ml-64 nmap tab pl-12 pt-12 w-full flex flex-row flex-wrap justify-center gap-10 mb-12"
+      >
+        <header class="header flex justify-between w-full">
+          <h3 class="text-3xl color-text flex flex-row items-center">
+            <img
+              class="size-20 mr-4"
+              src="https://www.kali.org/tools/nmap/images/nmap-logo.svg"
+              alt="nmap logo"
+            />
+            Nmap
+          </h3>
+        </header>
+        <div class="w-4/5 alert flex justify-center flex-wrap"></div>
+        <article
+          class="w-full h-full flex flex-row flex-wrap justify-center gap-10"
+        >
+          <article class="h-full w-full">
+            <span class="text-2xl color-third"> ¿Qué es Nmap? </span>
+            <p class="academyBox mt-6 text-lg">
+              <strong class="color-secondary"> Nmap o Network Mapper </strong>
+              es una de las herramientas más utilizadas en el mundo del hacking,
+              ya que permite realizar exploraciones de redes y auditorías de
+              seguridad. Nmap es una herramienta de código abierto creada por el
+              equipo del mismo nombre. Está escrita en su mayoría por lenguaje
+              C, C++ y Lua
+              <strong class="color-secondary">
+                <a target="_blank" href="https://nmap.org/"
+                  >(https://nmap.org/)</a
+                ></strong
+              >. Su funcionalidad más interesante es la del escaneo masivo de
+              dispositivos en una red, junto a los servicios, sistemas
+              operativos y cortafuegos que utilizan. Nmap también cuenta con
+              decenas de opciones para personalizar el escaneo de dispositivos (
+              <strong class="color-secondary"> -A </strong> para detectar
+              versiones, sistemas operativos, puertos, etc.
+              <strong class="color-secondary"> -sL </strong> para detectar
+              objetivos…).
+            </p>
+          </article>
+
+          <article class="h-full w-full">
+            <span class="text-2xl color-third"> Ejemplos </span>
+
+            <div class="academyBox">
+              <p class="academyBox p-0 mb-6 text-lg">
+                Para poder escanear máquinas virtuales (CTF) en la red,
+                utilizaremos
+                <strong class="color-secondary">
+                  nmap [IP de red / CIDR]
+                </strong>
+              </p>
+              <img src="../img/nmap7.png" alt="ejemplos de nmap" />
+              <p class="academyResumen">
+                Ejemplo básico de nmap. Aqui se muestran las IPs de las máquinas
+                virtuales, junto a los puertos abiertos. La red es 200.200.10.0
+                y el bloque CIDR /24
+              </p>
+            </div>
+
+            <div class="academyBox">
+              <p class="academyBox p-0 mb-6 text-lg">
+                Normalmente saldrán varias IPs, y un listado de puertos abiertos
+                por cada una de estas. Los puertos más comunes, y que pueden
+                indicar la presencia de una máquina virtual CTF, son el puerto
+                22 de TCP (SSH) para conectarse remotamente; y 80 de TCP (HTTP)
+                por alguna página web que se está hospedando en la máquina
+                destino.
+              </p>
+              <img src="../img/nmap6.png" alt="ejemplos de nmap" />
+              <p class="academyResumen">
+                Potencial candidato de ser un CTF, ya que tiene los dos puertos
+                mencionados anteriormente.
+              </p>
+            </div>
+            <div class="academyBox">
+              <p class="academyBox p-0 mb-6 text-lg">
+                Para poder saber más información sobre los sistemas, podemos
+                poner la IP del sistema junto a diversas banderas o
+                <strong class="color-secondary"> “flags” </strong> en la
+                terminal. Una muy interesante es la
+                <strong class="color-secondary"> -sV </strong>, para saber la
+                versión de los servicios.
+              </p>
+              <img src="../img/nmap4.png" alt="ejemplos de nmap" />
+              <p class="academyResumen">
+                Esta máquina Windows Server, por ejemplo, tiene un Active
+                Directory abierto, y podemos saber el nombre del dominio, la
+                dirección MAC y cuánto tiempo lleva activa por el servicio de
+                Kerberos
+              </p>
+            </div>
+            <div class="academyBox">
+              <p class="academyBox p-0 mb-6 text-lg">
+                Con <strong class="color-secondary"> -O </strong>, podemos saber
+                el sistema operativo de la máquina con la IP especificada:
+              </p>
+              <img src="../img/nmap3.png" alt="ejemplos de nmap" />
+              <p class="academyResumen">
+                En este caso, nos encontramos ante una máquina virtual que
+                utiliza Linux 4 o Linux 5, gracias a su kernel.
+              </p>
+            </div>
+            <div class="academyBox">
+              <p class="academyBox p-0 mb-6 text-lg">
+                Otra opción muy interesante es la de
+                <strong class="color-secondary"> –script </strong>, la cual nos
+                permite ejecutar un script de LUA para poder detectar cosas más
+                específicas. Casi todos los scripts están hechos y mantenidos
+                por la comunidad y hay de muchos tipos. Algunos de los que nos
+                pueden ser más útiles a la hora de resolver máquinas son los
+                scripts que detectan vulnerabilidades. Ejemplos de estos son
+                <strong class="color-secondary">vulscan, vulners, etc.</strong>
+              </p>
+              <img src="../img/nmap1.png" alt="ejemplos de nmap" />
+              <p class="academyResumen">
+                Podemos observar distintos tipos de vulnerabilidades y exploits
+                de Apache2 encontrados en esta máquina.
+              </p>
+            </div>
+            <div class="academyBox">
+              <p class="academyBox p-0 mb-6 text-lg">
+                Si detectamos algún cortafuegos en la máquina objetivo, podemos
+                emplear técnicas de evasión como fragmentar los paquetes de IP a
+                la hora de detectar máquinas, crear IPs falsas mediante spoofing
+                para complicar la detección de nuestra IP con
+                <strong class="color-secondary"> -S </strong> o incluso crear
+                señuelos con <strong class="color-secondary"> -D </strong> para
+                que el IDS o cortafuegos crea que se están realizando escaneos
+                desde distintos lugares.
+              </p>
+              <img src="../img/nmap2.png" alt="ejemplos de nmap" />
+              <p class="academyResumen">
+                En el ejemplo, se puede ver como se utilizan 3 IPs como señuelo,
+                seguida de “ME”, que es nuestra IP real. Si no ponemos nuestra
+                IP, no se podrá realizar el escaneo.
+              </p>
+            </div>
+          </article>
+          <article class="w-full h-full">
+            <span class="text-2xl color-third"> Resumen </span>
+            <div class="academyBox">
+              <p class="text-lg academyResumen m-0">Para finalizar, y como curiosidad, Nmap es una herramienta tan popular que incluso ha aparecido en la gran pantalla, en películas como Matrix Reloaded, Dredd, Snowden, Elysium, Los Cuatro Fantásticos, etc.</p>
+            </div>
+          </article>
+        </article>
+      </article>
+
+      <!------------------------------------------>
+
+      <article
+        class="ml-64 metasploit tab hidden pl-12 pt-12 w-full flex flex-row flex-wrap justify-center gap-10"
+      >
+        <header class="header flex justify-between w-11/12">
+          <h3 class="text-2xl color-text">
+            <i class="fa-solid fa-cube"></i> Máquinas hackeadas
+          </h3>
+          <button class="text-lg w-72 h-9 rounded btn-info color-text btn">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            <a href="/Frontend/src/public/mv.html">Ver máquinas disponibles</a>
+          </button>
+        </header>
+      </article>
+    </section>
+  </body>
+  <script src="../js/helpers/sidebarLogic.js"></script>
+  <script type="module" src="../js/helpers/menuLogic.js"></script>
+</html>
