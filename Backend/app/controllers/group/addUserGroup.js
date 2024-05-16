@@ -39,7 +39,6 @@ async function checkUser(username, code) {
     return false;
   } catch (err) {
     console.error("Error al verificar usuario: ", err);
-    throw err;
   }
 }
 
@@ -56,7 +55,6 @@ async function sendInvitation(idGroup, idUser) {
     return false;
   } catch (err) {
     console.error("Error al enviar invitación: ", err);
-    throw err;
   }
 }
 
@@ -73,6 +71,5 @@ async function isExists(idUser, idGroup) {
   }
   catch (err) {
     console.error("Error al enviar invitación: ", err);
-    throw err;
   }
 }
