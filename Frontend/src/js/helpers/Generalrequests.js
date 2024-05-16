@@ -1,4 +1,4 @@
-const baseUrl = "https://nodejs.osaproject.es:3000/";
+const baseUrl = "https://nodejs.osaproject.es:443/";
 
 export async function fetchPOST(route, data) {
     try {
