@@ -8,10 +8,12 @@ metadata:
 spec:
   tls:
     - hosts:
-      - osaproject.es
-      - www.osaproject.es
-      - nodejs.osaproject.es
+        - osaproject.es
+        - www.osaproject.es
       secretName: ssl
+    - hosts:
+        - nodejs.osaproject.es
+      secretName: ssl-nodejs
   rules:
   - host: "www.osaproject.es"
     http:
@@ -26,10 +28,20 @@ spec:
   - host: "nodejs.osaproject.es"
     http:
       paths:
-      - pathType: Prefix
-        path: "/"
-        backend:
-          service:
-            name: nodejs-service
-            port:
-              number: 3000
+        - pathType: Prefix
+          path: "/"
+          backend:
+            service:
+              name: nodejs-service
+              port:
+                number: 3000
+  - host: nodejs.osaproject.es
+    http:
+      paths:
+        - path: /.well-known/acme-challenge/
+          pathType: Prefix
+          backend:
+            service:
+              name: nodejs-service
+              port:
+                number: 80

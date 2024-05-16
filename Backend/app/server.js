@@ -49,6 +49,9 @@ app.use('/', group);
 const comments = require('./routes/comments/comments.js');
 app.use('/', comments);
 
+/* Acme challenge */
+app.use('/.well-known/acme-challenge/', express.static('./.well-known/acme-challenge/'));
+
 /* Arrancar servidor en el puerto 3000 */
 app.listen(PORT, () => {
     console.log(`Servidor escuchando por el puerto ${PORT}`);
