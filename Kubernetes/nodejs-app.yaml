@@ -91,7 +91,7 @@ kind: Service
 metadata:
   name: nodejs-service
   annotations:
-    kubernetes.digitalocean.com/load-balancer-id: "ams3-load-balancer-02"
+    kubernetes.digitalocean.com/load-balancer-id: "ams3-load-balancer-94"
     service.beta.kubernetes.io/do-loadbalancer-name: "nodejs"
     service.beta.kubernetes.io/do-loadbalancer-hostname: "nodejs.osaproject.es"
     service.beta.kubernetes.io/do-loadbalancer-size-unit: "1"
