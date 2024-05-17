@@ -3,6 +3,7 @@ import { printMachines } from "./userMachines.js";
 import { printGroups } from "./userGroup.js";
 import { printRanking } from "./userRanking.js";
 import { getUserRequests } from "./userRequests.js";
+import { printInvitations } from "./userInvitations.js";
 
 // variables
 let userData = [];
@@ -12,9 +13,11 @@ let userAwards = [];
 const divInfo = document.querySelector(".userInfo div.info");
 const maquinasArticle = document.querySelector(".maquinas");
 const rankingArticle = document.querySelector(".ranking");
+const closeSessionContainer = document.querySelector(".userActions .closeSession");
 
 //eventos 
 getAllInfo();
+closeSessionContainer.addEventListener("click", closeSession);
 // funciones
 
 // funcion que recupera los datos del usuario
@@ -33,6 +36,7 @@ async function getAllInfo(){
     printMachines(userMachines, maquinasArticle);
     printGroups();
     printRanking(userRanking, rankingArticle);
+    printInvitations();
 }
 
 // function para mostrar los datos personales del usuario por pantalla
@@ -65,5 +69,10 @@ export function points(){
 }
 function checkUserAuth(userData) {
     if(userData) return;
+    window.location.href = "../index.html";
+}
+
+function closeSession() {
+    localStorage.clear();
     window.location.href = "../index.html";
 }

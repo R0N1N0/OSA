@@ -44,7 +44,7 @@ export async function createGroupLogic(e, modalCreateGroup){
 
 export async function deleteGroupLogic(idGroup){
     if(!idGroup) return;
-    const res = getUserRequests.deleteGroup({id: idGroup});
+    const res = getUserRequests.deleteGroup({id_grupo: idGroup});
     if(res){
         return true;
     }
