@@ -31,8 +31,8 @@ exports.getUserAuth = async (req, res) => {
         id: result.id_usuario,
         rol: result.rol
       }
-
-      const token = jwt.sign(payload, process.env.TOKEN_SECRET, { expiresIn: '1h' });
+      
+      const token = jwt.sign(payload, juntar(process.env.TOKEN_SECRET1,process.env.TOKEN_SECRET2), { expiresIn: '1h' });
       res.status(200).json( { token: token } );
 
   } catch(error) {

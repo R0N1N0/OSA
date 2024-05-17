@@ -14,9 +14,7 @@ function validateToken(req, res, next) {
             return res.status(401).json({ error: "Token no proporcionado" });
         }
         // Verificar el token 
-        let token = juntar(process.env.TOKEN_SECRET1,process.env.TOKEN_SECRET2);
-        console.log(token);
-        jwt.verify(token.split(' ')[1], token, (error, payload) => {
+        jwt.verify(token.split(' ')[1], juntar(process.env.TOKEN_SECRET1,process.env.TOKEN_SECRET2), (error, payload) => {
             if (error) {
                 return res.status(401).json({ error: 'Token inválido' });
             }
