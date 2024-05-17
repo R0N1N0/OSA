@@ -1,6 +1,7 @@
 const db = require("../../db/db");
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const juntar = require("../../helpers/trim.js");
 require('dotenv').config();
 
 
@@ -31,7 +32,7 @@ exports.getUserAuth = async (req, res) => {
         id: result.id_usuario,
         rol: result.rol
       }
-      
+
       const token = jwt.sign(payload, juntar(process.env.TOKEN_SECRET1,process.env.TOKEN_SECRET2), { expiresIn: '1h' });
       res.status(200).json( { token: token } );
 
