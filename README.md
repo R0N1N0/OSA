@@ -33,6 +33,8 @@ Nodejs: [![nodejs-publish](https://github.com/R0N1N0/OSA/actions/workflows/nodej
 
 ### ¿Cómo montar los contenedores?
 
+Importante, hace falta cambiar el URL en el archivo Frontend/src/js/helpers/Generalrequests.js y modificar la variable baseUrl hacia el backend, en el caso de Docker, sería http://nodejs:3000/
+
 - Seguidamente para crear los contenedores pon el siguiente comando:
 
 ```bash
