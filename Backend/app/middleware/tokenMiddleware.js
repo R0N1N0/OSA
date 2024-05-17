@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const juntar = require("../helpers/trim.js");
 require("dotenv").config();
 /**
  * Función que valida un token de autenticación.
@@ -13,7 +14,7 @@ function validateToken(req, res, next) {
             return res.status(401).json({ error: "Token no proporcionado" });
         }
         // Verificar el token 
-        jwt.verify(token.split(' ')[1], process.env.TOKEN_SECRET, (error, payload) => {
+        jwt.verify(token.split(' ')[1], juntar(process.env.TOKEN_SECRET1,process.env.TOKEN_SECRET2), (error, payload) => {
             if (error) {
                 return res.status(401).json({ error: 'Token inválido' });
             }

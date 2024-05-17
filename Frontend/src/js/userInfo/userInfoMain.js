@@ -2,8 +2,7 @@ import { printAwards } from "./userAwards.js";
 import { printMachines } from "./userMachines.js";
 import { printGroups } from "./userGroup.js";
 import { printRanking } from "./userRanking.js";
-import helpers from "../helpers/utils.js";
-import { getUserRequests } from "../helpers/userRequests.js";
+import { getUserRequests } from "./userRequests.js";
 
 // variables
 let userData = [];

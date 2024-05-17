@@ -1,7 +1,7 @@
 // Este fichero gestiona el apartado de grupos de userInfo
 import helpers from "../helpers/utils.js";
-import { getUserRequests } from "../helpers/userRequests.js";
-import { createGroupLogic, deleteGroupLogic, viewMembersLogic } from "./userLogic/groupLogic.js";
+import { getUserRequests } from "./userRequests.js";
+import { createGroupLogic, deleteGroupLogic, viewMembersLogic, addUserGroupLogic } from "./userLogic/groupLogic.js";
 
 const gruposArticle = document.querySelector(".grupos");
 const addGroup = gruposArticle.querySelector(".btn-success");
@@ -10,6 +10,7 @@ const buttonAddGroup = modalCreateGroup.querySelector("input[type=submit]");
 const userInfoSection = document.querySelector(".userInfo");
 const containerGroups = gruposArticle.querySelector(".gruposContainer");
 const modalViewMembers = document.querySelector(".modalViewMembers");
+const modalAddgroup = document.querySelector(".modalAddUserGroup");
 
 export async function printGroups() {
   const alertContainer = helpers.returnAlertContainer(gruposArticle);
@@ -36,6 +37,9 @@ export async function printGroups() {
       if (group.admin) {
         const liEdit = document.createElement("li");
         liEdit.innerHTML = `<i class="fa-solid fa-user-plus"></i>`;
+        liEdit.onclick = () => {
+          addUserGroup(group.id_grupo);
+        };
         liEdit.value = group.id_grupo;
         liEdit.className = "cursor-pointer mr-2 edit";
         const liDelete = document.createElement("li");
@@ -128,10 +132,16 @@ async function deleteGroup(e) {
 }
 
 function viewMembers(e){
-  e = e.target.parentElement.value;
-  if(!e) return;
-  viewMembersLogic(e, modalViewMembers, userInfoSection);
+  const idGroup = e.target.parentElement.value;
+  if(!idGroup) return;
+  viewMembersLogic(idGroup, modalViewMembers, userInfoSection);
 }
+
+function addUserGroup(idGroup) {
+  if(!idGroup) return;
+  addUserGroupLogic(idGroup, modalAddgroup, userInfoSection);
+}
+
 function reset() {
   helpers.clearHTML(containerGroups);
   printGroups();

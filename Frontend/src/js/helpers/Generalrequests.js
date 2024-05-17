@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:3000/";
+const baseUrl = "https://nodejs.osaproject.es:443/";
 
 export async function fetchPOST(route, data) {
     try {
@@ -9,10 +9,8 @@ export async function fetchPOST(route, data) {
             },
             body: JSON.stringify(data)
         });
-        if(response.ok){
             const responseData = await response.json();
             return responseData;
-        }
     } catch (error) {
         console.log(error);
     }
@@ -76,10 +74,7 @@ export async function fetchPostWithDataToken(route, token, data){
             },
             body: JSON.stringify(data)
         });
-        if(response.ok){
             return await response.json();
-        }
-        return false;
     } catch (error) {
         return console.log(`error en fetchPostWithDataToken ${error}`);
     }

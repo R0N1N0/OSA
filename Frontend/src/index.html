@@ -1,91 +1,161 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>OSA</title>
-    <link rel="stylesheet" href="./css/style.css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script
-      src="https://kit.fontawesome.com/0da2217e8f.js"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="shortcut icon" type="image/jpg" href="./img/OSA_normalLogo.png" sizes="32x32">
-  </head>
-  <body class="bg-slate-950 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)">
-    <header class="w-full h-screen">
-      <div class="w-full h-full absolute top-0 flex items-center justify-center flex-col gap-8">
-        <h1
-          class="text-center flex flex-col justify-center items-center z-40 text-5xl"
-        >
-          <img class="size-32" src="./img/OSA_normalLogo.png" alt="Logo OSA" />
-          OFFENSIVE SECURITY <br />
-          <span>ACADEMY</span>
-        </h1>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OSA</title>
+  <link rel="stylesheet" href="./css/style.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/0da2217e8f.js" crossorigin="anonymous"></script>
+  <link rel="shortcut icon" type="image/jpg" href="./img/OSA_normalLogo.png" sizes="32x32">
+  <link rel="stylesheet" href="../node_modules/atropos/atropos.css" />
+</head>
+
+<body
+  class="bg-slate-950 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)">
+  <header class="w-full h-screen">
+    <div class="w-full h-full absolute top-0 flex items-center justify-center flex-col gap-8">
+              <h1 class="text-center flex flex-col justify-center items-center z-40 text-5xl">
+                <img class="size-32" src="./img/OSA_normalLogo.png" alt="Logo OSA" />
+                OFFENSIVE SECURITY <br />
+                <span>ACADEMY</span>
+              </h1>
         <button class="color-text rounded w-48 h-10 btn relative btn-info">
-          <a class="z-40 relative" href="./public/register.html">EMPEZAR GRATIS <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
+          <a class="z-40 relative" href="./public/register.html">EMPEZAR GRATIS <i class="fa-solid fa-chevron-right"
+              aria-hidden="true"></i></a>
         </button>
       </div>
-    </header>
+  </header>
 
-    <section class="w-full flex justify-center items-center linuxTerminal mb-32">
-      <div class="w-3/4 relative rounded"> 
-        <div class="absolute w-full h-12 rounded-t flex flex-row justify-end items-center">
-          <p class="color-text ubuntuFont"> admin@admin:~ </p>
+  <section class="w-full flex justify-center items-center linuxTerminal mb-32">
+    <div class="w-3/4 relative rounded">
+      <div class="absolute w-full h-12 rounded-t flex flex-row justify-center items-center">
+        <p class="color-text ubuntuFont"> admin@admin:~ </p>
+        <div class="h-12 absolute top-0 right-4 flex flex-row items-center">
           <span class="mr-4 rounded-full flex items-center justify-center"><i class="fa-solid m-0 fa-xmark"></i></span>
-          <span class="mr-4 rounded-full flex items-center justify-center"><i class="text-lg text-center m-0">--</i></span>
-          <span class="mr-4 rounded-full flex items-center justify-center"><i class="fa-regular m-0 fa-square"></i></span>
+          <span class="mr-4 rounded-full flex items-center justify-center"><i
+              class="text-lg text-center m-0">--</i></span>
+          <span class="mr-4 rounded-full flex items-center justify-center"><i
+              class="fa-regular m-0 fa-square"></i></span>
         </div>
-        <p class="color-text relative top-14 flex items-center ml-2 ubuntuFont">[<span class="ubuntuFont color-secondary">admin</span>@<span class="color-third">admin</span>:~]$ 
-          <span class="scale w-2 h-5 ml-2 flex items-center color-text">Hack me lets goooo, i am waiting</span>
-        </p>
       </div>
-    </section>
+      <p class="color-text relative top-14 flex items-center ml-2 ubuntuFont">[<span
+          class="ubuntuFont color-secondary">admin</span>@<span class="color-third">admin</span>:~]$
+        <span class="scale w-2 h-5 ml-2 flex items-center color-text">Hack me lets goooo, i am waiting</span>
+      </p>
+    </div>
+  </section>
 
-    <section class="w-full">
-      <article class="w-full gap-12 flex items-center justify-center flex-wrap">
-        <div class="w-96 p-8 relative overflow-hidden flex justify-center items-center flex-col boxStyle rounded">
-          <div class="loader z-40">
-            <div class="box box-1">
-              <div class="side-left"></div>
-              <div class="side-right"></div>
-              <div class="side-top"></div>
-            </div>
-            <div class="box box-2">
-              <div class="side-left"></div>
-              <div class="side-right"></div>
-              <div class="side-top"></div>
-            </div>
-            <div class="box box-3">
-              <div class="side-left"></div>
-              <div class="side-right"></div>
-              <div class="side-top"></div>
-            </div>
-            <div class="box box-4">
-              <div class="side-left"></div>
-              <div class="side-right"></div>
-              <div class="side-top"></div>
+  <section class="w-full">
+    <article class="w-full gap-12 flex items-center justify-center flex-wrap">
+      <div class="atropos my-atropos-2">
+        <div class="atropos-scale">
+          <div class="atropos-rotate">
+            <div class="atropos-inner">
+
+              <div class="w-96 p-8 relative overflow-hidden flex justify-center items-center flex-col boxStyle rounded">
+                <div class="loader z-40">
+                  <div class="box box-1">
+                    <div class="side-left"></div>
+                    <div class="side-right"></div>
+                    <div class="si  export const myAtropos3 = Atropos({
+                      el: ".my-atropos-3",
+                      activeOffset: 40,
+                      shadowScale: 1.05,
+                    });de-top"></div>
+                  </div>
+                  <div class="box box-2">
+                    <div class="side-left"></div>
+                    <div class="side-right"></div>
+                    <div class="side-top"></div>
+                  </div>
+                  <div class="box box-3">
+                    <div class="side-left"></div>
+                    <div class="side-right"></div>
+                    <div class="side-top"></div>
+                  </div>
+                  <div class="box box-4">
+                    <div class="side-left"></div>
+                    <div class="side-right"></div>
+                    <div class="side-top"></div>
+                  </div>
+                </div>
+                <p class="color-text text-lg mt-12 text-center z-40">¡Únete a nuestra comunidad de hacking y accede a
+                  desafíos exclusivos! Regístrate ahora para comenzar a poner a prueba tus habilidades.</p>
+                <button class="color-text rounded w-48 h-10 btn relative btn-info mt-12 z-40">
+                  <a class="z-40 relative" href="./public/register.html">EMPEZAR GRATIS <i
+                      class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
+                </button>
+              </div>
+
             </div>
           </div>
-          <p class="color-text text-lg mt-12 text-center z-40">¡Únete a nuestra comunidad de hacking y accede a desafíos exclusivos! Regístrate ahora para comenzar a poner a prueba tus habilidades.</p>
-          <button class="color-text rounded w-48 h-10 btn relative btn-info mt-12 z-40">
-            <a class="z-40 relative" href="./public/register.html">EMPEZAR GRATIS <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
-          </button>
         </div>
+      </div>
 
-        <div class="w-96 p-8 flex relative overflow-hidden justify-center items-center relative flex-col boxStyle rounded">
-          <div class="typewriter z-40">
-            <div class="slide"><i></i></div>
-            <div class="paper"></div>
-            <div class="keyboard"></div>
+      <div class="atropos my-atropos">
+        <div class="atropos-scale">
+          <div class="atropos-rotate">
+            <div class="atropos-inner">
+              <div
+                class="w-96 p-8 flex relative overflow-hidden justify-center items-center relative flex-col boxStyle rounded">
+                <div class="typewriter z-40">
+                  <div class="slide"><i></i></div>
+                  <div class="paper"></div>
+                  <div class="keyboard"></div>
+                </div>
+                <p class="z-40 color-text text-lg mt-12 text-center">¡Explora nuestra academia para descubrir más sobre
+                  hacking y seguridad informática! Accede a desafíos exclusivos y amplía tus habilidades.</p>
+                <button class="z-40 color-text rounded w-48 h-10 btn relative btn-info mt-12">
+                  <a class="z-40 relative" href="./public/academy.html">IR A ACADEMIA <i
+                      class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
+                </button>
+              </div>
+            </div>
           </div>
-          <p class="z-40 color-text text-lg mt-12 text-center">¡Explora nuestra academia para descubrir más sobre hacking y seguridad informática! Accede a desafíos exclusivos y amplía tus habilidades.</p>
-          <button class="z-40 color-text rounded w-48 h-10 btn relative btn-info mt-12">
-            <a class="z-40 relative" href="./public/academy.html">IR A ACADEMIA <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
-          </button>
         </div>
-      </article>
-    </section>
-  </body>
-  <script type="module" src="./js/helpers/menuLogicForIndex.js"></script>
+    </article>
+  </section>
+
+  <section class="flex w-full justify-center items-center mt-32">
+    <section class="w-4/5 h-32 relative overflow-x-hidden slider-container">
+    <article class="flex justify-between items-center slider overflow-x-hidden flex-wrap">
+      <div><img class="size-32" src="./img/slider/Kali-dragon-icon.svg.png" alt="kali linux imagen"></div>
+      <div><img class="size-32" src="./img/slider/metasploit-logo.png" alt=""></div>
+      <div><img class="size-32" src="./img/slider/gobuster-logo.svg" alt=""></div>
+      <div><img class="size-32" src="./img/slider/nmap-logo.svg" alt=""></div>
+      <div><img class="size-32" src="./img/slider/john-logo.svg" alt=""></div>
+      <div><img class="size-32" src="./img/slider/wireshark-logo.svg" alt=""></div>
+      <div><img class="size-32" src="./img/slider/wpscan-logo.svg" alt=""></div>
+
+      <div><img class="size-32" src="./img/slider/Kali-dragon-icon.svg.png" alt="kali linux imagen"></div>
+      <div><img class="size-32" src="./img/slider/metasploit-logo.png" alt="metasploit imagen"></div>
+      <div><img class="size-32" src="./img/slider/gobuster-logo.svg" alt="gobuster imagen"></div>
+      <div><img class="size-32" src="./img/slider/nmap-logo.svg" alt="nmap imagen"></div>
+      <div><img class="size-32" src="./img/slider/john-logo.svg" alt="john the ripper imagen"></div>
+      <div><img class="size-32" src="./img/slider/wireshark-logo.svg" alt="wireshark imagen"></div>
+      <div><img class="size-32" src="./img/slider/wpscan-logo.svg" alt="wpscan imagen"></div>
+    </article>
+  </section>
+  </section>
+
+  <footer class="flex items-center justify-evenly mt-32 p-8">
+    <div class="flex items-center justify-between flex-col">
+      <img class="size-36" src="./img/OSA_normalLogo.png" alt="">
+      <p class="text-xs color-text">© 2024 OSA ACADEMY</p>
+    </div>
+    <div class="flex justify-between items-center">
+      <ul class="flex items-center">
+        <li> <a class="color-text" href="">Sobre OSA</a> </li>
+        <li class="ml-4"> <a class="color-text" href="">Politica de privacidad</a> </li>
+        <li class="ml-4"> <a class="color-text" href="">Condiciones de uso</a> </li>
+      </ul>
+    </div>
+  </footer>
+</body>
+<script type="module" src="./js/helpers/menuLogicForIndex.js"></script>
+<script src="../node_modules/atropos/atropos.min.js"></script>
+<script src="./js/index/index.js"></script>
+
 </html>

@@ -4,6 +4,7 @@
 import helpers from "../helpers/utils.js";
 import { requestMv } from "./requestsMv.js";
 import { getUserRequests } from "../helpers/userRequests.js";
+import { getUserRequests } from "../userInfo/userRequests.js";
 
 // variables
 
@@ -60,7 +61,7 @@ async function printMachine() {
 
         const liDif = document.createElement("li");
         const strongDif = document.createElement("strong");
-        strongDif.className = "font-bold";
+        strongDif.className = "font-normal color-secondary";
         strongDif.textContent = "Dificultad: ";
         const spanDif = document.createElement("span");
         spanDif.textContent = dif;
@@ -71,7 +72,7 @@ async function printMachine() {
 
         const liPoints = document.createElement("li");
         const strongPoints = document.createElement("strong");
-        strongPoints.className = "font-bold";
+        strongPoints.className = "font-normal color-secondary";
         strongPoints.textContent = "Puntos: ";
         const spanPoints = document.createElement("span");
         spanPoints.textContent = puntos;
@@ -81,7 +82,7 @@ async function printMachine() {
 
         const liDownloads = document.createElement("li");
         const strongDownloads = document.createElement("strong");
-        strongDownloads.className = "font-bold";
+        strongDownloads.className = "font-normal color-secondary";
         strongDownloads.textContent = "Descargas: ";
         const spanDownloads = document.createElement("span");
         spanDownloads.textContent = descargas;
@@ -113,7 +114,6 @@ async function printMachine() {
 async function printComments() {
     helpers.clearHTML(mvCommentsArticle.querySelector(".commentsContainer"));
     const mvComments = await requestMv.getComments(idMv);
-    console.log("aaaa", mvComments);
     if(!mvComments || mvComments.error) return helpers.showStaticAlert("No hay comentarios disponibles", "information", mvCommentsArticle.querySelector("article"));
     mvComments.forEach(comment => {
         const divContainer = document.createElement("div");
@@ -128,6 +128,7 @@ async function printComments() {
 
         const spanName = document.createElement("span");
         spanName.className = "text-2xl color-secondary font-bold";
+        spanName.className = "text-2xl color-secondary font-normal";
         spanName.textContent = comment.nombre;
         const pComment = document.createElement("p");
         pComment.className = "color-text";

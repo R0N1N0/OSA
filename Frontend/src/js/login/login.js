@@ -32,11 +32,14 @@ async function verifyInputs(e){
 async function login(userData){
     try {
         const data = await fetchPOST("user/login", userData);
-        if(data.token){
+        if(data.error) {
+            helpers.showAlert("Usuario o contraseña incorrectos", "error", form);
+        }
+        else if(data.token){
             saveToken(data.token);
         }
-        else{
-            helpers.showAlert("Usuario o contraseña incorrectos", "error", form);
+        else {
+            helpers.showAlert("Error interno", "error", form);
         }
     } catch (error) {
         console.error('Error al hacer la consulta', error);

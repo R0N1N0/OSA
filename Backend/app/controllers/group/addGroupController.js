@@ -1,4 +1,3 @@
-const db = require("../../db/db.js");
 const { createConnexion } = require("../../helpers/connexion.js");
 
 exports.addGroup = async (req, res) => {
@@ -7,7 +6,8 @@ exports.addGroup = async (req, res) => {
     const userData = req.usuario;
     const admin = 1;
 
-    const connexion = await db.getConnection();
+    if(await isExists(groupData.nombre)) return res.status(200).json( { error: "El grupo ya existe." } );
+    const connexion = await createConnexion();
     let sql = "INSERT INTO grupo(nombre) VALUES(?)";
     let result = await connexion.query(sql, groupData.nombre);
 
@@ -35,6 +35,23 @@ exports.addGroup = async (req, res) => {
     console.log(error);
   }
 };
+async function isExists(groupName) {
+  try {
+    const sql = "select * from grupo where nombre = ?";
+    const connexion = await createConnexion();
+    const [result] = await connexion.query(sql, groupName);
+    connexion.release();
+    if(result.length > 0) {
+      return true;
+    }
+    return false;
+  }
+  catch (err) {
+    console.error("Error al enviar invitación: ", err);
+  }
+}
+
+/*****************************/
 
 exports.deleteGroup = async (req, res) => {
   try {

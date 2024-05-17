@@ -91,13 +91,14 @@ kind: Service
 metadata:
   name: nodejs-service
   annotations:
-    kubernetes.digitalocean.com/load-balancer-id: "ams3-load-balancer-01"
+    kubernetes.digitalocean.com/load-balancer-id: "ams3-load-balancer-94"
     service.beta.kubernetes.io/do-loadbalancer-name: "nodejs"
-    service.beta.kubernetes.io/do-loadbalancer-hostname: "nodejs"
+    service.beta.kubernetes.io/do-loadbalancer-hostname: "nodejs.osaproject.es"
     service.beta.kubernetes.io/do-loadbalancer-size-unit: "1"
     service.beta.kubernetes.io/do-loadbalancer-disable-lets-encrypt-dns-records: "false"
-    #service.beta.kubernetes.io/do-loadbalancer-protocol: "https"
-    #service.beta.kubernetes.io/do-loadbalancer-certificate-id: "your-certificate-id"
+    service.beta.kubernetes.io/do-loadbalancer-protocol: "http"
+    service.beta.kubernetes.io/do-loadbalancer-tls-ports: "443"
+    service.beta.kubernetes.io/do-loadbalancer-certificate-id: "89465f8f-b695-43e3-ac31-c37a98c3f5df"
 spec:
   type: LoadBalancer
   selector:
@@ -105,5 +106,9 @@ spec:
   ports:
     - name: http
       protocol: TCP
-      port: 3000
+      port: 80
+      targetPort: 3000
+    - name: https
+      protocol: TCP
+      port: 443
       targetPort: 3000

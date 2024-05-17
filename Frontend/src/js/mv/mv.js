@@ -3,17 +3,12 @@ import helpers from "../helpers/utils.js";
 import { requestMv } from "./requestsMv.js";
 // variables // ---------------
 const mvBox = document.querySelector(".mvbox");
-const modalShowMV = document.querySelector(".modalShowMv");
 const searchInput = document.querySelector("form .search");
 let mvDisp = [];
 //eventos
 getVirtualMachines();
 //filtrar por nombre de la maquina
 searchInput.addEventListener("input", e => filter(e, mvDisp));
-//cerrar modal
-modalShowMV.querySelector(".close").addEventListener("click", function(){
-    helpers.showModal(modalShowMV, mvBox);
-});
 
 ////////////
 
@@ -60,7 +55,6 @@ export async function printMvs(mvDisp){
         containerInfo.appendChild(buttonInfo);
         container.appendChild(containerInfo);  
         mvBox.appendChild(container);
-        console.log(mvBox);
     });    
 }
 
@@ -71,5 +65,6 @@ function getEspecificMV(idMv){
 
 async function getVirtualMachines() {
     mvDisp = await requestMv.getMvs();
+    if(!mvDisp.length > 0) return helpers.showStaticAlert("No hay maquinas disponibles.", "information", mvBox);
     printMvs(mvDisp);
 }
