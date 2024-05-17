@@ -345,6 +345,7 @@ button.send i{
   width: 80%;
   margin-top: 1rem;
   font-weight: normal;
+  text-align: justify;
 }
 .academyBox strong, .academyResumen strong {
   font-weight: normal;
@@ -353,6 +354,7 @@ button.send i{
   color: var(--color-success);
   margin-top: 1rem;
   font-weight: normal;
+  text-align: center;
 }
 .academy img{
   border-radius: 12px;
