@@ -4,12 +4,6 @@
 //variables
 const articles = document.querySelectorAll("section > article");
 const tab_controllers = document.querySelectorAll("section nav li");
-
-//eventos
-tab_controllers.forEach(tab => tab.addEventListener("click", show));
-
-const articles = document.querySelectorAll("section.controller > article");
-const tab_controllers = document.querySelectorAll("section nav li");
 let url = window.location.href;
 const urlParams = new URLSearchParams(window.location.search);
 
@@ -24,10 +18,6 @@ function show(e){
     articles.forEach(article => article.classList.add("hidden"));
     tab_controllers.forEach(tab => tab.classList.remove("active"));
     let articleName = e.target.getAttribute("name");
-
-    articleName = document.querySelector(`.${articleName}`);
-    articleName.classList.remove("hidden");
-    e.target.classList.add("active");
     setParameter(articleName);
     articleName = document.querySelector(`.${articleName}`);
     articleName.classList.remove("hidden");
@@ -54,3 +44,4 @@ function setParameter(paramValue) {
     let updatedUrl = window.location.origin + window.location.pathname + '?' + urlParams.toString();
     window.history.pushState({ path: updatedUrl }, '', updatedUrl);
 }
+
