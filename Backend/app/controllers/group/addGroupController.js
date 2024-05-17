@@ -25,7 +25,7 @@ exports.addGroup = async (req, res) => {
         ]);
         connexion.release();
         if (result) {
-          res.status(200).json({ message: "Grupo creado correctamente" });
+          res.status(201).json({ message: "Grupo creado correctamente" });
           return;
         }
       }
@@ -35,8 +35,6 @@ exports.addGroup = async (req, res) => {
     console.log(error);
   }
 };
-
-
 async function isExists(groupName) {
   try {
     const sql = "select * from grupo where nombre = ?";

@@ -16,6 +16,21 @@ closes.forEach(function(close, index) {
 
 // funciones
 
+// variables
+
+const modals = document.querySelectorAll(".modalShowMv");
+const closes = document.querySelectorAll(".close");
+const userInfoSection = document.querySelector(".userInfo");
+
+//eventos
+closes.forEach(function(close, index) {
+    close.addEventListener("click", function() {
+        helpers.showModal(modals[index], userInfoSection);
+    });
+});
+
+// funciones
+
 export async function createGroupLogic(e, modalCreateGroup){
     e.preventDefault();
     const inputValue = modalCreateGroup.querySelector("input[type=text]").value;

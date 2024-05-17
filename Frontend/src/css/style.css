@@ -82,6 +82,11 @@ thead th:last-child{
   padding: 5px 15px;
   border: 1px solid var(--color-secondary);
   position: relative;
+  line-height: 0 !important;
+}
+.btn-info a{
+  position: relative;
+  z-index: 20;
 }
 .btn-info a{
   position: relative;
@@ -344,6 +349,7 @@ button.send i{
   width: 80%;
   margin-top: 1rem;
   font-weight: normal;
+  text-align: justify;
 }
 .academyBox strong, .academyResumen strong {
   font-weight: normal;
@@ -352,6 +358,7 @@ button.send i{
   color: var(--color-success);
   margin-top: 1rem;
   font-weight: normal;
+  text-align: center;
 }
 .academy img{
   border-radius: 12px;
@@ -360,10 +367,13 @@ button.send i{
   width: 80%;
 }
 
+.academySpanTab {
+}
 /* footer */
 footer {
   border-top: 1px solid var(--color-third);
 }
+
 /** clases js **/
 .rotate {
   transform-style: preserve-3d;

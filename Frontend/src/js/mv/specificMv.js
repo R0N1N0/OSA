@@ -3,6 +3,7 @@
 
 import helpers from "../helpers/utils.js";
 import { requestMv } from "./requestsMv.js";
+import { getUserRequests } from "../helpers/userRequests.js";
 import { getUserRequests } from "../userInfo/userRequests.js";
 
 // variables
@@ -126,6 +127,7 @@ async function printComments() {
         divInfo.className = "flex flex-col justify-between ml-6 gap-1";
 
         const spanName = document.createElement("span");
+        spanName.className = "text-2xl color-secondary font-bold";
         spanName.className = "text-2xl color-secondary font-normal";
         spanName.textContent = comment.nombre;
         const pComment = document.createElement("p");
