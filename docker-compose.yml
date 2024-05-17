@@ -4,9 +4,6 @@ services:
   mysql:
     build:
       context: ./Database
-      dockerfile: mysql.Dockerfile
-    build:
-      context: ./Database
       dockerfile: ./mysql.Dockerfile
     environment:
       - MYSQL_USER=bassou
