@@ -6,6 +6,8 @@ const getUserInfoController = require('../../controllers/user/getUserInfoControl
 const userAwardController = require("../../controllers/user/userAwardController.js");
 const getUserInvitations = require("../../controllers/user/userInvitations.js");
 const declineInvitation = require("../../controllers/user/declineInvitation.js")
+const acceptInvitation = require("../../controllers/user/acceptInvitation.js")
+const deleteAccount = require("../../controllers/user/deleteAccount.js");
 const validateToken = require('../../middleware/tokenMiddleware.js');
 
 // Rutas para creacion de usuarios y login
@@ -28,6 +30,10 @@ router.use("/award", validateToken);
 router.post('/award/assignAward', userAwardController.assignAward);
 
 router.use("/invitacions", validateToken);
-router.delete("/invitacions/decline", declineInvitation.declineInvitation)
+router.delete("/invitacions/decline", declineInvitation.declineInvitation);
+router.post("/invitacions/accept", acceptInvitation.acceptInvitation);
+
+router.use("/conf", validateToken);
+router.delete("/conf/deleteAccount", deleteAccount.deleteAccount);
 
 module.exports = router;

@@ -55,4 +55,7 @@ export class getUserRequests {
     static async acceptInvitation(data, route){
         return await fetchPostWithDataToken(route, helpers.getToken(), data);
     }
+    static async deleteAccount(route) {
+        return await deleteRegistres(route, helpers.getToken());
+    }
 }

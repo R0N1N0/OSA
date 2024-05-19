@@ -17,6 +17,10 @@ exports.addUserGroup = async (req, res) => {
       return res.status(200).json({ error: "Error, La invitación ya existe." });
     }
 
+    if(await isMember(idUser, idGroup)){
+      return res.status(200).json({ error: "Error, este usuario ya pertenece al grupo." });
+    }
+
     if (await sendInvitation(idGroup, idUser)) {
       return res.status(200).json({ message: "Invitación enviada correctamente." });
     }
@@ -61,6 +65,22 @@ async function sendInvitation(idGroup, idUser) {
 async function isExists(idUser, idGroup) {
   try {
     const sql = "select id_invitaciones_usuario_grupo from invitaciones_usuario_grupo where id_usuario = ? and id_grupo = ?";
+    const connexion = await createConnexion();
+    const [result] = await connexion.query(sql, [idUser, idGroup]);
+    connexion.release();
+    if(result.length > 0) {
+      return true;
+    }
+    return false;
+  }
+  catch (err) {
+    console.error("Error al enviar invitación: ", err);
+  }
+}
+
+async function isMember(idUser, idGroup) {
+  try {
+    const sql = "select id_usuario from usuario_grupo where id_usuario = ? and id_grupo = ?";
     const connexion = await createConnexion();
     const [result] = await connexion.query(sql, [idUser, idGroup]);
     connexion.release();

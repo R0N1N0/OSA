@@ -43,6 +43,9 @@ async function createUser(formData){
         if(response.message){
             helpers.showAlert("Usuario creado correctamente", "success", form);
             form.reset();
+            setTimeout(() => {
+                window.location.href = "./login.html";
+            }, 1000);
             return;
         }
         helpers.showAlert(response.error, "error", form);

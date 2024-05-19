@@ -125,7 +125,8 @@ exports.getGroupMembers = async (req, res) => {
         WHERE usuario_mv.id_usuario = usuario.id_usuario) as puntos
     FROM usuario
     JOIN usuario_grupo ON usuario.id_usuario = usuario_grupo.id_usuario
-    WHERE usuario_grupo.id_grupo = ?;
+    WHERE usuario_grupo.id_grupo = ?
+    ORDER BY puntos DESC
     `;
     const connexion = await createConnexion();
     let result = await connexion.query(sql, id);

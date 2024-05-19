@@ -2,6 +2,7 @@
 import { getUserRequests } from "./userRequests.js";
 import helpers from "../helpers/utils.js";
 import { hasInvitations, declineLogic, acceptLogic } from "./userLogic/invitationsLogic.js";
+import { printGroups } from "./userGroup.js";
 
 const invitationsArticle = document.querySelector(".invitaciones");
 const table = invitationsArticle.querySelector("table tbody");
@@ -56,6 +57,10 @@ async function acceptInvitation(id_grupo, e) {
     if(!id_grupo || !e.target) return;
     const parent = e.target.closest("tr");
     const res = await acceptLogic(id_grupo)
+    if (res) {
+        parent.remove();
+        printGroups();
+    }
 }
 
 async function declineInvitation(id_grupo, e) {

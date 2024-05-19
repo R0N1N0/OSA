@@ -4,6 +4,7 @@ import { printGroups } from "./userGroup.js";
 import { printRanking } from "./userRanking.js";
 import { getUserRequests } from "./userRequests.js";
 import { printInvitations } from "./userInvitations.js";
+import helpers from "../helpers/utils.js";
 
 // variables
 let userData = [];
@@ -14,10 +15,19 @@ const divInfo = document.querySelector(".userInfo div.info");
 const maquinasArticle = document.querySelector(".maquinas");
 const rankingArticle = document.querySelector(".ranking");
 const closeSessionContainer = document.querySelector(".userActions .closeSession");
+const deleteAccountButton = document.querySelector(".userActions .deleteAccount");
+const closesModal = document.querySelectorAll(".close");
+const userInfoSection = document.querySelector(".userInfo");
 
 //eventos 
 getAllInfo();
 closeSessionContainer.addEventListener("click", closeSession);
+closesModal.forEach(close => {
+    close.addEventListener("click", () => {
+        closeModal(close);
+    });
+});
+deleteAccountButton.addEventListener("click", deleteAccount);
 // funciones
 
 // funcion que recupera los datos del usuario
@@ -75,4 +85,23 @@ function checkUserAuth(userData) {
 function closeSession() {
     localStorage.clear();
     window.location.href = "../index.html";
+}
+
+function closeModal(e) {
+    if(!e.classList.contains("close")) return;
+    const modal = e.parentElement;
+    helpers.showModal(modal, userInfoSection);
+}
+
+async function deleteAccount(){
+    if(!confirm("Seguro que quiere eliminar su cuenta ?")) return;
+    const data = await getUserRequests.deleteAccount("user/conf/deleteAccount");
+    if(data.message) {
+        alert(data.message);
+        localStorage.clear();
+        window.location.href = "../index.html";
+    }
+    else {
+        alert("Ha ocurrido un error.");
+    }
 }

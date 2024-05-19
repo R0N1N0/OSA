@@ -15,6 +15,7 @@ exports.createUser = async (req, res) => {
     
     const connexion = await createConnexion();
     if(await checkUser(connexion, username)) {
+      connexion.release();
       return res.status(401).json({ error: "Error!!!! El nombre de usuario ya esta utilizado." });
     }
 
@@ -23,12 +24,12 @@ exports.createUser = async (req, res) => {
     password = await convertPassword(password);
 
     const userData = [username, password, getCode(username), pathImg, "usuario"];
-    // La query
+
     query = "insert into usuario(username, password, codigo, imagen, rol) values(?, ?, ?, ?, ?)";
     const result = await connexion.query(query, userData);
     connexion.release();
     if(result){
-      res.json( { message: `Usuario insertado correctamente` } );
+      res.status(200).json( { message: `Usuario insertado correctamente` } );
     }
   } catch(error) {
     console.log(error);
@@ -38,9 +39,8 @@ exports.createUser = async (req, res) => {
 
 async function checkUser(connexion, username) {
     const sql = "select id_usuario from usuario where username = ?";
-    let res = await connexion.query(sql, username);
-    res = res[0];
-    if(res && res.length > 0) return true;
+    let [result] = await connexion.query(sql, username);
+    if(result && result.length > 0) return true;
     return false;
 }
 async function convertPassword(password){ 

@@ -7,8 +7,9 @@ export function hasInvitations(userInvitations) {
 
 export async function declineLogic(id_grupo) {
     const res = await getUserRequests.declineInvitation({id_grupo}, "user/invitacions/decline");
-    return true;
+    if(res) return true;
 }
 export async function acceptLogic(id_grupo) {
-    console.log(id_grupo);   
+    const res = await getUserRequests.acceptInvitation({id_grupo}, "user/invitacions/accept")
+    if(res) return true;
 }
