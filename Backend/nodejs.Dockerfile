@@ -1,6 +1,6 @@
 # We use nginx-alpine to build low weight images
 
-FROM node:20.12.2-alpine3.18
+FROM node:20.13.1-alpine3.18
 
 # Set node user and group ID
 
