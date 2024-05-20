@@ -5,6 +5,7 @@ import { printRanking } from "./userRanking.js";
 import { getUserRequests } from "./userRequests.js";
 import { printInvitations } from "./userInvitations.js";
 import helpers from "../helpers/utils.js";
+import { showLoader } from "../helpers/LoaderLogic.js";
 
 // variables
 let userData = [];
@@ -32,7 +33,7 @@ deleteAccountButton.addEventListener("click", deleteAccount);
 
 // funcion que recupera los datos del usuario
 async function getAllInfo(){
-    // recuperar todos los datos del usuario
+    showLoader();
     userData = await getUserRequests.getUserInfo();
     checkUserAuth(userData);
     userMachines = await getUserRequests.getUserMachines();
@@ -47,6 +48,7 @@ async function getAllInfo(){
     printGroups();
     printRanking(userRanking, rankingArticle);
     printInvitations();
+    showLoader();
 }
 
 // function para mostrar los datos personales del usuario por pantalla
@@ -59,8 +61,12 @@ function printInfo(userData){
     img.className = "rounded-full size-40";
     // Crear el h1 con el nombre del usuario
     const h1 = document.createElement("h1");
-    h1.className = "mt-4 w-36 text-3xl text-center";
+    h1.className = "mt-4 w-36 text-3xl text-center color-secondary";
     h1.textContent = userData.username;
+    //mostrar codigo usuario
+    const codigo = document.createElement("span");
+    codigo.textContent = userData.codigo;
+    codigo.className = "mt-2 text-xl text-center color-third";
     // mostrar puntos que tiene un usuario
     const span = document.createElement("span");
     span.textContent = points();
@@ -69,6 +75,7 @@ function printInfo(userData){
     // añadir los elementos creados al div info
     divInfo.appendChild(img);
     divInfo.appendChild(h1);
+    divInfo.appendChild(codigo);
     divInfo.appendChild(span);
 }
 

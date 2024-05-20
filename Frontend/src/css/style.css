@@ -76,6 +76,17 @@ thead th:last-child{
   padding: 0 !important;
 }
 
+/** Loader Logic **/
+.loader {
+  width: 100%;
+  height: 100vh;
+  background-color: black;
+  z-index: 20000;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 /* buttones */
 
 .btn-info {

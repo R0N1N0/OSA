@@ -41,7 +41,12 @@ class helpers {
     static getToken(){
         return localStorage.getItem('token');
     }
-
+    static disabled(element){
+        element.disabled = true;
+    }
+    static unDisabled(element){
+        element.disabled = false;
+    }
 }
 
 export default helpers;

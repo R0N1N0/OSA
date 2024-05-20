@@ -28,7 +28,17 @@
       <nav
         class="w-64 menuLateral h-screen top-24 fixed flex flex-col items-center"
       >
-        <div class="info flex flex-col mt-12 items-center"></div>
+
+      <article class="w-full">
+        <article class="pt-2 pb-2 userActions w-full flex justify-center items-center">
+          <ul class="flex justify-center items-center">
+            <li class="p-0 mr-4 deleteAccount"><i class="fa-solid fa-trash" aria-hidden="true"></i></li>
+            <li class="p-0 closeSession"><i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i></li>
+          </ul>
+        </article>
+      </article>
+
+        <div class="info flex flex-col mt-8 items-center"></div>
         <ul class="flex flex-col mt-12">
           <li class="mt-2 tab-controller active" name="premios">
             <i class="fa-solid fa-crown"></i> Premios
@@ -46,16 +56,9 @@
             <i class="fa-solid fa-bolt"></i> Ranking
           </li>
         </ul>
-
-        <article class="relative w-full h-full">
-          <article class="absolute top-14 left-0 h-12 userActions w-full flex justify-center items-center">
-            <ul class="flex justify-center items-center">
-              <li class="p-0 mr-4 deleteAccount"><i class="fa-solid fa-trash" aria-hidden="true"></i></li>
-              <li class="p-0 closeSession"><i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i></li>
-            </ul>
-          </article>
-        </article>
       </nav>
+
+      
       <article
         class="ml-64 premios tab pl-12 pt-12 w-full flex flex-row flex-wrap justify-center gap-10"
       >
@@ -82,7 +85,7 @@
           </h3>
           <button class="text-lg w-72 h-9 rounded btn-info color-text btn">
             <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            <a href="/Frontend/src/public/mv.html">Ver máquinas disponibles</a>
+            <a href="./mv.html">Ver máquinas disponibles</a>
           </button>
         </header>
 
@@ -240,9 +243,10 @@
           </form>
         </article>
     </section>
-
+    <div class="loader hidden flex justify-center items-center"></div>
   </body>
   <script type="module" src="../js/helpers/sidebarLogic.js"></script>
   <script type="module" src="../js/userInfo/userInfoMain.js"></script>
   <script type="module" src="../js/helpers/menuLogic.js"></script>
+  <script src="../js/helpers/LoaderLogic.js"></script>
 </html>

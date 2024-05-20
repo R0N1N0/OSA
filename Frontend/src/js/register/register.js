@@ -7,6 +7,7 @@ const form = document.querySelector("#formLogin");
 const username = document.querySelector("#username");
 const password = document.querySelector("#password");
 const Fprofile = document.querySelector("#FProfile");
+const submitButton = document.querySelector("input[type=submit]");
 
 // eventos
 form.addEventListener("submit", verifyInputs);
@@ -39,7 +40,11 @@ async function verifyInputs(e){
 
 async function createUser(formData){
     try{
+        showLoader();
+        helpers.disabled(submitButton);
         const response = await fetchPOSTData("user/createUser", formData);
+        helpers.unDisabled(submitButton);
+        showLoader();
         if(response.message){
             helpers.showAlert("Usuario creado correctamente", "success", form);
             form.reset();
@@ -53,5 +58,18 @@ async function createUser(formData){
     catch(error){
         console.error("Error al crear el usuario:", error.message);
         helpers.showAlert("Error al crear el usuario", "error", form);
+    }
+}
+
+function showLoader() {
+    const loader = document.querySelector(".spinner");
+    const img = document.querySelector("img.logo");
+    if(loader.classList.contains("hidden")){
+        loader.classList.remove("hidden");
+        img.classList.add("hidden");
+    }
+    else {
+        loader.classList.add("hidden");
+        img.classList.remove("hidden");
     }
 }

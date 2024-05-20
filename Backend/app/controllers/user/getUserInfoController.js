@@ -128,7 +128,9 @@ exports.getUserRanking = async (req, res) => {
         from usuario 
         left join usuario_mv on usuario_mv.id_usuario = usuario.id_usuario
         left join mv on mv.id_mv = usuario_mv.id_mv
-        group by usuario.id_usuario`;
+        group by usuario.id_usuario
+        ORDER BY puntos DESC
+        `;
         const connexion = await db.getConnection();    
         let result = await connexion.query(sql, id);
         connexion.release();

@@ -58,4 +58,7 @@ export class getUserRequests {
     static async deleteAccount(route) {
         return await deleteRegistres(route, helpers.getToken());
     }
+    static async removeMember(route, data){
+        return await deleteRegistres(route, helpers.getToken(), data);
+    }
 }

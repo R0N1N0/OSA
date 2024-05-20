@@ -140,22 +140,3 @@ exports.getGroupMembers = async (req, res) => {
     console.log(error);
   }
 };
-
-exports.removeMember = async (req, res) => {
-  try {
-    const { id } = req.query;
-    if (!id) res.status(400).json({ message: "Se necesita el id" });
-
-    const sql = "delete from usuario_grupo where id_usuario = ?";
-
-    const connexion = await createConnexion();
-
-    const result = await connexion.query(sql, id);
-    connexion.release();
-    if (result) {
-      res.status(200).json({ message: "Miembro eliminado." });
-    }
-  } catch (error) {
-    console.log(error);
-  }
-};
