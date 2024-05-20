@@ -7,7 +7,6 @@ const form = document.querySelector("#formLogin");
 const username = document.querySelector("#username");
 const password = document.querySelector("#password");
 const Fprofile = document.querySelector("#FProfile");
-const submitButton = document.querySelector("input[type=submit]");
 
 // eventos
 form.addEventListener("submit", verifyInputs);
@@ -41,9 +40,7 @@ async function verifyInputs(e){
 async function createUser(formData){
     try{
         showLoader();
-        helpers.disabled(submitButton);
         const response = await fetchPOSTData("user/createUser", formData);
-        helpers.unDisabled(submitButton);
         showLoader();
         if(response.message){
             helpers.showAlert("Usuario creado correctamente", "success", form);
