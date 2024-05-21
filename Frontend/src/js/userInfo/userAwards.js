@@ -55,12 +55,14 @@ function logicAward(e){
     if(divAward.classList.contains("rotate")){
         divAward.classList.remove("rotate");
         img.classList.remove("hidden");
+        img.classList.add("w-full h-full")
         h4.classList.add("hidden");
         p.classList.add("hidden");
         return;
     }
     divAward.classList.add("rotate");
     img.classList.add("hidden");
+    img.classList.remove("w-full h-full")
     h4.classList.remove("hidden");
     p.classList.remove("hidden");
 }
