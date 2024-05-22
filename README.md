@@ -22,6 +22,7 @@ Nodejs: [![nodejs-publish](https://github.com/R0N1N0/OSA/actions/workflows/nodej
 * DB_PORT
 * DB_DATABASE
 * DB_USER
+* DB_PASSWORD
 * DB_PASSWORD1
 * DB_PASSWORD2
 * TOKEN_SECRET1
@@ -30,6 +31,9 @@ Nodejs: [![nodejs-publish](https://github.com/R0N1N0/OSA/actions/workflows/nodej
 * API_KEY
 * API_SECRET1
 * API_SECRET2
+
+Los secretos largos están divididos en dos, ya que puede dar problemas en el deployment en Kubernetes, ya que al convertirlo en base64 tiene una cantidad de carácteres que algunos sistemas operativos no pueden almacenar en una variable de entorno.
+El DB_PASSWORD es para el MYSQL, y el DB_PASSWORD1 y DB_PASSWORD2 es para el Backend.
 
 ### ¿Cómo montar los contenedores?
 
@@ -65,3 +69,9 @@ En estos directorios, están los Dockerfiles y los archivos para crear los conte
 En este directorio, tenemos el Dockerfile, los archivos de configuración y el directorio donde montamos la página web en el contenedor, es decir, "/usr/share/nginx/html".
 
 Usamos un Nginx-alpine para ahorrar espacio y además por la integración con Ingress con el módulo nginx-ingress.
+
+Puedes modificar lso archivos de nginx.conf y default.conf para tener una personalización a tu gusto, en el archivo Frontend\src\js\helpers\Generalrequests.js hay que modificar la variable baseUrl hacia el backend, un ejémplo: 
+
+```js
+const baseUrl = "http://nodejs:3000/";
+```

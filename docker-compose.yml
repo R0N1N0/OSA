@@ -7,7 +7,7 @@ services:
       dockerfile: ./mysql.Dockerfile
     environment:
       - MYSQL_USER=bassou
-      - MYSQL_PASSWORD=${DB_PASSWORD_RAW}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
       - MYSQL_RANDOM_ROOT_PASSWORD=true
       - MYSQL_DATABASE=db_proyect
     networks:
@@ -28,12 +28,14 @@ services:
       - DB_HOST=mysql
       - DB_USER=bassou
       - DB_DATABASE=db_proyect
-      - DB_PASSWORD=${DB_PASSWORD}
-      - TOKEN_SECRET=${TOKEN_SECRET}
+      - DB_PASSWORD1=${DB_PASSWORD1}
+      - DB_PASSWORD2=${DB_PASSWORD2}
+      - TOKEN_SECRET1=${TOKEN_SECRET1}
+      - TOKEN_SECRET2=${TOKEN_SECRET2}
       - CLOUD_NAME=${CLOUD_NAME}
       - API_KEY=${API_KEY}
-      - API_SECRET=${API_SECRET}
-      - ENCRYPTION_SECRET=${ENCRYPTION_SECRET}
+      - API_SECRET1=${API_SECRET1}
+      - API_SECRET2=${API_SECRET2}
     depends_on:
       - mysql
     networks:
