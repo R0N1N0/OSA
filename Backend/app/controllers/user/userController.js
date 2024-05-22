@@ -21,7 +21,6 @@ exports.getUserAuth = async (req, res) => {
 
     // ahora hacer todo el tema de la validacion 
     if (!result) {
-      console.log("yass");
       return res.status(401).json( {error: "Nombre de usuario o contraseña incorrectos"} );
     } 
 
@@ -33,7 +32,7 @@ exports.getUserAuth = async (req, res) => {
         rol: result.rol
       }
 
-      const token = jwt.sign(payload, juntar(process.env.TOKEN_SECRET1,process.env.TOKEN_SECRET2), { expiresIn: '1h' });
+      const token = jwt.sign(payload, juntar(process.env.TOKEN_SECRET1, process.env.TOKEN_SECRET2), { expiresIn: '1h' });
       res.status(200).json( { token: token } );
 
   } catch(error) {

@@ -16,6 +16,7 @@ export async function printGroups() {
   const alertContainer = helpers.returnAlertContainer(gruposArticle);
   const userGroups = await getUserRequests.getUserGroups();
   helpers.clearHTML(helpers.returnAlertContainer(gruposArticle));
+  helpers.clearHTML(containerGroups);
 
   if (userGroups.length > 0) {
     userGroups.forEach((group) => {
@@ -53,8 +54,10 @@ export async function printGroups() {
         ul.appendChild(liDelete);
       } else {
         const liOut = document.createElement("li");
+        liOut.onclick = (e) => {
+          removeMember(group.id_grupo, e);
+        }
         liOut.innerHTML = `<i class="fa-solid fa-right-from-bracket"></i>`;
-        liOut.value = group.id_grupo;
         liOut.className = "cursor-pointer mr-2 out";
         ul.appendChild(liOut);
       }
@@ -99,7 +102,7 @@ buttonAddGroup.addEventListener("click", (e) => {
 //funciones
 async function createGroup(e) {
   const res = await createGroupLogic(e, modalCreateGroup);
-  if (res) {
+  if (res.message) {
     helpers.showAlert(
       "Grupo creado correctamente.",
       "success",
@@ -109,6 +112,13 @@ async function createGroup(e) {
       reset();
       helpers.showModal(modalCreateGroup, userInfoSection);
     }, 2000);
+  }
+  else if(res.error) {
+    helpers.showAlert(
+      "El grupo ya existe.",
+      "error",
+      modalCreateGroup.querySelector("form")
+    );
   }
 }
 
@@ -145,4 +155,13 @@ function addUserGroup(idGroup) {
 function reset() {
   helpers.clearHTML(containerGroups);
   printGroups();
+}
+
+async function removeMember(id_grupo, e) {
+  if(!confirm("Seguro que quieres realizar esta accion") || !id_grupo) return;
+  const res = await getUserRequests.removeMember("group/deleteMember", {id_grupo});
+  if(res.message){
+    alert(res.message);
+    printGroups();
+  }
 }

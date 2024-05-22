@@ -28,6 +28,9 @@ export class getUserRequests {
     static async getUserAwards(){
         return await getInfo("user/getUser/awards");
     }
+    static async getUserInvitations(){
+        return await getInfo("user/getUser/invitations");
+    }
     static async getAwards(){
         return await getInfo("awards/getAwards");
     }
@@ -46,5 +49,16 @@ export class getUserRequests {
     static async sendInvitation(data, route){
         return await fetchPostWithDataToken(route, helpers.getToken(), data);
     }
-
+    static async declineInvitation(data, route){
+        return await deleteRegistres(route, helpers.getToken(), data);
+    }
+    static async acceptInvitation(data, route){
+        return await fetchPostWithDataToken(route, helpers.getToken(), data);
+    }
+    static async deleteAccount(route) {
+        return await deleteRegistres(route, helpers.getToken());
+    }
+    static async removeMember(route, data){
+        return await deleteRegistres(route, helpers.getToken(), data);
+    }
 }

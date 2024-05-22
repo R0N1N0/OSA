@@ -34,7 +34,7 @@ async function printMachine() {
 
     // mostrar la maquina recuperada
     mvInfo.forEach( mv => {
-        const { nombre, descripcion, puntos, dif, imagen, descargas } = mv;
+        const { nombre, descripcion, puntos, dif, imagen, descargas, enlace } = mv;
 
         // la imagen
         const img = document.createElement("img");
@@ -85,16 +85,17 @@ async function printMachine() {
         strongDownloads.textContent = "Descargas: ";
         const spanDownloads = document.createElement("span");
         spanDownloads.textContent = descargas;
-        liDownloads.className = "color-text mt-2";
+        liDownloads.className = "color-text mt-2 mb-4";
         liDownloads.appendChild(strongDownloads);
         liDownloads.appendChild(spanDownloads);
 
-        const buttonDownload = document.createElement("button");
-        buttonDownload.className = "text-base btn-info btn mt-4 rounded color-text";
+        const buttonDownload = document.createElement("a");
+        buttonDownload.className = "text-base btn-info btn rounded color-text";
         buttonDownload.textContent = "Descargar";
+        buttonDownload.href = enlace;
         const iDownload = document.createElement("i");
         iDownload.className = "fa-solid fa-cloud-arrow-down color-text ml-2";
-        buttonDownload.appendChild(iDownload)
+        buttonDownload.appendChild(iDownload);
         
         ul.appendChild(liDif);
         ul.appendChild(liPoints);
@@ -126,6 +127,7 @@ async function printComments() {
         divInfo.className = "flex flex-col justify-between ml-6 gap-1";
 
         const spanName = document.createElement("span");
+        spanName.className = "text-2xl color-secondary font-bold";
         spanName.className = "text-2xl color-secondary font-normal";
         spanName.textContent = comment.nombre;
         const pComment = document.createElement("p");

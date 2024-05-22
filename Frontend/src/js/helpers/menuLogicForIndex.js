@@ -29,7 +29,7 @@ function menuLogic() {
             <a href="./public/academy.html"><i class="fa-solid fa-building-columns"></i> Academia</a>
           </li>
           <li class="ml-6">
-            <a href=""><i class="fa-solid fa-info"></i> Ayuda</a>
+            <a href="./public/help.html"><i class="fa-solid fa-info"></i> Ayuda</a>
           </li>
           <li class="ml-10 user">
             <a href=""><i class="fa-regular fa-user"></i></a>

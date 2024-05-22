@@ -2,7 +2,7 @@
 // aqui esta el codigo de la logica del sidebar 
 
 //variables
-const articles = document.querySelectorAll("section.controller > article");
+const articles = document.querySelectorAll(".controller > article");
 const tab_controllers = document.querySelectorAll("section nav li");
 let url = window.location.href;
 const urlParams = new URLSearchParams(window.location.search);
@@ -10,6 +10,7 @@ const urlParams = new URLSearchParams(window.location.search);
 //eventos
 tab_controllers.forEach(tab => tab.addEventListener("click", show));
 tabs_logic();
+
 
 // funciones
 function show(e){
@@ -43,3 +44,4 @@ function setParameter(paramValue) {
     let updatedUrl = window.location.origin + window.location.pathname + '?' + urlParams.toString();
     window.history.pushState({ path: updatedUrl }, '', updatedUrl);
 }
+

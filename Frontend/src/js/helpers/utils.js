@@ -41,7 +41,6 @@ class helpers {
     static getToken(){
         return localStorage.getItem('token');
     }
-
 }
 
 export default helpers;

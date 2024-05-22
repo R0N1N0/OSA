@@ -31,19 +31,16 @@
       >
         <ul class="flex flex-col mt-12">
           <li class="mt-2 tab-controller active" name="nmap">
-            <i class="fa-solid fa-crown"></i> Nmap
+            <i class="fa-regular fa-map"></i> Nmap
           </li>
           <li class="mt-2 tab-controller" name="metasploit">
-            <i class="fa-solid fa-cube"></i> Metasploit
+            <i class="fa-solid fa-shield-halved"></i> Metasploit
           </li>
-          <li class="mt-2 tab-controller" name="grupos">
-            <i class="fa-solid fa-users"></i> Grupos
+          <li class="mt-2 tab-controller" name="sqlinjection">
+            <i class="fa-solid fa-syringe"></i> SQL Injection
           </li>
-          <li class="mt-2 tab-controller" name="invitaciones">
-            <i class="fa-solid fa-user-plus"></i> Invitaciones
-          </li>
-          <li class="mt-2 tab-controller" name="ranking">
-            <i class="fa-solid fa-bolt"></i> Ranking
+          <li class="mt-2 tab-controller" name="fuzzing">
+            <i class="fa-brands fa-searchengin"></i> Fuzzing Web
           </li>
         </ul>
       </nav>
@@ -94,14 +91,14 @@
             <span class="text-2xl color-third"> Ejemplos </span>
 
             <div class="academyBox">
-              <p class="academyBox p-0 mb-6 text-lg">
+              <p class="p-0 mb-6 text-lg">
                 Para poder escanear máquinas virtuales (CTF) en la red,
                 utilizaremos
                 <strong class="color-secondary">
                   nmap [IP de red / CIDR]
                 </strong>
               </p>
-              <img src="../img/nmap7.png" alt="ejemplos de nmap" />
+              <img src="../img/nmap/nmap7.png" alt="ejemplos de nmap" />
               <p class="academyResumen">
                 Ejemplo básico de nmap. Aqui se muestran las IPs de las máquinas
                 virtuales, junto a los puertos abiertos. La red es 200.200.10.0
@@ -110,7 +107,7 @@
             </div>
 
             <div class="academyBox">
-              <p class="academyBox p-0 mb-6 text-lg">
+              <p class="p-0 mb-6 text-lg">
                 Normalmente saldrán varias IPs, y un listado de puertos abiertos
                 por cada una de estas. Los puertos más comunes, y que pueden
                 indicar la presencia de una máquina virtual CTF, son el puerto
@@ -118,14 +115,14 @@
                 por alguna página web que se está hospedando en la máquina
                 destino.
               </p>
-              <img src="../img/nmap6.png" alt="ejemplos de nmap" />
+              <img src="../img/nmap/nmap6.png" alt="ejemplos de nmap" />
               <p class="academyResumen">
                 Potencial candidato de ser un CTF, ya que tiene los dos puertos
                 mencionados anteriormente.
               </p>
             </div>
             <div class="academyBox">
-              <p class="academyBox p-0 mb-6 text-lg">
+              <p class="p-0 mb-6 text-lg">
                 Para poder saber más información sobre los sistemas, podemos
                 poner la IP del sistema junto a diversas banderas o
                 <strong class="color-secondary"> “flags” </strong> en la
@@ -133,7 +130,7 @@
                 <strong class="color-secondary"> -sV </strong>, para saber la
                 versión de los servicios.
               </p>
-              <img src="../img/nmap4.png" alt="ejemplos de nmap" />
+              <img src="../img/nmap/nmap4.png" alt="ejemplos de nmap" />
               <p class="academyResumen">
                 Esta máquina Windows Server, por ejemplo, tiene un Active
                 Directory abierto, y podemos saber el nombre del dominio, la
@@ -142,18 +139,18 @@
               </p>
             </div>
             <div class="academyBox">
-              <p class="academyBox p-0 mb-6 text-lg">
+              <p class="p-0 mb-6 text-lg">
                 Con <strong class="color-secondary"> -O </strong>, podemos saber
                 el sistema operativo de la máquina con la IP especificada:
               </p>
-              <img src="../img/nmap3.png" alt="ejemplos de nmap" />
+              <img src="../img/nmap/nmap3.png" alt="ejemplos de nmap" />
               <p class="academyResumen">
                 En este caso, nos encontramos ante una máquina virtual que
                 utiliza Linux 4 o Linux 5, gracias a su kernel.
               </p>
             </div>
             <div class="academyBox">
-              <p class="academyBox p-0 mb-6 text-lg">
+              <p class="p-0 mb-6 text-lg">
                 Otra opción muy interesante es la de
                 <strong class="color-secondary"> –script </strong>, la cual nos
                 permite ejecutar un script de LUA para poder detectar cosas más
@@ -163,14 +160,14 @@
                 scripts que detectan vulnerabilidades. Ejemplos de estos son
                 <strong class="color-secondary">vulscan, vulners, etc.</strong>
               </p>
-              <img src="../img/nmap1.png" alt="ejemplos de nmap" />
+              <img src="../img/nmap/nmap1.png" alt="ejemplos de nmap" />
               <p class="academyResumen">
                 Podemos observar distintos tipos de vulnerabilidades y exploits
                 de Apache2 encontrados en esta máquina.
               </p>
             </div>
             <div class="academyBox">
-              <p class="academyBox p-0 mb-6 text-lg">
+              <p class="p-0 mb-6 text-lg">
                 Si detectamos algún cortafuegos en la máquina objetivo, podemos
                 emplear técnicas de evasión como fragmentar los paquetes de IP a
                 la hora de detectar máquinas, crear IPs falsas mediante spoofing
@@ -180,7 +177,7 @@
                 que el IDS o cortafuegos crea que se están realizando escaneos
                 desde distintos lugares.
               </p>
-              <img src="../img/nmap2.png" alt="ejemplos de nmap" />
+              <img src="../img/nmap/nmap2.png" alt="ejemplos de nmap" />
               <p class="academyResumen">
                 En el ejemplo, se puede ver como se utilizan 3 IPs como señuelo,
                 seguida de “ME”, que es nuestra IP real. Si no ponemos nuestra
@@ -191,29 +188,515 @@
           <article class="w-full h-full">
             <span class="text-2xl color-third"> Resumen </span>
             <div class="academyBox">
-              <p class="text-lg academyResumen m-0">Para finalizar, y como curiosidad, Nmap es una herramienta tan popular que incluso ha aparecido en la gran pantalla, en películas como Matrix Reloaded, Dredd, Snowden, Elysium, Los Cuatro Fantásticos, etc.</p>
+              <p class="text-lg  m-0">Para finalizar, y como curiosidad, Nmap es una herramienta tan popular que incluso ha aparecido en la gran pantalla, en películas como Matrix Reloaded, Dredd, Snowden, Elysium, Los Cuatro Fantásticos, etc.</p>
             </div>
           </article>
         </article>
       </article>
 
-      <!------------------------------------------>
+      <!-------------------METASPLOIT----------------------->
 
       <article
-        class="ml-64 metasploit tab hidden pl-12 pt-12 w-full flex flex-row flex-wrap justify-center gap-10"
+        class="ml-64 metasploit tab hidden pl-12 pt-12 w-full flex flex-row flex-wrap justify-center gap-10 mb-12"
       >
-        <header class="header flex justify-between w-11/12">
-          <h3 class="text-2xl color-text">
-            <i class="fa-solid fa-cube"></i> Máquinas hackeadas
+        <header class="header flex justify-between w-full">
+          <h3 class="text-3xl color-text flex flex-row items-center">
+            <img
+                    class="size-20 mr-4"
+                    src="https://atomrace.com/blog/wp-content/uploads/2017/10/metasploit-logo.png"
+                    alt="metasploit logo"
+            />
+            Metasploit
           </h3>
-          <button class="text-lg w-72 h-9 rounded btn-info color-text btn">
-            <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            <a href="/Frontend/src/public/mv.html">Ver máquinas disponibles</a>
-          </button>
         </header>
+        <div class="w-4/5 alert flex justify-center flex-wrap"></div>
+        <article
+                class="w-full h-full flex flex-row flex-wrap justify-center gap-10"
+        >
+          <article class="h-full w-full">
+            <span class="text-2xl color-third"> ¿Qué es Metasploit? </span>
+            <p class="academyBox mt-6 text-lg">
+              <strong class="color-secondary">Metasploit Framework o Metasploit </strong>
+              para abreviar, es una herramienta muy popular en el mundo del hacking, pues permite automatizar y agilizar
+              el pentesting (tests de intrusión) en todo tipo de servicios y dispositivos. Esta herramienta, por lo tanto,
+              puede ayudar al descubrimiento de vulnerabilidades y a sus posibles vías de explotación.
+              Este proyecto fue creado en 2003 por HD Moore utilizando el lenguaje de programación Perl, aunque en 2007
+              fue reescrito en Ruby y posteriormente adquirido por Rapid7
+              <strong class="color-secondary">
+                <a target="_blank" href="https://www.metasploit.com/"
+                >(https://www.metasploit.com/)</a
+                ></strong
+              >. Metasploit Framework consta de cuatro partes principales:
+              <strong class="color-secondary">Las interfaces, las bibliotecas, los módulos y los añadidos.</strong>
+            </p>
+            <p class="academyBox mt-6 text-lg">
+              - <strong class="color-secondary">Las interfaces</strong> son la manera de acceder al entorno de Metasploit. La más empleada y que vamos a
+              utilizar más adelante es MSFconsole (uso de la consola).
+              <br>
+              <br>
+              - <strong class="color-secondary">Las bibliotecas o APIs</strong> son conjuntos de instrucciones que dan forma a la sintaxis de Metasploit.
+              Se utilizan tres: MSFCore, MSF y REX.
+              <br>
+              <br>
+              - <strong class="color-secondary">Los añadidos o plugins</strong> son creados por la comunidad y sirven para extender las capacidades de Metasploit.
+              Algunos ejemplos son nexpose o nessus para poder integrar estos buscadores de vulnerabilidades con Metasploit,
+              lab para controlar distintas máquinas virtuales, etc.
+              <br>
+              <br>
+              - <strong class="color-secondary">Los módulos</strong> son otra parte esencial de Metasploit, y definen el
+              ámbito de la tarea que se quiere realizar. Hay de 6 tipos:
+              <br>
+              <br>
+              <sub class="academySpanTab"><strong class="color-secondary">- Exploits:</strong> Estos son comandos o vectores de entrada que permiten acceder al sistema o aplicación de destino, aprovechándose de vulnerabilidades.
+              <br><strong class="color-secondary ">- Payloads:</strong> Estas son las cargas maliciosas de nuestra intrusión. Son fragmentos de código que se ejecutarán en la máquina o servicio atacado después del exploit.
+              <br><strong class="color-secondary">- Post Explotación:</strong> Permiten realizar pruebas adicionales después de ya tener acceso al objetivo.
+              <br><strong class="color-secondary">- Encoders:</strong> Cifran el contenido malicioso para intentar evadir cortafuegos y sistemas de detección y prevención de intrusiones.
+              <br><strong class="color-secondary">- Auxiliaries:</strong> Son tipos de módulos sin una categoría concreta.
+              <br><strong class="color-secondary">- NOPs:</strong> Generan secuencias de bytes aleatorias, para confundir a los IDS e IPS.</sub>
+            </p>
+
+          </article>
+          <article class="h-full w-full">
+            <span class="text-2xl color-third"> Ejemplos </span>
+
+            <div class="academyBox">
+              <p class="p-0 mb-6 text-lg">
+                Todo comienza escribiendo en la terminal <strong class="color-secondary ">sudo msfconsole</strong>. Nos aparecerá
+                un bonito logo seguido de una interfaz para poner los comandos.
+              </p>
+              <img src="../img/msploit/msploit1.png" alt="ejemplos de metasploit" />
+              <p class="academyResumen">
+                Ejemplo de Metasploit Framework Console. Aquí empieza la magia.
+              </p>
+            </div>
+
+            <div class="academyBox">
+              <p class="p-0 mb-6 text-lg">
+                Si queremos escanear la red en busca de nuestra máquina objetivo (Metasploitable 3), podemos ejecutar Nmap como en
+                el tutorial anterior, o podemos utilizar algún módulo de Metasploit. En nuestro caso, ya que es una guía de uso, vamos
+                a hacerlo con este último, más concretamente con el módulo <strong class="color-secondary ">auxiliary/scanner/discovery/arp_sweep</strong>.
+                Para utilizar cualquier módulo podemos escribir <strong class="color-secondary ">use</strong> seguido del nombre.
+                Podemos también saber los parámetros con <strong class="color-secondary ">info</strong>.
+              </p>
+              <img src="../img/msploit/msploit2.png" alt="ejemplos de metasploit" />
+              <p class="academyResumen">
+                  Se puede observar que necesitamos poner la opción RHOSTS.
+              </p>
+            </div>
+
+            <div class="academyBox">
+              <p class="p-0 mb-6 text-lg">
+                Como necesitamos la opción RHOSTS como mínimo, vamos a ponerla con <strong class="color-secondary ">set RHOSTS (ip de red) </strong>.
+                En ip de red, ponemos nuestra ip, seguida del bloque CIDR (en este caso, 200.200.10.0/24)
+                <br>
+                Para finalizar, podemos arrancar nuestro script con <strong class="color-secondary ">run</strong>.
+              </p>
+              <img src="../img/msploit/msploit3.png" alt="ejemplos de metasploit" />
+              <p class="academyResumen">
+                Aquí nos salen varios resultados. Las 3 primeras son de los routers NAT de VirtualBox, por lo tanto, tiene que set la 4a IP
+                (200.200.10.11)
+              </p>
+            </div>
+
+            <div class="academyBox">
+              <p class="p-0 mb-6 text-lg">
+                Ahora que ya tenemos nuestra IP objectivo, podemos probar a buscar servicios que puedan ser vulnerados. Un módulo muy interesante
+                es el de <strong class="color-secondary ">auxiliary/scanner/portscan/syn</strong>, el cual enviará paquetes de TCP con la flag "SYN"
+                a todos los puertos de una máquina. Si reciben respuesta para establecer la conexión, sabremos que existen.
+                Este módulo también necesita <strong class="color-secondary ">RHOSTS</strong> para saber la IP(s) de destino,
+                así que se la ponemos de igual manera y lo arrancamos.
+              </p>
+              <img src="../img/msploit/msploit4.png" alt="ejemplos de metasploit" />
+              <p class="academyResumen">
+                Si esperamos un rato, saldrán una serie de puertos. En este tutorial intentaremos explotar el 21 (FTP).
+                FTP es un protocolo de transferencia de archivos, así que podemos pasar un archivo malicioso para poder controlar la máquina desde fuera.
+              </p>
+            </div>
+
+            <div class="academyBox">
+              <p class="p-0 mb-6 text-lg">
+                Podemos atacar a FTP con el <strong class="color-secondary ">exploit de proftpd_modcopy_exec</strong>
+                para generar una terminal interactiva con netcat. El exploit se encuentra en <strong class="color-secondary ">
+                exploit/unix/ftp/proftpd_modcopy_exec</strong>
+              </p>
+              <img src="../img/msploit/msploit5.png" alt="ejemplos de metasploit" />
+              <img src="../img/msploit/msploit6.png" alt="ejemplos de metasploit" />
+              <p class="academyResumen">
+                Aquí podemos ver que necesitamos poner el RHOSTS, y que por defecto utilizará la carga de netcat para hacer una connexión inversa.
+                También hay que cambiar el directorio SITEPATH a /var/www/html
+              </p>
+            </div>
+
+            <div class="academyBox">
+              <p class="p-0 mb-6 text-lg">
+                Finalmente, ponemos el valor de <strong class="color-secondary ">RHOSTS</strong> a la IP de la máquina,
+                y <strong class="color-secondary ">SITEPATH</strong> a donde se encuentra la página web
+                <strong class="color-secondary ">(/var/www/html)</strong>
+              </p>
+              <img src="../img/msploit/msploit7.png" alt="ejemplos de metasploit" />
+              <img src="../img/msploit/msploit8.png" alt="ejemplos de metasploit" />
+              <p class="academyResumen">
+                Si lo ejecutamos, ya tenemos una connexión inversa con la víctima, a partir de aquí se puede hacer side-stepping para encontrar
+                otros usuarios o hacer una escalada de privilegios.
+              </p>
+            </div>
+
+          </article>
+          <article class="w-full h-full">
+            <span class="text-2xl color-third"> Resumen </span>
+            <div class="academyBox">
+              <p class="text-lg  m-0">Para finalizar, y como curiosidad, Metasploit cuenta en la actualidad
+                com más de 5500 modulos y más de 10000 colaboradores, y es tan poderoso que su uso está limitado en certificaciones como OSCP.
+                En este tutorial solo mencionamos una pequeña parte del gran potencial de esta herramienta.</p>
+            </div>
+          </article>
+        </article>
       </article>
-    </section>
-  </body>
+
+      <!------------------- SQLInjection ----------------------->
+
+      <article
+              class="ml-64 sqlinjection tab hidden pl-12 pt-12 w-full flex flex-row flex-wrap justify-center gap-10 mb-12"
+      >
+        <header class="header flex justify-between w-full">
+          <h3 class="text-3xl color-text flex flex-row items-center">
+            <img
+                    class="size-20 mr-4"
+                    src="../img/sqlinjection/sqlinjection1.png"
+                    alt="sqlinjection logo"
+            />
+            SQL Injection
+          </h3>
+        </header>
+        <div class="w-4/5 alert flex justify-center flex-wrap"></div>
+        <article
+                class="w-full h-full flex flex-row flex-wrap justify-center gap-10"
+        >
+          <article class="h-full w-full">
+            <span class="text-2xl color-third"> ¿Qué es SQL Injection? </span>
+            <p class="academyBox mt-6 text-lg">
+              <strong class="color-secondary">SQL Injection</strong>
+              es una vulnerabilidad de código que permite a un atacante acceder y/o modificar el contenido de una o varias bases de datos.
+              Una inyección exitosa permite no solo realizar consultas, sino añadir, modificar, actualizar o borrar entradas en una base
+              de datos relacional. Todos los ataques de SQL Injection se hacen a partir de una consulta SQL, pero de manera malintencionada.
+              Las SQL Injection pueden dividirse en varios tipos:
+            </p>
+
+            <p class="academyBox mt-6 text-lg">
+              <strong class="color-secondary">- Basadas en errores: </strong>Este tipo se basa en los mensajes de error generados al intentar
+              hacer la consulta. A partir de ahí se pueden deducir algunos datos o la estructura de la base de datos.
+              <br>
+              <br>
+              <strong class="color-secondary">- Basadas en uniones: </strong>Se caracterizan por utilizar la palabra clave resevada <strong class="color-secondary">
+              UNION</strong> en la consulta original para inyectar o incrustar otra consulta malintencionada.
+              <br>
+              <br>
+              <strong class="color-secondary">- Basadas en booleanos: </strong>Son las que se pueden comparar con valores booleanos (verdadero o falso), para
+              comprovar si la consulta maliciosa funciona o incluso utilizarlas de cabecera para que se ejecuten.
+              <br>
+              <br>
+              <strong class="color-secondary">- Basadas en tiempo: </strong>Se pueden inyectar consultas que fuerzen a la base de datos a acceder a muchas
+              tablas, provocando así que tarden mucho tiempo. Suelen estar relacionadas con el siguiente tipo.
+              <br>
+              <br>
+              <strong class="color-secondary">- Inyecciones ciegas: </strong>Son las inyecciones que no muestran resultado alguno, pero que
+              en realidad, se están realizando. Eso quiere decir que aunque no se muestren resultados
+              por pantalla, se siguen haciendo. Se combinan muy bien con las basadas en tiempo, ya que si pasa mucho tiempo antes de que la aplicación
+              responda de nuevo, sabremos que hay una vulnerabilidad de SQLi.
+              <br>
+              <br>
+              <strong class="color-secondary">- Basadas en consultas apiladas: </strong>Este tipo permite a un atacante poder hacer varias consultas
+              en una sola solicitud, haciendo posible la inyección de muchas consultas malintencionadas.
+              <br>
+              <br>
+              <strong class="color-secondary">- Inyecciones de segundo orden: </strong>Son las que se almacenan en la propia base de datos de forma latente,
+              hasta que el atacante decida ejecutarlas.
+            </p>
+
+            <p class="academyBox mt-6 text-lg">
+              Para el ejemplo de SQL Inyection, estaremos utilizando una Aplicación Web J*didamente Vulnerable (DVWA), la cual se puede encontrar
+              en el siguiente enlace <strong class="color-secondary">https://github.com/digininja/DVWA/pkgs/container/dvwa</strong>.
+              También utilizaremos <strong class="color-secondary">SQLMap</strong>, para ilustrar una posible manera de automatizar las consultas maliciosas.
+            </p>
+
+            <article class="h-full w-full">
+              <span class="text-2xl color-third"> Ejemplos </span>
+
+              <div class="academyBox">
+                <p class="p-0 mb-6 text-lg">
+                  Cuando tengamos nuestra máquina o contenedor víctima, podremos acceder a él con el navegador poniendo su IP y su puerto.
+                  En nuestro caso, será <strong class="color-secondary">192.168.1.34:32768</strong>. Nos dará la bienvenida un portal de acceso.
+                  Para continuar pondremos los credenciales <strong class="color-secondary">admin, password</strong>.
+                </p>
+                <img src="../img/sqlinjection/sqlinjection2.png" alt="ejemplos de sqlinjection" />
+                <p class="academyResumen">
+                  El portal de login de DVWA.
+                </p>
+              </div>
+
+              <div class="academyBox">
+                <p class="p-0 mb-6 text-lg">
+                  Una vez dentro, nos saldrá un menú en el lateral izquierdo. De momento solo nos centraremos en 2 apartados, el de SQLInjection y el de
+                  DVWA Security. Continuaremos clicando al de DVWA Security y seleccionando el nivel de dificultad. Existen 4 tipos de dificultad:
+                  <strong class="color-secondary">low o fácil, medium o intermedio, hard o difícil e imposible</strong>.
+                  Haremos el <strong class="color-secondary">fácil</strong>, todo y que con SQLMap podremos hacer los tres
+                  primeros modos de la misma manera. El modo <strong class="color-secondary">imposible</strong> es un
+                  ejemplo de buena práxis, ya que no podemos hacer SQLInjection con él.
+                </p>
+                <img src="../img/sqlinjection/sqlinjection3.png" alt="ejemplos de sqlinjection" />
+                <p class="academyResumen">
+                  Seguridad de DVWA. Para seleccionar el modo, clicamos en el desplegable y luego a submit.
+                </p>
+              </div>
+
+              <div class="academyBox">
+                <p class="p-0 mb-6 text-lg">
+                  Si entramos al apartado de SQLInjection, nos encontraremos con una caja de texto donde nos pide un ID.
+                  Si ponemos un numero cualquiera, nos devolverá un resultado. Si en vez de seleccionar SQL Injection hemos
+                  seleccionado la opción de <strong class="color-secondary">(blind)</strong>, no nos devolverá nada por pantalla.
+                </p>
+                <img src="../img/sqlinjection/sqlinjection4.png" alt="ejemplos de sqlinjection" />
+                <p class="academyResumen">
+                  Sale que el nombre del usuario 1 es admin, y su apellido es admin. Poco original, la verdad.
+                </p>
+              </div>
+
+              <div class="academyBox">
+                <p class="p-0 mb-6 text-lg">
+                  Ahora, utilizaremos <strong class="color-secondary">SQLMap</strong> para sacar todas las bases de datos, tablas y valores que queramos.
+                  Primero, especificaremos la opción <strong class="color-secondary">-u con la URL completa</strong> de la página.
+                  Solo bastará con copiar y pegar la que tenemos en el buscador y ponerla entre comillas dobles.
+                  Luego, necesitaremos especificar las <strong class="color-secondary">cookies</strong> que se utilizan, ya que
+                  aquí se incluyen datos como la dificultad y la sesión de PHP. Para extraer las cookies podemos ir al
+                  <strong class="color-secondary">inspector de elementos</strong> de nuestro navegador web.
+                  A partir de aquí cambia entre navegadores, pero en todos hay un apartado de <strong class="color-secondary">almacenamiento/aplicación</strong>
+                  con las cookies dentro en una tabla. Las copiamos a SQLMap con el parámetro <strong class="color-secondary">--cookie</strong>
+                  , separadas por ";".
+                </p>
+                <img src="../img/sqlinjection/sqlinjection5.png" alt="ejemplos de sqlinjection" />
+                <p class="academyResumen">
+                  Aquí podemos observar nuestras cookies. Son necesarias para que SQLMap funcione correctamente. Ten en cuenta que las que salen aqui no
+                  tienen por qué ser las mismas que las tuyas.
+                </p>
+                <img src="../img/sqlinjection/sqlinjection6.png" alt="ejemplos de sqlinjection" />
+                <p class="academyResumen">
+                  El comando de SQLMap tendría que lucir así.
+                </p>
+              </div>
+
+              <div class="academyBox">
+                <p class="p-0 mb-6 text-lg">
+                  Si lo hemos hecho correctamente, nos irá pidiendo nuestro feedback para ir concretando más las búsquedas. Al principio nos
+                  preguntará si queremos probar solamente las inyecciones de <strong class="color-secondary">MySQL</strong>. Le decimos que si con
+                  <strong class="color-secondary">"y"</strong>. Luego nos pedirá si queremos probar solamente el nivel de inyección 1, y le decimos
+                  que <strong class="color-secondary">"y"</strong>.
+                </p>
+                <img src="../img/sqlinjection/sqlinjection7.png" alt="ejemplos de sqlinjection" />
+                <p class="academyResumen">
+                  Aquí podemos observar las consultas maliciosas que va probando. Nos dice en varias ocasiones que el parámetro "id" es vulnerable.
+                </p>
+              </div>
+
+              <div class="academyBox">
+                <p class="p-0 mb-6 text-lg">
+                  Finalmente, nos dirá que ya ha encontrado un parámetro vulnerable en <strong class="color-secondary">"id"</strong>.
+                  Le podemos decir que no <strong class="color-secondary">"n"</strong> para que no continue probando más.
+                </p>
+                <img src="../img/sqlinjection/sqlinjection8.png" alt="ejemplos de sqlinjection" />
+                <p class="academyResumen">
+                  Se ven las pruebas que se han realizado en la imagen. Entre ellas salen varios tipos que hemos mencionado con anterioridad,
+                  basadas en tiempo, en errores, en booleanos o con UNIONS. Todas tienen el campo "id" en común, ya que hemos dicho
+                  que nos basta con ese.
+                </p>
+              </div>
+
+              <div class="academyBox">
+                <p class="p-0 mb-6 text-lg">
+                  Si queremos saber más info sobre las bases de datos activas, podemos utilizar el parámetro <strong class="color-secondary">--dbs</strong> en
+                  SQLMap, así sabremos las que hay.
+                </p>
+                <img src="../img/sqlinjection/sqlinjection9.png" alt="ejemplos de sqlinjection" />
+                <img src="../img/sqlinjection/sqlinjection10.png" alt="ejemplos de sqlinjection" />
+                <p class="academyResumen">
+                  En este caso está la base de datos dvwa y la base de datos information_schema, adónde se encuentra toda la estructura de MySQL.
+                </p>
+              </div>
+
+              <div class="academyBox">
+                <p class="p-0 mb-6 text-lg">
+                  Si queremos saber las tablas de una base de datos, necesitamos el parámetro <strong class="color-secondary">--tables -D </strong>
+                  seguido del nombre de la tabla.
+                </p>
+                <img src="../img/sqlinjection/sqlinjection11.png" alt="ejemplos de sqlinjection" />
+                <img src="../img/sqlinjection/sqlinjection12.png" alt="ejemplos de sqlinjection" />
+                <p class="academyResumen">
+                  Si nos fijamos en el ejemplo, podemos ver todas las tablas de dvwa.
+                </p>
+              </div>
+
+              <div class="academyBox">
+                <p class="p-0 mb-6 text-lg">
+                  Si queremos saber las columnas de una tabla, necesitamos el parámetro <strong class="color-secondary">-T "tabla" --columns </strong>
+                  donde "tabla" es el nombre de la tabla.
+                </p>
+                <img src="../img/sqlinjection/sqlinjection13.png" alt="ejemplos de sqlinjection" />
+                <img src="../img/sqlinjection/sqlinjection14.png" alt="ejemplos de sqlinjection" />
+                <p class="academyResumen">
+                  Los usuarios de dvwa tienen 6 campos/columnas. Podemos ver que uno de ellos es "password".
+                </p>
+              </div>
+
+              <div class="academyBox">
+                <p class="p-0 mb-6 text-lg">
+                  A la hora de saber todos los valores de la tabla, podemos poner el parámetro <strong class="color-secondary">-C "columna1, columna2..." --dump</strong>
+                  donde los nombres de las columnas están entre comillas y separados entre ellos por comas.
+                  A continuación nos pedirá si queremos guardar los <strong class="color-secondary">hashes de las contraseñas</strong>
+                  o intentar descifrarlas con un <strong class="color-secondary">ataque basado en diccionarios</strong>.
+                  Le podemos decir que si con "y" a todas estas opciones y seleccionar un diccionario por defecto.
+                </p>
+                <img src="../img/sqlinjection/sqlinjection15.png" alt="ejemplos de sqlinjection" />
+                <img src="../img/sqlinjection/sqlinjection16.png" alt="ejemplos de sqlinjection" />
+                <p class="academyResumen">
+                  Ahora ya podemos entrar con el usuario que nos plazca a la Aplicación Web J*didamente Vulnerable.
+                </p>
+              </div>
+            </article>
+            <article class="w-full h-full">
+              <span class="text-2xl color-third"> Resumen </span>
+              <div class="academyBox">
+                <p class="text-lg  m-0">Para finalizar, y como curiosidad, ha habido grandes filtraciones
+                de datos por culpa de SQLi; entre ellas en 2012 a LinkedIn, en 2011 a Sony Pictures o en 2015 a Ashley Madison.
+                La moraleja es que si quieres mantener un amorío con otra persona, asegúrate de que tu pareja no sepa SQLi.
+                </p>
+              </div>
+            </article>
+          </article>
+        </article>
+      </article>
+
+
+    <!------------------- Fuzzing Web ----------------------->
+
+    <article
+            class="ml-64 fuzzing tab hidden pl-12 pt-12 w-full flex flex-row flex-wrap justify-center gap-10"
+    >
+      <header class="header flex justify-between w-full">
+        <h3 class="text-3xl color-text flex flex-row items-center">
+          <img
+                  class="size-20 mr-4"
+                  src="../img/fuzzing/fuzzing1.png"
+                  alt="fuzzing web logo"
+          />
+          Fuzzing Web
+        </h3>
+      </header>
+      <div class="w-4/5 alert flex justify-center flex-wrap"></div>
+      <article
+              class="w-full h-full flex flex-row flex-wrap justify-center gap-10"
+      >
+        <article class="h-full w-full">
+          <span class="text-2xl color-third"> ¿Qué es Fuzzing Web? </span>
+          <p class="academyBox mt-6 text-lg">
+            <strong class="color-secondary">El Fuzzing Web </strong>es una técnica de pruebas de seguridad que se utiliza
+            para identificar vulnerabilidades y errores en aplicaciones web. Consiste en enviar datos aleatorios, o de un diccionario
+            para provocar respuestas inesperadas como <strong class="color-secondary">SQL Injections, Buffer Overflows,
+            Enumeración de archivos,</strong> etc.
+          </p>
+
+          <p class="academyBox mt-6 text-lg">
+            Para automatizar el fuzzing web, existen una serie de programas como <strong class="color-secondary">wfuzz o gobuster</strong>,
+            los cuales prueban respuestas por parte del servidor a nivel de protocolo (HTTP GET/POST...) o a nivel de datos (HTML, JPG, TXT...)
+            los valores que prueban pueden ser de varios tipos:
+            <br>
+            <br>
+            <strong class="color-secondary">- Numeros: </strong> pueden ser enteros, flotantes, dobles, con signo o sin signo.
+            Si se prueban numeros muy grandes o inesperados, se puede provocar un <strong class="color-secondary">Buffer Overflow</strong>,
+            que puede revelar posiciones de memoria y datos comprometidos.
+            <br>
+            <br>
+            <strong class="color-secondary">- Caracteres: </strong> pueden ser saltos de linea, escapados, palabras reservadas o instrucciones,
+            por ejemplo un <strong class="color-secondary">&</strong> para incrustar una variable GET, o un <strong class="color-secondary">'</strong>
+            para un SQL Injection.
+            <br>
+            <br>
+            <strong class="color-secondary">- Secuencias binarias: </strong> son cadenas aleatorias de unos y ceros que pueden alterar
+            el funcionamiento de la aplicación web.
+            <br>
+            <br>
+            <strong class="color-secondary">- Metadatos: </strong> en el caso de no hacer fuzzing web, se pueden probar metadatos corruptos para
+            ciertas extensiones de archivo, por ejemplo, cambiando el autor de una canción a un valor inválido en <strong class="color-secondary">mp3 con id3</strong>.
+          </p>
+          <article class="h-full w-full">
+            <span class="text-2xl color-third"> Ejemplos </span>
+
+            <div class="academyBox">
+              <p class="p-0 mb-6 text-lg">
+                Vamos a revelar todos los secretos de una página web, en nuestro caso, utilizaremos de ejemplo la máquina CTF de Please Hack Me,
+                ya que contiene una página web muy interesante con diversos directorios a explorar.
+              </p>
+              <img src="../img/fuzzing/fuzzing2.png" alt="ejemplos de fuzzing web" />
+              <p class="academyResumen">
+                Página de inicio de HackMePlease.
+              </p>
+            </div>
+
+            <div class="academyBox">
+              <p class="p-0 mb-6 text-lg">
+                Ahora que tenemos la página, podemos utilizar <strong class="color-secondary">Gobuster</strong> para obtener todos los archivos y directorios expuestos.
+                Primero, ponemos <strong class="color-secondary">gobuster</strong> seguido de la opción <strong class="color-secondary">dir</strong>, ya que queremos listar
+                los directorios. También especificamos con <strong class="color-secondary">-u</strong> la url de la página; en este caso con la IP ya basta.
+                También debemos especificar un diccionario con <strong class="color-secondary">-w</strong> para poder encontrar el contenido web. Un diccionario básico para hacer
+                fuzzing web se puede encontrar en <strong class="color-secondary">Web-Content/common.txt</strong>
+                Finalmente, si queremos filtrar por extensiones de archivo, ponemos <strong class="color-secondary">-x</strong> seguido de las extensiones que queremos, separadas por comas.
+              </p>
+              <img src="../img/fuzzing/fuzzing3.png" alt="ejemplos de fuzzing web" />
+              <p class="academyResumen">
+                En este caso, vamos a buscar en la página 10.10.10.69 con el diccionario de palabras common.txt directorios y archivos con las extensiones
+                txt,pdf,tar,gz,zip,js y php.
+              </p>
+            </div>
+
+            <div class="academyBox">
+              <p class="p-0 mb-6 text-lg">
+                Una vez ejecutado podremos ver los resultados. Si pone <strong class="color-secondary">Status:403</strong> significará que ha encontrado el archivo o directorio,
+                pero que no tiene acceso a él. Esto puede ser debido a que tiene algún tipo de protección como un <strong class="color-secondary">.htaccess, por ejemplo.</strong>
+                Si pone <strong class="color-secondary">Status:200</strong> significa que ha encontrado el archivo, y tiene acceso a él.
+                Con el código <strong class="color-secondary">Status:301</strong> sabemos que el enlace que se proporciona redirige a otro enlace, ya que con ése no hay soporte.
+                Finalmente, cabe comentar que por defecto gobuster no muestra los <strong class="color-secondary">Status:404</strong>, ya que no son enlaces válidos, y por lo tanto,
+                no nos interesan.
+              </p>
+              <img src="../img/fuzzing/fuzzing4.png" alt="ejemplos de fuzzing web" />
+              <p class="academyResumen">
+                Se han encontrado carpetas con css, img, js, fonts y un index.html con la página principal.
+              </p>
+            </div>
+
+            <div class="academyBox">
+              <p class="p-0 mb-6 text-lg">
+                Ahora que sabemos que tienen expuesta una carpeta con scripts de js, podemos seguir investigando, cambiando el directorio de búsqueda.
+              </p>
+              <img src="../img/fuzzing/fuzzing5.png" alt="ejemplos de fuzzing web" />
+              <p class="academyResumen">
+                Si cambiamos la página web a 10.10.10.69/js/ podemos ver más resultados.
+              </p>
+            </div>
+          </article>
+          <article class="w-full h-full">
+            <span class="text-2xl color-third"> Resumen </span>
+            <div class="academyBox">
+              <p class="text-lg  m-0">Para finalizar, y como curiosidad, hay páginas que ofrecen archivos de texto para los web crawlers llamados
+                robots.txt, pero también suelen haber versiones para humanos, como humans.txt con huevos de pascua.
+                <br>
+                Netflix hoy en día tiene una página helloworld abierta al público, todo y que no tiene ningún sentido aparente. Esta página se puede descubrir
+                con fuzzing web. https://www.netflix.com/helloworld
+              </p>
+            </div>
+          </article>
+        </article>
+      </article>
+    </article>
+  </section>
   <script src="../js/helpers/sidebarLogic.js"></script>
   <script type="module" src="../js/helpers/menuLogic.js"></script>
+  </body>
 </html>

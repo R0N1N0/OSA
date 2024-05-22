@@ -6,6 +6,8 @@ exports.addComment = async (req, res) => {
         const { id } = req.usuario;
         const {idMv, comment} = req.body;
 
+        if(!idMv || !comment) return res.send("Datos no validos.");
+
         const sql = "insert into comentario_usuario_mv(id_usuario, id_mv, comentario) values(?, ?, ?)";
         const connexion = await createConnexion();
         const result = await connexion.query(sql, [id, idMv, comment]);

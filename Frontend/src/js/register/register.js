@@ -39,10 +39,15 @@ async function verifyInputs(e){
 
 async function createUser(formData){
     try{
+        showLoader();
         const response = await fetchPOSTData("user/createUser", formData);
+        showLoader();
         if(response.message){
             helpers.showAlert("Usuario creado correctamente", "success", form);
             form.reset();
+            setTimeout(() => {
+                window.location.href = "./login.html";
+            }, 1000);
             return;
         }
         helpers.showAlert(response.error, "error", form);
@@ -50,5 +55,18 @@ async function createUser(formData){
     catch(error){
         console.error("Error al crear el usuario:", error.message);
         helpers.showAlert("Error al crear el usuario", "error", form);
+    }
+}
+
+function showLoader() {
+    const loader = document.querySelector(".spinner");
+    const img = document.querySelector("img.logo");
+    if(loader.classList.contains("hidden")){
+        loader.classList.remove("hidden");
+        img.classList.add("hidden");
+    }
+    else {
+        loader.classList.add("hidden");
+        img.classList.remove("hidden");
     }
 }
