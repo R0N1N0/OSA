@@ -269,6 +269,9 @@ label {
 .menuLateral li.active {
   background-color: var(--hover-li-sidebar);
 }
+.menuLateral > ul {
+  width: 85%;
+}
 
 /* pefil de usuario */
 .divAward h4,
@@ -276,7 +279,10 @@ label {
   transform: rotateY(-180deg);
 }
 .divAward {
-  perspective: 1000px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+.divAward.rotate {
+  transform: rotateY(180deg);
 }
 
 .maquinas table,

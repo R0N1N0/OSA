@@ -41,30 +41,24 @@ export async function printAwards(){
 
 
 // logica para animacion de los premios
-function selectAwards(){
+function selectAwards() {
     const divsAwards = document.querySelectorAll(".divAward");
-    divsAwards.forEach(div => div.addEventListener("mouseenter", logicAward));
-    divsAwards.forEach(div => div.addEventListener("mouseout", logicAward));
-}
-function logicAward(e){
-    if(!e.target.classList.contains("divAward")) return;
-    const divAward = e.target;
-    const img = divAward.lastChild;
-    const h4 = divAward.firstChild;
-    const p = divAward.children[1];
-    if(divAward.classList.contains("rotate")){
-        divAward.classList.remove("rotate");
-        img.classList.remove("hidden");
-        img.classList.add("w-full h-full")
-        h4.classList.add("hidden");
-        p.classList.add("hidden");
-        return;
-    }
-    divAward.classList.add("rotate");
-    img.classList.add("hidden");
-    img.classList.remove("w-full h-full")
-    h4.classList.remove("hidden");
-    p.classList.remove("hidden");
+    divsAwards.forEach(div => {
+      div.addEventListener("mouseenter", toggleAward);
+      div.addEventListener("mouseleave", toggleAward);
+    });
+  }
+  
+  function toggleAward(e) {
+    const divAward = e.currentTarget;
+    const img = divAward.querySelector("img");
+    const h4 = divAward.querySelector("h4");
+    const p = divAward.querySelector("p");
+  
+    divAward.classList.toggle("rotate");
+    img.classList.toggle("hidden");
+    h4.classList.toggle("hidden");
+    p.classList.toggle("hidden");
 }
 
 async function getAwardsNumber(){
