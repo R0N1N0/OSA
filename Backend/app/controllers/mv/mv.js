@@ -7,7 +7,7 @@ exports.getVirtualMachines = async(req, res) => {
         const connexion = await db.getConnection();
 
         // hacemos la consulta a la base de datos
-        let results = await connexion.query("select * from mv");
+        let results = await connexion.query("select id_mv, nombre, descripcion, puntos, dif, imagen, enlace from mv");
 
         // cerramos la connexion
         connexion.release();
