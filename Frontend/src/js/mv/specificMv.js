@@ -4,6 +4,7 @@
 import helpers from "../helpers/utils.js";
 import { requestMv } from "./requestsMv.js";
 import { getUserRequests } from "../userInfo/userRequests.js";
+import { showLoader } from "../helpers/LoaderLogic.js";
 
 // variables
 
@@ -15,9 +16,11 @@ const form = document.querySelector("form");
 const mvCommentsArticle = document.querySelector('.mvComments');
 
 // eventos
+showLoader();
 printMachine();
 printComments();
 checkUserAuth();
+showLoader();
 buttonSend.addEventListener("click", (e) => {
     addComment(e);
 });
