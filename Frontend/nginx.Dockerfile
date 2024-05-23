@@ -17,4 +17,4 @@ VOLUME ["/var/log/nginx"]
 
 # Expose ports
 
-EXPOSE 80 443
+EXPOSE 80

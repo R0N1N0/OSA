@@ -106,6 +106,7 @@ CREATE TABLE IF NOT EXISTS `mv` (
   `dif` text CHARACTER SET ucs2 COLLATE ucs2_spanish_ci,
   `imagen` text CHARACTER SET ucs2 COLLATE ucs2_spanish_ci,
   `enlace` text CHARACTER SET ucs2 COLLATE ucs2_spanish_ci,
+  `hash` text CHARACTER SET ucs2 COLLATE ucs2_spanish_ci,
   PRIMARY KEY (`id_mv`)
 ) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=ucs2 COLLATE=ucs2_spanish_ci;
 
@@ -114,10 +115,10 @@ CREATE TABLE IF NOT EXISTS `mv` (
 --
 
 INSERT INTO `mv` (`id_mv`, `nombre`, `descripcion`, `puntos`, `dif`, `imagen`, `enlace`) VALUES
-(10, 'Miles', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui fuga dignissimos hic debitis. Iure, voluptatibus.', 3, 'Facil', 'https://www.cnet.com/a/img/resize/c104e53d4126eabbc309e413a534658a107140ff/hub/2020/11/12/da63f82d-5371-4c52-89a4-8b39bab98316/miles-morales-on-avengers-tower.jpg?auto=webp&fit=crop&height=1200&width=1200', '#####'),
-(9, 'Spidey', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui fuga dignissimos hic debitis. Iure, voluptatibus.', 5, 'Facil', 'https://i.pinimg.com/originals/ce/5a/ce/ce5acead2a981ea3e689d79f24ef883b.png', '#####'),
-(8, 'Gotham', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui fuga dignissimos hic debitis. Iure, voluptatibus.', 7, 'Medio', 'https://images.desenio.com/zoom/wb0043-8batman-gothamcityskyline50x70-33443-38474.jpg', '#####'),
-(7, 'Gotham', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui fuga dignissimos hic debitis. Iure, voluptatibus.', 10, 'Dificil', 'https://erikstore.com/blog/wp-content/uploads/2023/09/Batman-day-origen.webp', '#####');
+(10, 'Miles', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui fuga dignissimos hic debitis. Iure, voluptatibus.', 3, 'Facil', 'https://www.cnet.com/a/img/resize/c104e53d4126eabbc309e413a534658a107140ff/hub/2020/11/12/da63f82d-5371-4c52-89a4-8b39bab98316/miles-morales-on-avengers-tower.jpg?auto=webp&fit=crop&height=1200&width=1200', '#####', "#####"),
+(9, 'Spidey', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui fuga dignissimos hic debitis. Iure, voluptatibus.', 5, 'Facil', 'https://i.pinimg.com/originals/ce/5a/ce/ce5acead2a981ea3e689d79f24ef883b.png', '#####', "#####"),
+(8, 'Gotham', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui fuga dignissimos hic debitis. Iure, voluptatibus.', 7, 'Medio', 'https://images.desenio.com/zoom/wb0043-8batman-gothamcityskyline50x70-33443-38474.jpg', '#####', "#####"),
+(7, 'Gotham', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui fuga dignissimos hic debitis. Iure, voluptatibus.', 10, 'Dificil', 'https://erikstore.com/blog/wp-content/uploads/2023/09/Batman-day-origen.webp', '#####', "#####");
 
 -- --------------------------------------------------------
 
