@@ -69,8 +69,8 @@ function printInfo(userData){
     codigo.className = "mt-2 text-xl text-center color-third";
     // mostrar puntos que tiene un usuario
     const span = document.createElement("span");
-    span.textContent = points();
-    span.className = "mt-2 text-lg text-center color-text";
+    span.textContent = points(userMachines, userAwards);
+    span.className = "mt-2 text-lg text-center spanPoints color-text";
 
     // añadir los elementos creados al div info
     divInfo.appendChild(img);
@@ -79,7 +79,7 @@ function printInfo(userData){
     divInfo.appendChild(span);
 }
 
-export function points(){
+export function points(userMachines, userAwards){
     const pointsMachines = userMachines.reduce((total, object) => object.puntos + total, 0);
     const pointsAwards = userAwards.length * 5;
     return pointsMachines - pointsAwards;

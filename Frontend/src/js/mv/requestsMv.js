@@ -1,4 +1,4 @@
-import { fetchGET, fetchPostWithDataToken } from "../helpers/Generalrequests.js"
+import { fetchGET, fetchPostWithDataToken, usingPut } from "../helpers/Generalrequests.js"
 import helpers from "../helpers/utils.js";
 
 export class requestMv {
@@ -13,5 +13,8 @@ export class requestMv {
     }
     static async getComments(idMv) {
         return await fetchGET(`comments/getComments?idMv=${idMv}`);
+    }
+    static async updateDownloads(data) {
+        return await usingPut("mv/specificMv", data);
     }
 }

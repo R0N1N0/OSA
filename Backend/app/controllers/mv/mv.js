@@ -46,3 +46,29 @@ exports.getSpecificMv = async(req, res) => {
         console.log(`El error al recuperar una maquina especifica. ${error}`);
     }
 }
+
+
+exports.downloadsMachine = async(req, res) => {
+    try {
+        const {id_mv} = req.body;
+        const connexion = await createConnexion();
+        let sql = "select descargas from mv where id_mv = ?";
+        const [result] = await connexion.query(sql, id_mv);
+
+        if(result.length == 0) {
+            connexion.release();
+            return res.status(400).json( {error: "La maquina no existe."} );
+        }
+        
+        const downloads = result[0].descargas+1;
+
+        sql = "UPDATE mv SET descargas = ? where id_mv = ?";
+        const [result2] = await connexion.query(sql, [downloads, id_mv]);
+        if(result2.changedRows > 0){
+            return res.status(200).json( {message: "Descarga añadida correctamente."} );
+        }
+    }
+    catch(error) {
+        console.log(`Error añadiendo descarga a la maquina: ${error}`);
+    }
+}

@@ -10,7 +10,12 @@ export async function logicAwards(premiosArticle){
     if(result.message) {
         helpers.deleteContainer(premiosArticle.querySelector(".alert > div"));
         helpers.showAlert(result.message, "success", alertContainer);
-        return printAwards();
+        printAwards();
+        const userMachines = await getUserRequests.getUserMachines();
+        const userAwards = await getUserRequests.getUserAwards();
+        const spanPoints = document.querySelector(".spanPoints");
+        spanPoints.textContent = points(userMachines, userAwards);
+        return;
     }
     else if(result.error){
        return helpers.showAlert(result.error, "error", alertContainer);

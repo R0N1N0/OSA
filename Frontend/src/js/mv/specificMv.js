@@ -95,6 +95,9 @@ async function printMachine() {
         buttonDownload.className = "text-base btn-info btn rounded color-text";
         buttonDownload.textContent = "Descargar";
         buttonDownload.href = enlace;
+        buttonDownload.onclick = () => {
+            updateDownloads();
+        }
         const iDownload = document.createElement("i");
         iDownload.className = "fa-solid fa-cloud-arrow-down color-text ml-2";
         buttonDownload.appendChild(iDownload);
@@ -162,4 +165,9 @@ async function addComment(e) {
     alert(result.message);
     form.reset();
     printComments();
+}
+
+async function updateDownloads() {
+    await requestMv.updateDownloads({id_mv: idMv});
+    printMachine();
 }

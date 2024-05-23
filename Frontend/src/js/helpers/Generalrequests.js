@@ -101,3 +101,19 @@ export async function deleteRegistres(route, token, data) {
         console.log(`error al borrar: ${error}`);
     }
 }
+
+export async function usingPut(route, data) {
+    try {
+        const response = await fetch(baseUrl + route, {
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+        return await response.json();
+    }
+    catch (error) {
+        console.log(`error al borrar: ${error}`);
+    }
+}
