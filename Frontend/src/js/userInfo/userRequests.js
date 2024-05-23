@@ -40,8 +40,8 @@ export class getUserRequests {
     static async deleteGroup(id) {
         return await deleteRegistres("group/deleteGroup", helpers.getToken(), id);
     }
-    static async assignAward(awardNumber) {
-        return await fetchPostWithDataToken("user/award/assignAward", helpers.getToken(), awardNumber);
+    static async assignAward() {
+        return await fetchPostWithDataToken("user/award/assignAward", helpers.getToken());
     }
     static async getGroupMembers(route) {
         return await fetchGetUserInfo(route, helpers.getToken());

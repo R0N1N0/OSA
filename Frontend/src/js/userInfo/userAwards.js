@@ -6,7 +6,7 @@ const addAward = premiosArticle.querySelector(".btn-success");
 
 //eventos
 addAward.addEventListener("click", async () => {
-    logicAwards(premiosArticle, await getAwardsNumber(), await getUserRequests.getUserAwards());
+    logicAwards(premiosArticle);
 });
 
 // function que muestra los premios que tiene disponibles un usuario

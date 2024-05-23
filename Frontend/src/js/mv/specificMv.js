@@ -20,7 +20,6 @@ showLoader();
 printMachine();
 printComments();
 checkUserAuth();
-showLoader();
 buttonSend.addEventListener("click", (e) => {
     addComment(e);
 });
@@ -148,6 +147,7 @@ async function printComments() {
 
 async function checkUserAuth() {
     const userData = await getUserRequests.getUserInfo();
+    showLoader();
     if(userData) return form.classList.remove("hidden");
     return form.classList.add("hidden");
 }
