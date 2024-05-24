@@ -2,15 +2,15 @@
 
 Este repositorio consiste en un trabajo de final de grado enfocado a simular la creación de una empresa enfocada en ciberseguridad. La actividad principal de esta empresa consiste en hacer una página web en la cual los usuarios podrán descargar CTFs (Capture The Flag), y leer tutoriales gratuitos o de pago. De esta manera los usuarios aprenderán técnicas de reconocimiento, análisis de vulnerabilidades, explotación, encriptación y temas relacionados con la ciberseguridad en general.
 
-## Estructura del proyecto
-
-Hemos decidido repartir el trabajo principalmente en los siguientes 3 sub-apartados.
-
 ## Workflow status:
 
 Custom Docker Images
 Nginx: [![nginx-publish](https://github.com/R0N1N0/OSA/actions/workflows/nginx-publish.yml/badge.svg)](https://github.com/R0N1N0/OSA/actions/workflows/nginx-publish.yml).
 Nodejs: [![nodejs-publish](https://github.com/R0N1N0/OSA/actions/workflows/nodejs-publish.yml/badge.svg)](https://github.com/R0N1N0/OSA/actions/workflows/nodejs-publish.yml).
+
+## Estructura del proyecto
+
+Hemos decidido repartir el trabajo principalmente en los siguientes 3 sub-apartados.
 
 ## ¿Cómo usarlo?
 
