@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: nodejs-deployment
 spec:
-  replicas: 6
+  replicas: 4
   selector:
     matchLabels:
       app: nodejs
@@ -18,7 +18,7 @@ spec:
         resources:
           limits:
             memory: "64Mi"
-            cpu: "500m" 
+            cpu: "250m" 
         ports:
         - containerPort: 3000
         env:
