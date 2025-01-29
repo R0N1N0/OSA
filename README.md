@@ -51,7 +51,7 @@ docker-compose --env-file ".env" up -d
 
 ### Página web
 
-Lo esencial del proyecto es la página web, la página web está formada de un front-end hecho con HTML 5 i CSS 3, junto a Tailwind. El backend está pensado con el uso de JavaScript y NodeJS, junto con ExpressJS.
+Lo esencial del proyecto es la página web, la página web está formada de un front-end hecho con HTML 5 y CSS 3, junto a Tailwind. El backend está pensado con el uso de JavaScript y NodeJS, junto con ExpressJS.
 En la página web habrán las actividades de las CTF, en la cual podrás descargar un archivo .OVA y explotar la máquina virtual para obtener un código, ese código podrán canjearlo para obtener puntos.
 
 Otra parte muy importante de la página web son los tutoriales, así los más nuevos podrán consultar dudas comunes y algunos métodos de explotación. Algunos serán esenciales para poder explotar máquinas de manera exitosa y completar los CTF.
@@ -74,7 +74,7 @@ En este directorio, tenemos el Dockerfile, los archivos de configuración y el d
 
 Usamos un Nginx-alpine para ahorrar espacio y además por la integración con Ingress con el módulo nginx-ingress.
 
-Puedes modificar lso archivos de nginx.conf y default.conf para tener una personalización a tu gusto, en el archivo "Frontend\src\js\helpers\Generalrequests.js" hay que modificar la variable baseUrl hacia el backend, un ejémplo: 
+Puedes modificar los archivos de nginx.conf y default.conf para tener una personalización a tu gusto, en el archivo "Frontend\src\js\helpers\Generalrequests.js" hay que modificar la variable baseUrl hacia el backend, un ejemplo: 
 
 ```js
 const baseUrl = "http://nodejs:3000/";
